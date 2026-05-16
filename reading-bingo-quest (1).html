@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Reading Bingo Quest</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#FAFAF8;
+  --surface:#FFFFFF;
+  --surface2:#F5F4F0;
+  --surface3:#EEECEA;
+  --border:#E2E0DB;
+  --border2:#CBC9C3;
+  --ink:#1C1B18;
+  --ink2:#4A4843;
+  --muted:#8C8A85;
+  --accent:#2D5016;
+  --accent2:#4A8024;
+  --accent-bg:#EDF3E6;
+  --accent-border:#B8D4A0;
+  --amber:#7A4F00;
+  --amber-bg:#FFF4DC;
+  --amber-border:#E5C870;
+  --red:#8B1A1A;
+  --red-bg:#FEF0F0;
+  --red-border:#E5A5A5;
+  --blue:#0F3D6B;
+  --blue-bg:#EBF3FC;
+  --blue-border:#9DC3E8;
+  --purple:#3D1F7A;
+  --purple-bg:#F0EBFC;
+  --purple-border:#C4ACEE;
+  --r:10px;
+  --r-lg:14px;
+  --r-sm:7px;
+  --shadow:0 1px 4px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.05);
+  --shadow-lg:0 2px 8px rgba(0,0,0,.1),0 8px 32px rgba(0,0,0,.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;font-size:14px;line-height:1.6}
+
+/* SCREENS */
+.screen{display:none;animation:fadeUp .28s ease}
+.screen.active{display:block}
+#screen-onboard.active,#screen-locked.active{display:flex}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* INPUTS */
+.flabel{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px;display:block}
+.finput{width:100%;padding:10px 12px;font-size:14px;font-family:'DM Sans',sans-serif;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);margin-bottom:12px;transition:border-color .15s;outline:none}
+.finput:focus{border-color:var(--accent2)}
+.finput.err{border-color:var(--red)!important}
+select.finput{cursor:pointer}
+textarea.finput{resize:vertical;min-height:60px}
+.ferr{font-size:11px;color:var(--red);font-weight:600;margin-top:-8px;margin-bottom:10px;display:none}.ferr.show{display:block}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 18px;border-radius:var(--r-sm);border:1.5px solid transparent;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .15s;text-decoration:none}
+.btn-primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn-primary:hover{background:#2c2b27}
+.btn-green{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-green:hover{background:var(--accent2)}
+.btn-full{width:100%}
+.btn-sm{padding:7px 14px;font-size:12px}
+.btn-outline{background:transparent;color:var(--ink2);border-color:var(--border)}
+.btn-outline:hover{border-color:var(--border2);color:var(--ink)}
+.btn-danger{background:var(--red-bg);color:var(--red);border-color:var(--red-border)}
+.btn-danger:hover{background:#fde0e0}
+.btn-amber{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-border)}
+
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.25rem;margin-bottom:.875rem;box-shadow:var(--shadow)}
+
+/* BADGE / PILL */
+.pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid}
+.pill-green{background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)}
+.pill-amber{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-border)}
+.pill-red{background:var(--red-bg);color:var(--red);border-color:var(--red-border)}
+.pill-gray{background:var(--surface3);color:var(--muted);border-color:var(--border)}
+.pill-blue{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-border)}
+.pill-purple{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-border)}
+
+/* INFO BOX */
+.info-box{border-radius:var(--r-sm);padding:10px 13px;font-size:12px;line-height:1.65;margin-bottom:12px;border:1px solid}
+.ib-green{background:var(--accent-bg);border-color:var(--accent-border);color:var(--accent)}
+.ib-amber{background:var(--amber-bg);border-color:var(--amber-border);color:var(--amber)}
+.ib-red{background:var(--red-bg);border-color:var(--red-border);color:var(--red)}
+.ib-blue{background:var(--blue-bg);border-color:var(--blue-border);color:var(--blue)}
+.ib-purple{background:var(--purple-bg);border-color:var(--purple-border);color:var(--purple)}
+
+/* ══ ONBOARD ══ */
+#screen-onboard{min-height:100vh;align-items:center;justify-content:center;padding:1.5rem;flex-direction:column}
+.ob-wrap{width:min(460px,100%)}
+
+.ob-hero{display:flex;align-items:center;gap:18px;margin-bottom:1.75rem;padding-bottom:1.75rem;border-bottom:1px solid var(--border)}
+.ob-logo{width:56px;height:56px;border-radius:14px;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ob-logo svg{width:28px;height:28px}
+.ob-eyebrow{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.ob-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;color:var(--ink);line-height:1.1}
+.ob-title span{color:var(--accent2)}
+.ob-sub{font-size:12px;color:var(--muted);margin-top:3px}
+
+.ob-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1.25rem}
+.ob-stat{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px;text-align:center}
+.ob-stat-val{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--ink)}
+.ob-stat-lbl{font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:1px}
+
+.tabs{display:flex;border-radius:var(--r-sm);overflow:hidden;border:1px solid var(--border);margin-bottom:.875rem;background:var(--surface2)}
+.tab-btn{flex:1;padding:9px;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;border:none;background:transparent;color:var(--muted);cursor:pointer;transition:all .15s}
+.tab-btn.active{color:var(--ink);background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.tab-pane{display:none}.tab-pane.active{display:block}
+.divider{display:flex;align-items:center;gap:10px;margin:10px 0;color:var(--muted);font-size:11px}.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ══ ADMIN ══ */
+#screen-admin{max-width:900px;margin:0 auto;padding:1rem 1rem 5rem}
+.admin-topbar{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);margin-bottom:.875rem;box-shadow:var(--shadow)}
+.topbar-logo{display:flex;align-items:center;gap:10px}
+.topbar-logo-mark{width:30px;height:30px;border-radius:8px;background:var(--ink);display:flex;align-items:center;justify-content:center}
+.topbar-logo-mark svg{width:15px;height:15px}
+.topbar-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700}
+.topbar-tag{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;background:var(--surface3);padding:2px 8px;border-radius:20px;border:1px solid var(--border)}
+
+.admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:.875rem;margin-bottom:.875rem}
+@media(max-width:640px){.admin-grid{grid-template-columns:1fr}}
+.section-title{font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:12px;display:flex;align-items:center;gap:7px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+
+/* guru accounts list */
+.guru-list{display:flex;flex-direction:column;gap:6px}
+.guru-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);gap:10px}
+.guru-item-left{display:flex;align-items:center;gap:10px}
+.guru-avatar{width:30px;height:30px;border-radius:8px;background:var(--ink);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600;flex-shrink:0}
+.guru-name{font-size:13px;font-weight:600;color:var(--ink)}
+.guru-code{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
+.guru-actions{display:flex;gap:6px;flex-shrink:0}
+
+/* season control */
+.season-ctl{}
+.season-prog{height:5px;background:var(--surface3);border-radius:4px;overflow:hidden;margin-bottom:10px}
+.season-prog-fill{height:100%;background:var(--accent2);border-radius:4px;transition:width .5s}
+
+/* ══ GURU ══ */
+#screen-guru{max-width:900px;margin:0 auto;padding:1rem 1rem 5rem}
+
+/* class stats */
+.class-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.class-chip{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:12px;font-weight:600;cursor:pointer;color:var(--ink2);transition:all .15s;white-space:nowrap}
+.class-chip:hover{border-color:var(--border2);color:var(--ink)}
+.class-chip.sel{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.cs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.cs-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 10px;text-align:center}
+.cs-val{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:var(--ink)}
+.cs-lbl{font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+
+/* search & filters */
+.search-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+.search-inp{flex:1;padding:9px 12px;font-size:13px;font-family:'DM Sans',sans-serif;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);outline:none;transition:border-color .15s}
+.search-inp:focus{border-color:var(--accent2)}
+.filter-row{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap}
+.fbtn{font-size:11px;font-weight:600;padding:4px 11px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.fbtn:hover{border-color:var(--border2);color:var(--ink)}
+.fbtn.active{background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* student table */
+.stu-table{width:100%;border-collapse:collapse}
+.stu-table th{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding:7px 10px;border-bottom:1px solid var(--border);text-align:left;white-space:nowrap}
+.stu-table td{padding:10px 10px;border-bottom:1px solid var(--surface3);font-size:12px;vertical-align:middle}
+.stu-table tr:last-child td{border-bottom:none}
+.stu-table tbody tr{cursor:pointer;transition:background .12s}
+.stu-table tbody tr:hover td{background:var(--surface2)}
+.sname{font-weight:600;color:var(--ink);font-size:13px}
+.scls{font-size:10px;color:var(--muted);margin-top:1px}
+.spts{font-family:'DM Mono',monospace;font-size:14px;font-weight:500;color:var(--ink)}
+.mini-bar{height:3px;border-radius:2px;background:var(--surface3);overflow:hidden;width:48px;display:inline-block;vertical-align:middle;margin-left:6px}
+.mini-bar-fill{height:100%;background:var(--accent2);border-radius:2px}
+.rank-badge{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:9px;font-weight:700;flex-shrink:0}
+.rank-1{background:#F5C842;color:#5a3c00}
+.rank-2{background:#D8D6D2;color:#3a3834}
+.rank-3{background:#D4956A;color:#5a2200}
+.rank-n{background:var(--surface3);color:var(--muted)}
+.empty-state{text-align:center;padding:3rem;color:var(--muted);font-size:13px}
+
+.export-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface);color:var(--ink2);font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.export-btn:hover{border-color:var(--border2);color:var(--ink)}
+
+/* DRAWER */
+.drawer-bg{display:none;position:fixed;inset:0;background:rgba(28,27,24,.55);z-index:200;align-items:flex-start;justify-content:flex-end;backdrop-filter:blur(3px)}
+.drawer-bg.open{display:flex}
+.drawer{background:var(--surface);width:min(400px,96vw);height:100vh;overflow-y:auto;padding:1.25rem;box-shadow:var(--shadow-lg);animation:slideIn .25s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--border)}
+@keyframes slideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
+.dr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.dr-avatar{width:44px;height:44px;border-radius:12px;background:var(--ink);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0;margin-right:10px}
+.dr-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--ink)}
+.dr-cls{font-size:11px;color:var(--muted);margin-top:1px}
+.dr-close{font-size:16px;cursor:pointer;background:var(--surface2);border:1px solid var(--border);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);flex-shrink:0;transition:all .15s}
+.dr-close:hover{border-color:var(--red-border);color:var(--red)}
+.dr-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:.875rem}
+.ds-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px;text-align:center}
+.ds-val{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--ink)}
+.ds-lbl{font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+.dr-section{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;margin-top:14px}
+.bingo-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:8px}
+.bm-cell{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;border:1px solid var(--border);background:var(--surface2)}
+.bm-cell.done{background:var(--accent);border-color:var(--accent);color:#fff}
+.bm-cell.bingo-c{background:var(--amber-bg);border-color:var(--amber-border)}
+.badge-mini{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:600;border:1px solid var(--border);background:var(--surface2);color:var(--muted);margin:2px}
+.badge-mini.unlocked{background:var(--accent-bg);border-color:var(--accent-border);color:var(--accent)}
+.book-entry{display:flex;gap:10px;align-items:flex-start;padding:9px;background:var(--surface2);border-radius:var(--r-sm);border:1px solid var(--border);margin-bottom:6px}
+.book-thumb{width:38px;height:38px;border-radius:8px;object-fit:cover;flex-shrink:0}
+.book-ph{width:38px;height:38px;border-radius:8px;background:var(--surface3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.book-ttl{font-size:12px;font-weight:600;color:var(--ink)}
+.book-tsk{font-size:10px;color:var(--muted);margin-top:1px}
+.book-pts{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);margin-top:3px}
+.book-inti{font-size:10px;color:var(--ink2);font-style:italic;margin-top:4px;line-height:1.5;background:var(--surface);padding:5px 8px;border-radius:6px;border-left:2px solid var(--accent-border)}
+.no-books{font-size:12px;color:var(--muted);text-align:center;padding:1.5rem}
+
+/* ══ GAME ══ */
+#screen-game{max-width:680px;margin:0 auto;padding:1rem 1rem 6rem}
+
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:.75rem 1rem;box-shadow:var(--shadow)}
+.top-player{display:flex;align-items:center;gap:10px}
+.top-avatar{width:36px;height:36px;border-radius:10px;background:var(--ink);display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;font-weight:700;flex-shrink:0}
+.top-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--ink)}
+.top-class{font-size:10px;color:var(--muted);margin-top:1px}
+
+/* season bar */
+.season-bar{border-radius:var(--r-lg);border:1px solid;padding:.875rem 1rem;margin-bottom:.875rem}
+.sb-active{background:var(--accent-bg);border-color:var(--accent-border)}
+.sb-warning{background:var(--amber-bg);border-color:var(--amber-border)}
+.sb-urgent{background:var(--red-bg);border-color:var(--red-border)}
+.sb-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.sb-title{font-size:12px;font-weight:600}
+.sb-active .sb-title{color:var(--accent)}.sb-warning .sb-title{color:var(--amber)}.sb-urgent .sb-title{color:var(--red)}
+.sb-countdown{font-family:'DM Mono',monospace;font-size:16px;font-weight:500}
+.sb-active .sb-countdown{color:var(--accent2)}.sb-warning .sb-countdown{color:var(--amber)}.sb-urgent .sb-countdown{color:var(--red)}
+.sb-prog{height:4px;border-radius:3px;overflow:hidden;background:rgba(0,0,0,.08)}
+.sb-prog-fill{height:100%;border-radius:3px;transition:width .5s}
+.sb-active .sb-prog-fill{background:var(--accent2)}.sb-warning .sb-prog-fill{background:var(--amber)}.sb-urgent .sb-prog-fill{background:var(--red)}
+.sb-dates{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:5px}
+
+/* XP bar */
+.xp-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:.875rem 1rem;margin-bottom:.875rem;box-shadow:var(--shadow)}
+.xp-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.xp-level-info{display:flex;align-items:center;gap:10px}
+.xp-icon{font-size:24px}
+.xp-level-name{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--ink)}
+.xp-level-num{font-size:10px;color:var(--muted)}
+.xp-pts{text-align:right}
+.xp-pts-val{font-family:'DM Mono',monospace;font-size:20px;font-weight:500;color:var(--ink)}
+.xp-pts-lbl{font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:1px}
+.xp-bar-bg{background:var(--surface3);border-radius:5px;height:8px;overflow:hidden}
+.xp-bar-fill{height:100%;background:var(--accent2);border-radius:5px;transition:width .6s cubic-bezier(.34,1.56,.64,1)}
+.xp-meta{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:5px}
+
+/* stats row */
+.stats-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:.875rem}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 8px;text-align:center;box-shadow:var(--shadow)}
+.stat-label{font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.stat-value{font-family:'DM Mono',monospace;font-size:19px;font-weight:500;color:var(--ink)}
+
+/* progress */
+.prog-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:.875rem 1rem;margin-bottom:.875rem;box-shadow:var(--shadow)}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.prog-title{font-size:13px;font-weight:600;color:var(--ink)}
+.prog-pct{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:var(--accent2)}
+.prog-bg{background:var(--surface3);border-radius:5px;height:8px;overflow:hidden}
+.prog-fill{height:100%;background:var(--accent2);border-radius:5px;transition:width .5s cubic-bezier(.34,1.56,.64,1)}
+.prog-ms{display:flex;justify-content:space-between;margin-top:7px}
+.milestone{font-size:9px;color:var(--muted);text-align:center;transition:color .3s}
+.milestone.reached{color:var(--accent);font-weight:700}
+
+/* daily */
+.daily-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:.875rem 1rem;margin-bottom:.875rem;display:flex;gap:12px;align-items:flex-start;cursor:pointer;transition:border-color .15s;box-shadow:var(--shadow)}
+.daily-card:hover{border-color:var(--border2)}
+.daily-card.done{opacity:.6;cursor:default}
+.daily-icon{font-size:24px;flex-shrink:0}
+.daily-title{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.daily-desc{font-size:11px;color:var(--muted)}
+.daily-tag{font-size:10px;font-weight:600;color:var(--amber);background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:20px;padding:2px 9px;display:inline-flex;margin-top:5px}
+
+/* streak */
+.streak-card{background:var(--surface);border:1px solid var(--amber-border);border-radius:var(--r-lg);padding:.875rem 1rem;margin-bottom:.875rem;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow)}
+.streak-fire{font-size:28px;flex-shrink:0}
+.streak-title{font-size:13px;font-weight:600;color:var(--amber)}
+.streak-sub{font-size:11px;color:var(--muted);margin-top:1px}
+.streak-dots{display:flex;gap:4px;margin-top:6px}
+.streak-dot{width:8px;height:8px;border-radius:50%;background:var(--surface3)}
+.streak-dot.active{background:var(--amber)}
+.streak-num{font-family:'DM Mono',monospace;font-size:28px;font-weight:500;color:var(--amber);text-align:center}
+.streak-lbl{font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;text-align:center;margin-top:1px}
+
+/* quote */
+.quote-card{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--r-lg);padding:.875rem 1rem;margin-bottom:.875rem;text-align:center}
+.quote-text{font-family:'Playfair Display',serif;font-size:14px;color:var(--accent);line-height:1.6;margin-bottom:4px}
+.quote-src{font-size:10px;color:var(--muted)}
+
+/* bingo grid */
+.grid-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.grid-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--ink)}
+.tip-btn{font-size:11px;font-weight:600;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:5px 13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.tip-btn:hover{border-color:var(--border2);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-bottom:.875rem}
+.cell{border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface);padding:10px 8px;cursor:pointer;transition:all .18s;min-height:84px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.cell:hover:not(.locked-cell){transform:translateY(-2px);border-color:var(--accent2);box-shadow:var(--shadow)}
+.cell.done{border:none}
+.cell.done .cell-title{color:rgba(255,255,255,.85)}
+.cell.done .score-badge{background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);border-color:transparent}
+.cell.done .check{opacity:1;transform:scale(1)}
+.cell.bingo-hi{box-shadow:0 0 0 2px var(--amber),var(--shadow)!important}
+.cell.done.ct-0{background:var(--accent)}
+.cell.done.ct-1{background:#1D6B8A}
+.cell.done.ct-2{background:#7A2D6B}
+.cell.done.ct-3{background:#7A4F00}
+.cell.locked-cell{opacity:.4;cursor:default}
+.cell-emoji{font-size:15px;line-height:1;margin-bottom:3px}
+.cell-title{font-size:10px;font-weight:500;line-height:1.35;color:var(--ink2);flex:1}
+.cell-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.score-badge{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;padding:2px 7px;border-radius:20px;background:var(--surface3);color:var(--muted);border:1px solid var(--border)}
+.check{font-size:13px;opacity:0;transform:scale(0);transition:all .3s cubic-bezier(.34,1.56,.64,1)}
+.photo-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.6);position:absolute;top:6px;right:6px}
+.lock-icon{position:absolute;top:5px;right:5px;font-size:11px;opacity:.5}
+
+/* badges */
+.badges-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:.875rem 1rem;margin-bottom:.875rem;box-shadow:var(--shadow)}
+.sec-title{font-size:13px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:7px;color:var(--ink)}
+.badges-list{display:flex;flex-wrap:wrap;gap:6px}
+.badge{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid var(--border);background:var(--surface2);color:var(--muted);transition:all .2s}
+.badge.unlocked{background:var(--accent-bg);border-color:var(--accent-border);color:var(--accent)}
+.badge-ic{font-size:13px}
+
+/* log */
+.log-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:.875rem 1rem;margin-bottom:.875rem;box-shadow:var(--shadow)}
+.log-list{display:flex;flex-direction:column;gap:6px}
+.log-item{display:flex;gap:10px;align-items:flex-start;padding:9px;background:var(--surface2);border-radius:var(--r-sm);border:1px solid var(--border);cursor:pointer;transition:all .12s}
+.log-item:hover{border-color:var(--border2);background:var(--surface3)}
+.log-thumb{width:40px;height:40px;border-radius:8px;object-fit:cover;flex-shrink:0}
+.log-thumb-ph{width:40px;height:40px;border-radius:8px;background:var(--surface3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.log-info{flex:1;min-width:0}
+.log-t{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.log-task{font-size:10px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.log-snip{font-size:10px;color:var(--ink2);font-style:italic;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:2px}
+.log-pts{font-family:'DM Mono',monospace;font-size:12px;font-weight:500;color:var(--accent2);flex-shrink:0;align-self:center}
+.sep{height:1px;background:var(--border);margin:.75rem 0}
+.btn-reset{width:100%;padding:10px;border-radius:var(--r-sm);border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.btn-reset:hover{border-color:var(--red-border);color:var(--red)}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border);padding:.5rem 1rem;padding-bottom:calc(.5rem + env(safe-area-inset-bottom));display:flex;justify-content:space-around;align-items:center;max-width:680px;margin:0 auto}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:5px 12px;border-radius:var(--r-sm);transition:all .15s;color:var(--muted);font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+.nav-item.active{color:var(--ink);background:var(--surface3)}
+.nav-icon{font-size:18px}
+
+/* LOCKED */
+#screen-locked{min-height:100vh;align-items:center;justify-content:center;padding:1.5rem;flex-direction:column}
+.locked-wrap{width:min(440px,100%);text-align:center}
+.locked-icon{font-size:52px;display:block;margin-bottom:1rem}
+.locked-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--ink);margin-bottom:.5rem}
+.locked-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem;line-height:1.7}
+.final-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:.875rem}
+.fstat{background:var(--surface2);border-radius:var(--r-sm);padding:14px;text-align:center;border:1px solid var(--border)}
+.fstat-val{font-family:'DM Mono',monospace;font-size:26px;font-weight:500;color:var(--ink)}
+.fstat-lbl{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:3px}
+.final-lv{background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--r-sm);padding:14px;text-align:center;margin-bottom:.875rem}
+.final-lv-icon{font-size:36px}.final-lv-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--accent);margin-top:5px}
+
+/* MODALS */
+.modal-bg,.detail-bg,.lu-bg{display:none;position:fixed;inset:0;background:rgba(28,27,24,.5);z-index:300;align-items:flex-start;justify-content:center;padding:1.25rem;overflow-y:auto;backdrop-filter:blur(4px)}
+.modal-bg.open,.detail-bg.open,.lu-bg.open{display:flex;animation:fadeUp .2s ease}
+.modal,.detail-modal{background:var(--surface);border-radius:var(--r-lg);border:1px solid var(--border);padding:1.25rem;width:min(400px,96vw);margin:auto;box-shadow:var(--shadow-lg)}
+.modal-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:10px}
+.modal-top h3{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--ink);line-height:1.3;flex:1}
+.modal-close{font-size:16px;cursor:pointer;color:var(--muted);background:var(--surface2);border:1px solid var(--border);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.modal-close:hover{border-color:var(--red-border);color:var(--red)}
+.modal-pts{display:inline-flex;align-items:center;gap:5px;background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border);border-radius:20px;font-family:'DM Mono',monospace;font-size:12px;font-weight:500;padding:4px 12px;margin-bottom:12px}
+.mood-row{display:flex;gap:6px;margin-bottom:12px}
+.mood-btn{flex:1;padding:7px 4px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface2);font-size:17px;cursor:pointer;text-align:center;transition:all .18s}
+.mood-btn:hover{transform:scale(1.08)}
+.mood-btn.selected{border-color:var(--accent2);background:var(--accent-bg);transform:scale(1.1)}
+.mood-label{display:block;font-size:8px;color:var(--muted);font-weight:600;margin-top:2px}.mood-btn.selected .mood-label{color:var(--accent)}
+.stars-row{display:flex;gap:6px;margin-bottom:12px}
+.star-btn{font-size:22px;cursor:pointer;transition:transform .15s;line-height:1;opacity:.3}
+.star-btn:hover,.star-btn.lit{opacity:1;transform:scale(1.2)}
+.photo-zone{border:1.5px dashed var(--border2);border-radius:var(--r-sm);padding:14px;text-align:center;cursor:pointer;margin-bottom:12px;transition:all .15s;position:relative;overflow:hidden;background:var(--surface2)}
+.photo-zone:hover{border-color:var(--accent2);background:var(--accent-bg)}
+.photo-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.photo-hint{font-size:12px;color:var(--muted)}.photo-hint span{font-size:20px;display:block;margin-bottom:3px}
+.ph-prev{width:100%;max-height:130px;object-fit:cover;border-radius:var(--r-sm);display:none;margin-bottom:7px}.ph-prev.show{display:block}
+.ph-del{font-size:11px;font-weight:600;color:var(--red);cursor:pointer;display:none;background:none;border:none;margin-bottom:10px;font-family:'DM Sans',sans-serif}.ph-del.show{display:block}
+.modal-btns{display:flex;gap:8px;margin-top:6px}
+.btn-ok{flex:2;padding:11px;border-radius:var(--r-sm);border:none;background:var(--ink);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.btn-ok:hover{background:#2c2b27}
+.btn-no{flex:1;padding:11px;border-radius:var(--r-sm);border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.btn-no:hover{color:var(--ink)}
+.detail-photo{width:100%;max-height:160px;object-fit:cover;border-radius:var(--r-sm);margin-bottom:12px;display:none}.detail-photo.show{display:block}
+.detail-row{margin-bottom:10px}
+.dlabel{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.dval{font-size:14px;color:var(--ink);line-height:1.5;font-weight:500}
+.detail-intisari{font-size:12px;color:var(--ink2);line-height:1.7;font-style:italic;background:var(--surface2);padding:9px 11px;border-radius:var(--r-sm);border-left:2px solid var(--accent-border)}
+.detail-acts{display:flex;gap:7px;margin-top:12px}
+.btn-edit2{flex:1;padding:9px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface2);color:var(--ink2);font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.btn-edit2:hover{border-color:var(--border2);color:var(--ink)}
+.btn-del2{padding:9px 13px;border-radius:var(--r-sm);border:1px solid var(--red-border);background:var(--red-bg);color:var(--red);font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+.btn-cls2{flex:1;padding:9px;border-radius:var(--r-sm);border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+
+/* LEVEL UP */
+.lu-modal{background:var(--surface);border-radius:var(--r-lg);border:1px solid var(--accent-border);padding:2rem 1.5rem;width:min(360px,92vw);margin:auto;text-align:center;box-shadow:var(--shadow-lg);animation:popIn .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.lu-icon{font-size:48px;margin-bottom:.75rem;display:block}
+.lu-eyebrow{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.lu-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;color:var(--ink);margin-bottom:5px}
+.lu-sub{font-size:12px;color:var(--muted);margin-bottom:.875rem;line-height:1.6}
+.lu-new{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--accent);margin-bottom:.25rem}
+.lu-desc{font-size:12px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
+.btn-lu{width:100%;padding:12px;border-radius:var(--r-sm);border:none;background:var(--ink);color:#fff;font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background .15s}
+.btn-lu:hover{background:#2c2b27}
+
+/* TOAST */
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--ink);color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:500;white-space:nowrap;box-shadow:var(--shadow-lg)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+canvas#cc{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:499}
+
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+</style>
+</head>
+<body>
+
+<!-- ══ ONBOARD ══ -->
+<div id="screen-onboard" class="screen">
+  <div class="ob-wrap">
+    <div class="ob-hero">
+      <div class="ob-logo">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="10" height="14" rx="2" fill="white" opacity=".9"/>
+          <rect x="6" y="6" width="10" height="14" rx="2" fill="white" opacity=".6"/>
+          <rect x="8" y="8" width="12" height="14" rx="2" fill="white"/>
+          <path d="M10 12h8M10 15h6" stroke="#1C1B18" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="ob-eyebrow">Junior High School</div>
+        <div class="ob-title">Reading Bingo <span>Quest</span></div>
+        <div class="ob-sub">Complete reading challenges, level up, become a Book Champion.</div>
+      </div>
+    </div>
+
+    <div class="ob-stats">
+      <div class="ob-stat"><div class="ob-stat-val">16</div><div class="ob-stat-lbl">Challenges</div></div>
+      <div class="ob-stat"><div class="ob-stat-val">7</div><div class="ob-stat-lbl">Levels</div></div>
+      <div class="ob-stat"><div class="ob-stat-val">92</div><div class="ob-stat-lbl">Days</div></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('student')">🎒 I'm a Student</button>
+      <button class="tab-btn" onclick="switchTab('teacher')">👩‍🏫 I'm a Teacher</button>
+      <button class="tab-btn" onclick="switchTab('admin')">🔑 Admin</button>
+    </div>
+
+    <div id="tab-student" class="tab-pane active">
+      <div class="card">
+        <div class="flabel">Full name</div>
+        <input class="finput" id="ob-name" placeholder="Enter your name...">
+        <div class="ferr" id="err-name">Name is required!</div>
+        <div class="flabel">Class</div>
+        <select class="finput" id="ob-class">
+          <option value="">— Select class —</option>
+          <option>7A</option><option>7B</option><option>7C</option><option>7D</option><option>7E</option><option>7F</option><option>7G</option><option>7H</option>
+          <option>8A</option><option>8B</option><option>8C</option><option>8D</option>
+          <option>9A</option><option>9B</option><option>9C</option><option>9D</option>
+          <option value="__other__">Other class...</option>
+        </select>
+        <input class="finput" id="ob-class-custom" placeholder="Enter your class..." style="display:none;margin-top:-8px">
+        <div class="ferr" id="err-class">Class is required!</div>
+        <div id="season-info-box"></div>
+        <button class="btn btn-primary btn-full" onclick="startGame()">Start Quest →</button>
+      </div>
+    </div>
+
+    <div id="tab-teacher" class="tab-pane">
+      <div class="card">
+        <div class="flabel">Teacher access code</div>
+        <input class="finput" id="guru-pass" type="password" placeholder="Enter access code...">
+        <div class="ferr" id="err-pass">Incorrect code!</div>
+        <button class="btn btn-primary btn-full" onclick="loginGuru()">Enter Teacher Panel →</button>
+        <div class="divider">or</div>
+        <p style="font-size:11px;color:var(--muted);text-align:center">Access codes are managed by your school admin.</p>
+      </div>
+    </div>
+
+    <div id="tab-admin" class="tab-pane">
+      <div class="card">
+        <div class="flabel">Admin password</div>
+        <input class="finput" id="admin-pass" type="password" placeholder="Enter admin password...">
+        <div class="ferr" id="err-admin">Incorrect password!</div>
+        <button class="btn btn-primary btn-full" onclick="loginAdmin()">Enter Admin Panel →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN ══ -->
+<div id="screen-admin" class="screen">
+  <div class="admin-topbar">
+    <div class="topbar-logo">
+      <div class="topbar-logo-mark">
+        <svg viewBox="0 0 15 15" fill="none"><rect x="2" y="2" width="5" height="7" rx="1" fill="white" opacity=".9"/><rect x="3" y="3" width="5" height="7" rx="1" fill="white" opacity=".5"/><rect x="4" y="4" width="7" height="7" rx="1" fill="white"/></svg>
+      </div>
+      <div class="topbar-title">Reading Bingo Quest</div>
+      <div class="topbar-tag">Admin Panel</div>
+    </div>
+    <button class="btn btn-outline btn-sm" onclick="showScreen('screen-onboard')">← Sign out</button>
+  </div>
+
+  <div class="admin-grid">
+    <!-- Guru Accounts -->
+    <div class="card" style="margin-bottom:0">
+      <div class="section-title">👩‍🏫 Teacher Accounts</div>
+      <div id="admin-guru-list" class="guru-list"></div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
+        <div class="flabel">New teacher name</div>
+        <input class="finput" id="new-guru-name" placeholder="e.g. Ms. Smith" style="margin-bottom:8px">
+        <div class="flabel">Access code</div>
+        <input class="finput" id="new-guru-code" placeholder="e.g. TeacherCode123" style="margin-bottom:8px">
+        <button class="btn btn-green btn-full btn-sm" onclick="addGuru()">+ Add Teacher Account</button>
+      </div>
+    </div>
+
+    <!-- Season Control -->
+    <div class="card" style="margin-bottom:0">
+      <div class="section-title">📅 Season Settings</div>
+      <div id="admin-pill"></div>
+      <div id="admin-season-info"></div>
+      <div class="flabel">Season start date</div>
+      <input class="finput" id="admin-start" type="date">
+      <div class="info-box ib-blue" style="margin-bottom:12px">Season runs <strong>92 days (~3 months)</strong>. After it ends, the bingo board locks automatically and final scores are saved per student.</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-green btn-sm" style="flex:1" onclick="setSeason()">Activate Season</button>
+        <button class="btn btn-danger btn-sm" onclick="resetSeason()">Reset All</button>
+      </div>
+
+      <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border)">
+        <div class="section-title" style="margin-bottom:10px">⚙️ Admin Password</div>
+        <div class="flabel">New admin password</div>
+        <input class="finput" id="admin-new-pass" type="password" placeholder="Enter new password..." style="margin-bottom:8px">
+        <button class="btn btn-outline btn-sm btn-full" onclick="changeAdminPass()">Update Password</button>
+      </div>
+
+      <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border)">
+        <div class="section-title" style="margin-bottom:10px">📊 Quick Stats</div>
+        <div id="admin-stats"></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:.875rem">
+    <div class="card" style="margin-bottom:0">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+        <div class="section-title" style="margin-bottom:0">📋 All Students Overview</div>
+        <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+      </div>
+      <div id="admin-table"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GURU ══ -->
+<div id="screen-guru" class="screen">
+  <div style="max-width:900px;margin:0 auto;padding:1rem 1rem 5rem">
+    <div class="admin-topbar">
+      <div class="topbar-logo">
+        <div class="topbar-logo-mark">
+          <svg viewBox="0 0 15 15" fill="none"><rect x="2" y="2" width="5" height="7" rx="1" fill="white" opacity=".9"/><rect x="3" y="3" width="5" height="7" rx="1" fill="white" opacity=".5"/><rect x="4" y="4" width="7" height="7" rx="1" fill="white"/></svg>
+        </div>
+        <div class="topbar-title">Teacher Panel</div>
+        <div class="topbar-tag" id="guru-name-tag">—</div>
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="showScreen('screen-onboard')">← Sign out</button>
+    </div>
+
+    <div class="card">
+      <div class="section-title">📅 Current Season</div>
+      <div id="g-pill" style="margin-bottom:8px"></div>
+      <div id="g-dates"></div>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+        <div class="section-title" style="margin-bottom:0">📊 Student Monitor</div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="font-size:11px;font-weight:600;color:var(--muted)" id="g-total">0 students</div>
+          <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
+        </div>
+      </div>
+      <div class="class-chips" id="g-chips"></div>
+      <div class="cs-grid" id="g-cstats" style="display:none"></div>
+      <div class="search-row">
+        <input class="search-inp" id="g-search" placeholder="Search students..." oninput="renderTable()">
+      </div>
+      <div class="filter-row">
+        <button class="fbtn active" onclick="setFilter('all',this)">All</button>
+        <button class="fbtn" onclick="setFilter('active',this)">Has Progress</button>
+        <button class="fbtn" onclick="setFilter('none',this)">Not Started</button>
+        <button class="fbtn" onclick="setFilter('bingo',this)">Has Bingo</button>
+        <button class="fbtn" onclick="setFilter('done',this)">100% Done</button>
+      </div>
+      <div id="g-table"></div>
+    </div>
+    <div class="info-box ib-blue" style="font-size:11px">Tip: Click on any student row to see their full progress, bingo board, books, and badges.</div>
+  </div>
+</div>
+
+<!-- ══ GAME ══ -->
+<div id="screen-game" class="screen">
+  <div style="max-width:680px;margin:0 auto;padding:1rem 1rem 6rem">
+    <div class="top-bar">
+      <div class="top-player">
+        <div class="top-avatar" id="top-avatar">?</div>
+        <div><div class="top-name" id="top-name">—</div><div class="top-class" id="top-class">—</div></div>
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="goBack()">← Exit</button>
+    </div>
+    <div id="season-bar-wrap"></div>
+    <div class="xp-wrap" id="xp-bar-wrap"></div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Points</div><div class="stat-value" id="s-pts">0</div></div>
+      <div class="stat-card"><div class="stat-label">Done</div><div class="stat-value" id="s-done">0</div></div>
+      <div class="stat-card"><div class="stat-label">Bingo</div><div class="stat-value" id="s-bingo">0</div></div>
+      <div class="stat-card"><div class="stat-label">Streak</div><div class="stat-value" id="s-streak">0</div></div>
+    </div>
+    <div class="prog-card">
+      <div class="prog-top"><div class="prog-title">Quest Progress</div><div class="prog-pct" id="s-pct">0%</div></div>
+      <div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      <div class="prog-ms"><div class="milestone" id="ms0">🎁 25%</div><div class="milestone" id="ms1">🔥 50%</div><div class="milestone" id="ms2">⚡ 75%</div><div class="milestone" id="ms3">🏆 100%</div></div>
+    </div>
+    <div id="daily-sec"></div>
+    <div id="streak-sec"></div>
+    <div id="quote-sec"></div>
+    <div class="grid-header">
+      <div class="grid-title">Bingo Board</div>
+      <button class="tip-btn" onclick="showTip()">Reading tip</button>
+    </div>
+    <div class="grid" id="grid"></div>
+    <div class="badges-card"><div class="sec-title">🏅 Badges</div><div class="badges-list" id="badges"></div></div>
+    <div id="log-sec"></div>
+    <div class="sep"></div>
+    <button class="btn-reset" onclick="resetProgress()">Reset my progress</button>
+  </div>
+</div>
+
+<!-- ══ LOCKED ══ -->
+<div id="screen-locked" class="screen">
+  <div class="locked-wrap">
+    <span class="locked-icon">🔒</span>
+    <div class="locked-title">Quest Complete!</div>
+    <div class="locked-sub" id="locked-sub"></div>
+    <div class="card">
+      <div class="sec-title" style="margin-bottom:.75rem">Final Score — <span id="final-name" style="color:var(--accent2)"></span></div>
+      <div class="final-stats">
+        <div class="fstat"><div class="fstat-val" id="final-pts">0</div><div class="fstat-lbl">Total Points</div></div>
+        <div class="fstat"><div class="fstat-val" id="final-done">0/16</div><div class="fstat-lbl">Challenges</div></div>
+        <div class="fstat"><div class="fstat-val" id="final-bingo">0</div><div class="fstat-lbl">Bingo</div></div>
+        <div class="fstat"><div class="fstat-val" id="final-books">0</div><div class="fstat-lbl">Books</div></div>
+      </div>
+      <div class="final-lv" id="final-lv"></div>
+    </div>
+    <button class="btn btn-primary btn-full" onclick="goBack()">← Back</button>
+  </div>
+</div>
+
+<!-- INPUT MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="modal-top"><h3 id="m-title"></h3><button class="modal-close" onclick="closeModal()">✕</button></div>
+    <div class="modal-pts" id="m-pts"></div>
+    <div class="flabel">Book title *</div><input class="finput" id="m-book" placeholder="Enter book title...">
+    <div class="flabel">How did you feel reading it?</div><div class="mood-row" id="mood-row"></div>
+    <div class="flabel">Book rating</div><div class="stars-row" id="stars-row"></div>
+    <div class="flabel">Photo <span style="font-weight:400;font-size:10px;color:var(--muted)">(optional)</span></div>
+    <img class="ph-prev" id="m-preview" src="" alt=""><button class="ph-del" id="m-del" onclick="removePhoto()">✕ Remove photo</button>
+    <div class="photo-zone" id="pzone"><input type="file" accept="image/*" id="m-file" onchange="handlePhoto(event)"><div class="photo-hint"><span>📷</span>Tap to upload photo</div></div>
+    <div class="flabel">Key takeaway <span style="font-weight:400;font-size:10px;color:var(--muted)">(optional)</span></div>
+    <textarea class="finput" id="m-intisari" placeholder="What did you learn from this book?" rows="2"></textarea>
+    <div class="modal-btns"><button class="btn-no" onclick="closeModal()">Cancel</button><button class="btn-ok" onclick="confirmCell()">Mark complete ✓</button></div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="detail-bg" id="detail-bg">
+  <div class="detail-modal">
+    <div class="modal-top"><h3 id="d-task"></h3><button class="modal-close" onclick="closeDetail()">✕</button></div>
+    <img class="detail-photo" id="d-photo" src="" alt="">
+    <div class="detail-row"><div class="dlabel">Book Title</div><div class="dval" id="d-book"></div></div>
+    <div class="detail-row" id="d-mood-row" style="display:none"><div class="dlabel">Feeling</div><div class="dval" id="d-mood"></div></div>
+    <div class="detail-row" id="d-stars-row" style="display:none"><div class="dlabel">Rating</div><div class="dval" id="d-stars"></div></div>
+    <div class="detail-row" id="d-int-wrap" style="display:none"><div class="dlabel">Key Takeaway</div><div class="detail-intisari" id="d-intisari"></div></div>
+    <div class="detail-acts">
+      <button class="btn-edit2" id="d-edit-btn" onclick="editFromDetail()">✏️ Edit</button>
+      <button class="btn-del2" id="d-del-btn" onclick="deleteFromDetail()">🗑 Delete</button>
+      <button class="btn-cls2" onclick="closeDetail()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- LEVEL UP -->
+<div class="lu-bg" id="lu-bg">
+  <div class="lu-modal">
+    <div class="lu-icon" id="lu-icon">🌟</div>
+    <div class="lu-eyebrow">Level Up!</div>
+    <div class="lu-title">Congratulations! 🎉</div>
+    <div class="lu-sub" id="lu-sub"></div>
+    <div class="lu-new" id="lu-new"></div>
+    <div class="lu-desc" id="lu-desc"></div>
+    <button class="btn-lu" onclick="closeLevelUp()">Continue Quest →</button>
+  </div>
+</div>
+
+<!-- STUDENT DRAWER -->
+<div class="drawer-bg" id="drawer-bg" onclick="closeDrawerOut(event)">
+  <div class="drawer" id="drawer">
+    <div class="dr-top">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="dr-avatar" id="dr-avatar">?</div>
+        <div><div class="dr-name" id="dr-name"></div><div class="dr-cls" id="dr-cls"></div></div>
+      </div>
+      <button class="dr-close" onclick="closeDrawerBtn()">✕</button>
+    </div>
+    <div class="dr-stats" id="dr-stats"></div>
+    <div id="dr-level" style="background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--r-sm);padding:10px 12px;margin-bottom:.75rem;display:flex;align-items:center;gap:10px"></div>
+    <div class="dr-section">Bingo Board</div>
+    <div class="bingo-mini" id="dr-bingo"></div>
+    <div class="dr-section">Badges</div>
+    <div id="dr-badges" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px"></div>
+    <div class="dr-section">Books Read</div>
+    <div id="dr-books"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<canvas id="cc"></canvas>
+
+<script>
+const CELLS=[
+  {t:"Read a book by your favorite author",s:5,e:"✍️"},{t:'Read a "Best Seller" book',s:10,e:"🏆"},
+  {t:"Read a biography",s:10,e:"👤"},{t:"Read a book with an attractive cover",s:5,e:"🎨"},
+  {t:"Read a book based on a true story",s:10,e:"📰"},{t:"Read a book with an interesting synopsis",s:10,e:"🔍"},
+  {t:"Read a book with a one-word title",s:5,e:"1️⃣"},{t:"Read a book at a café or restaurant",s:5,e:"☕"},
+  {t:"Read a book rated >4 stars on Goodreads",s:10,e:"⭐"},{t:"Read a book adapted into a film",s:5,e:"🎬"},
+  {t:"Read a literary work or poetry",s:5,e:"🌸"},{t:"Read on a holiday or day off",s:5,e:"🌴"},
+  {t:"Discover a new word you didn't know",s:5,e:"💡"},{t:"Read a history book",s:10,e:"🏛️"},
+  {t:"Book title starts with the same letter as your name",s:5,e:"🔤"},{t:"Read a motivation or self-improvement book",s:10,e:"💪"},
+];
+const LINES=[[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15],[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15],[0,5,10,15],[3,6,9,12]];
+const LEVELS=[
+  {min:0,icon:"🥚",name:"Egg Reader",unlock:"Complete 1 challenge to hatch!"},
+  {min:1,icon:"🐣",name:"Hatched Reader",unlock:"3 more challenges to level up"},
+  {min:4,icon:"🐥",name:"Junior Reader",unlock:"4 more challenges to level up"},
+  {min:8,icon:"🦉",name:"Book Owl",unlock:"4 more challenges to level up"},
+  {min:12,icon:"🦅",name:"Literacy Eagle",unlock:"Almost there! 3 more to go"},
+  {min:15,icon:"🌟",name:"Star Reader",unlock:"One last step to the top!"},
+  {min:16,icon:"🏆",name:"Book Champion",unlock:"All challenges complete! You're amazing! 🎉"},
+];
+const MOODS=[{e:"😴",l:"Sleepy"},{e:"😊",l:"Fun"},{e:"🤩",l:"Amazing"},{e:"🥹",l:"Moving"},{e:"🤔",l:"Thoughtful"}];
+const BADGES=[
+  {id:"b1",ic:"🌱",label:"New Reader",req:1},
+  {id:"b4",ic:"📚",label:"Avid Reader",req:4},
+  {id:"bingo1",ic:"🎯",label:"First Bingo",bingo:1},
+  {id:"b8",ic:"🔥",label:"Halfway There",req:8},
+  {id:"photo3",ic:"📷",label:"Book Photographer",photos:3},
+  {id:"bingo2",ic:"⚡",label:"Double Bingo",bingo:2},
+  {id:"rate5",ic:"💎",label:"Star Critic",stars5:1},
+  {id:"streak7",ic:"🌊",label:"Streak Master",streak7:1},
+  {id:"b16",ic:"🏅",label:"Book Champion",req:16},
+];
+const QUOTES=[
+  ["Reading is to the mind what exercise is to the body.","Joseph Addison"],
+  ["A reader lives a thousand lives before they die.","George R.R. Martin"],
+  ["Not all readers are leaders, but all leaders are readers.","Harry S. Truman"],
+  ["The more that you read, the more things you will know.","Dr. Seuss"],
+  ["Today a reader, tomorrow a leader.","Margaret Fuller"],
+  ["A book is a dream that you hold in your hands.","Neil Gaiman"],
+];
+const TIPS=[
+  ["Read 10 minutes a day","Consistency beats duration. 10 min/day = 60 hours a year!"],
+  ["Note new words","When you find an unfamiliar word, write it down. Your vocabulary will grow fast!"],
+  ["Find your spot","A café, park, or cozy corner — environment matters for reading motivation."],
+  ["Read before bed","More effective than scrolling. Your brain absorbs better when relaxed."],
+  ["Discuss with friends","Talking about books with friends makes the experience twice as fun!"],
+  ["Set a weekly goal","Try: finish 1 book per week. Small progress = big results!"],
+];
+const DAILY_CHALLENGES=[
+  {icon:"🌅",title:"Morning Read",desc:"Read at least 10 minutes before 9am",bonus:15},
+  {icon:"🌙",title:"Bedtime Reading",desc:"Read at least 20 minutes before sleep",bonus:15},
+  {icon:"📝",title:"Write a Takeaway",desc:"Add a key takeaway to one of your books",bonus:10},
+  {icon:"📸",title:"Photo your Book",desc:"Upload a photo of your book today",bonus:10},
+  {icon:"🌟",title:"Rate a Book",desc:"Give a rating to a book you've read",bonus:10},
+  {icon:"🗺️",title:"Check Progress",desc:"Review how far you've come on the bingo board!",bonus:5},
+];
+
+const SEASON_DAYS=92;
+const DEFAULT_ADMIN_PASS="Admin@RBQ2025!";
+
+// ── Storage helpers ──
+function getAdminPass(){return localStorage.getItem("rbq_admin_pass")||DEFAULT_ADMIN_PASS;}
+function getGuruAccounts(){try{return JSON.parse(localStorage.getItem("rbq_gurus")||"[]");}catch(e){return[];}}
+function saveGuruAccounts(arr){localStorage.setItem("rbq_gurus",JSON.stringify(arr));}
+
+let player={name:"",cls:""};
+let state={checked:new Array(16).fill(false),books:new Array(16).fill(""),photos:new Array(16).fill(""),intisari:new Array(16).fill(""),moods:new Array(16).fill(-1),ratings:new Array(16).fill(0),pts:0,bingoLines:new Set(),badges:new Set(),streak:0,lastDate:"",dailyDone:false,dailyDate:""};
+let season={startDate:"",endDate:"",active:false};
+let activeIdx=-1,detailIdx=-1,tempPhoto="",tempMood=-1,tempRating=0;
+let filterMode="all",selClass="all";
+let todayChallenge=null;
+let currentGuruName="";
+
+function pkey(n,c){return"rbq_st_"+encodeURIComponent(n)+"_"+encodeURIComponent(c);}
+function getAllStudents(){const out=[];try{for(let k in localStorage){if(!k.startsWith("rbq_st_"))continue;const d=JSON.parse(localStorage.getItem(k));if(d&&d.pName)out.push(d);}}catch(e){}return out.sort((a,b)=>a.pName.localeCompare(b.pName));}
+function saveAll(){
+  try{
+    localStorage.setItem("rbq_player",JSON.stringify(player));
+    localStorage.setItem("rbq_season",JSON.stringify(season));
+    if(player.name){const k=pkey(player.name,player.cls);localStorage.setItem(k,JSON.stringify({pName:player.name,pCls:player.cls,saved:new Date().toISOString(),...state,bingoLines:[...state.bingoLines],badges:[...state.badges]}));}
+  }catch(e){}
+}
+function loadAll(){
+  try{
+    const p=JSON.parse(localStorage.getItem("rbq_player")||"null");if(p&&p.name)player=p;
+    const se=JSON.parse(localStorage.getItem("rbq_season")||"null");if(se)season=se;
+    if(player.name){const s=JSON.parse(localStorage.getItem(pkey(player.name,player.cls))||"null");if(s)state={checked:s.checked||new Array(16).fill(false),books:s.books||new Array(16).fill(""),photos:s.photos||new Array(16).fill(""),intisari:s.intisari||new Array(16).fill(""),moods:s.moods||new Array(16).fill(-1),ratings:s.ratings||new Array(16).fill(0),pts:s.pts||0,bingoLines:new Set(s.bingoLines||[]),badges:new Set(s.badges||[]),streak:s.streak||0,lastDate:s.lastDate||"",dailyDone:s.dailyDone||false,dailyDate:s.dailyDate||""};}
+  }catch(e){}
+}
+
+function SS(){if(!season.startDate)return"none";const n=new Date();n.setHours(0,0,0,0);const s=new Date(season.startDate);s.setHours(0,0,0,0);const e=new Date(season.endDate);e.setHours(0,0,0,0);if(n<s)return"upcoming";if(n>e)return"ended";return"active";}
+function daysLeft(){const n=new Date();n.setHours(0,0,0,0);const e=new Date(season.endDate);e.setHours(0,0,0,0);return Math.max(0,Math.round((e-n)/864e5));}
+function daysEl(){const n=new Date();n.setHours(0,0,0,0);const s=new Date(season.startDate);s.setHours(0,0,0,0);return Math.max(0,Math.round((n-s)/864e5));}
+function fd(d){if(!d)return"—";return new Date(d).toLocaleDateString("en-US",{day:"numeric",month:"long",year:"numeric"});}
+function fds(d){if(!d)return"—";return new Date(d).toLocaleDateString("en-US",{day:"numeric",month:"short"});}
+function isLocked(){return SS()==="ended";}
+function getLvIdx(done){let i=0;for(let l=0;l<LEVELS.length;l++)if(done>=LEVELS[l].min)i=l;return i;}
+
+function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");}
+function switchTab(t){const tabs=["student","teacher","admin"];document.querySelectorAll(".tab-btn").forEach((b,i)=>b.classList.toggle("active",tabs[i]===t));tabs.forEach(id=>document.getElementById("tab-"+id).classList.toggle("active",id===t));}
+function goBack(){showScreen("screen-onboard");buildInfoBox();}
+
+// ══ ADMIN ══
+function loginAdmin(){
+  const pass=document.getElementById("admin-pass").value;
+  if(pass!==getAdminPass()){document.getElementById("err-admin").classList.add("show");return;}
+  document.getElementById("err-admin").classList.remove("show");
+  if(season.startDate)document.getElementById("admin-start").value=season.startDate;
+  buildAdminPanel();showScreen("screen-admin");
+}
+function buildAdminPanel(){
+  // Guru list
+  const gurus=getGuruAccounts();
+  const listEl=document.getElementById("admin-guru-list");
+  if(!gurus.length){listEl.innerHTML=`<p style="font-size:12px;color:var(--muted);text-align:center;padding:.75rem">No teacher accounts yet.</p>`;
+  }else{
+    listEl.innerHTML=gurus.map((g,i)=>`<div class="guru-item">
+      <div class="guru-item-left">
+        <div class="guru-avatar">${g.name.charAt(0).toUpperCase()}</div>
+        <div><div class="guru-name">${g.name}</div><div class="guru-code">Code: ${g.code}</div></div>
+      </div>
+      <div class="guru-actions">
+        <button class="btn btn-danger btn-sm" style="padding:5px 10px;font-size:11px" onclick="deleteGuru(${i})">Remove</button>
+      </div>
+    </div>`).join("");
+  }
+  // Season
+  const ss=SS();
+  const pm={none:"pill-gray",upcoming:"pill-amber",active:"pill-green",ended:"pill-red"};
+  const pl={none:"No season set",upcoming:`Starting ${fd(season.startDate)}`,active:`Active — ${daysLeft()} days left`,ended:"Season ended"};
+  document.getElementById("admin-pill").innerHTML=`<div class="pill ${pm[ss]}">${pl[ss]}</div>`;
+  const si=document.getElementById("admin-season-info");
+  si.innerHTML=season.startDate?`<p style="font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.8"><strong style="color:var(--ink)">Start:</strong> ${fd(season.startDate)}<br><strong style="color:var(--ink)">End:</strong> ${fd(season.endDate)}</p>`:"";
+  // Stats
+  const sts=getAllStudents();
+  document.getElementById("admin-stats").innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div class="cs-card"><div class="cs-val">${sts.length}</div><div class="cs-lbl">Total Students</div></div>
+      <div class="cs-card"><div class="cs-val">${sts.filter(s=>(s.checked||[]).some(Boolean)).length}</div><div class="cs-lbl">Active</div></div>
+      <div class="cs-card"><div class="cs-val">${sts.reduce((a,s)=>a+(s.bingoLines||[]).length,0)}</div><div class="cs-lbl">Total Bingos</div></div>
+      <div class="cs-card"><div class="cs-val">${sts.filter(s=>(s.checked||[]).filter(Boolean).length===16).length}</div><div class="cs-lbl">Completed</div></div>
+    </div>`;
+  // Admin table (simplified)
+  renderAdminTable();
+}
+function renderAdminTable(){
+  const sts=getAllStudents().sort((a,b)=>(b.pts||0)-(a.pts||0));
+  const el=document.getElementById("admin-table");
+  if(!sts.length){el.innerHTML=`<div class="empty-state">No students registered yet.</div>`;return;}
+  el.innerHTML=`<table class="stu-table"><thead><tr><th>#</th><th>Name</th><th>Class</th><th>Points</th><th>Done</th><th>Bingo</th><th>Last Update</th></tr></thead><tbody>${sts.map((s,i)=>{
+    const done=(s.checked||[]).filter(Boolean).length,pct=Math.round((done/16)*100);
+    const rankCls=i===0?"rank-1":i===1?"rank-2":i===2?"rank-3":"rank-n";
+    return`<tr onclick="openDrawer('${s.pName.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}','${s.pCls}')">
+      <td><span class="rank-badge ${rankCls}">${i===0?"🥇":i===1?"🥈":i===2?"🥉":i+1}</span></td>
+      <td><div class="sname">${s.pName}</div></td>
+      <td><span class="scls">${s.pCls}</span></td>
+      <td><span class="spts">${s.pts||0}</span></td>
+      <td>${done}/16<div class="mini-bar" style="display:inline-block;vertical-align:middle;margin-left:6px"><div class="mini-bar-fill" style="width:${pct}%"></div></div></td>
+      <td>${(s.bingoLines||[]).length}</td>
+      <td style="font-size:10px;color:var(--muted)">${s.saved?fds(s.saved):"—"}</td>
+    </tr>`;}).join("")}</tbody></table>`;
+}
+function addGuru(){
+  const name=document.getElementById("new-guru-name").value.trim();
+  const code=document.getElementById("new-guru-code").value.trim();
+  if(!name||!code){showToast("Name and code are required!");return;}
+  const gurus=getGuruAccounts();
+  gurus.push({name,code});saveGuruAccounts(gurus);
+  document.getElementById("new-guru-name").value="";document.getElementById("new-guru-code").value="";
+  buildAdminPanel();showToast("✅ Teacher account added!");
+}
+function deleteGuru(i){
+  if(!confirm("Remove this teacher account?"))return;
+  const gurus=getGuruAccounts();gurus.splice(i,1);saveGuruAccounts(gurus);buildAdminPanel();showToast("Teacher account removed.");
+}
+function changeAdminPass(){
+  const p=document.getElementById("admin-new-pass").value.trim();
+  if(p.length<6){showToast("Password must be at least 6 characters.");return;}
+  localStorage.setItem("rbq_admin_pass",p);document.getElementById("admin-new-pass").value="";showToast("✅ Admin password updated!");
+}
+function setSeason(){
+  const d=document.getElementById("admin-start").value;
+  if(!d){showToast("Please select a start date!");return;}
+  const s=new Date(d),e=new Date(s);e.setDate(e.getDate()+SEASON_DAYS);
+  season={startDate:d,endDate:e.toISOString().split("T")[0],active:true};
+  saveAll();buildAdminPanel();showToast("✅ Season activated!");
+}
+function resetSeason(){
+  if(!confirm("RESET ALL DATA?\n\nAll student records will be deleted permanently. This cannot be undone."))return;
+  const keys=[];for(let k in localStorage)if(k.startsWith("rbq_st_"))keys.push(k);keys.forEach(k=>localStorage.removeItem(k));
+  season={startDate:"",endDate:"",active:false};player={name:"",cls:""};
+  state={checked:new Array(16).fill(false),books:new Array(16).fill(""),photos:new Array(16).fill(""),intisari:new Array(16).fill(""),moods:new Array(16).fill(-1),ratings:new Array(16).fill(0),pts:0,bingoLines:new Set(),badges:new Set(),streak:0,lastDate:"",dailyDone:false,dailyDate:""};
+  try{localStorage.removeItem("rbq_player");}catch(e){}
+  saveAll();buildAdminPanel();showToast("🔄 Season & all data reset!");
+}
+
+// ══ GURU ══
+function loginGuru(){
+  const code=document.getElementById("guru-pass").value.trim();
+  const gurus=getGuruAccounts();
+  const match=gurus.find(g=>g.code===code);
+  if(!match){document.getElementById("err-pass").classList.add("show");return;}
+  document.getElementById("err-pass").classList.remove("show");
+  currentGuruName=match.name;
+  document.getElementById("guru-name-tag").textContent=match.name;
+  buildGuruPanel();showScreen("screen-guru");
+}
+function buildGuruPanel(){
+  const ss=SS();
+  const pm={none:"pill-gray",upcoming:"pill-amber",active:"pill-green",ended:"pill-red"};
+  const pl={none:"No season active",upcoming:`Starts ${fd(season.startDate)}`,active:`Active — ${daysLeft()} days left`,ended:"Season ended"};
+  document.getElementById("g-pill").innerHTML=`<div class="pill ${pm[ss]}">${pl[ss]}</div>`;
+  const dd=document.getElementById("g-dates");
+  dd.innerHTML=season.startDate?`<p style="font-size:12px;color:var(--muted);line-height:2"><strong style="color:var(--ink)">Start:</strong> ${fd(season.startDate)} &nbsp;·&nbsp; <strong style="color:var(--ink)">End:</strong> ${fd(season.endDate)}</p>`:"";
+  buildMonitor();
+}
+function buildMonitor(){
+  const sts=getAllStudents();
+  document.getElementById("g-total").textContent=sts.length+" students";
+  const classes=[...new Set(sts.map(s=>s.pCls))].sort();
+  document.getElementById("g-chips").innerHTML=
+    `<button class="class-chip${selClass==="all"?" sel":""}" onclick="selCls('all',this)">All Classes (${sts.length})</button>`+
+    classes.map(c=>{const n=sts.filter(s=>s.pCls===c).length;return`<button class="class-chip${selClass===c?" sel":""}" onclick="selCls('${c}',this)">${c} (${n})</button>`;}).join("");
+  renderClassStats();renderTable();
+}
+function selCls(c,el){selClass=c;document.querySelectorAll(".class-chip").forEach(x=>x.classList.remove("sel"));el.classList.add("sel");renderClassStats();renderTable();}
+function renderClassStats(){
+  const el=document.getElementById("g-cstats");
+  if(selClass==="all"){el.style.display="none";return;}
+  const sts=getAllStudents().filter(s=>s.pCls===selClass);
+  if(!sts.length){el.style.display="none";return;}
+  const avgPts=Math.round(sts.reduce((a,s)=>a+(s.pts||0),0)/sts.length);
+  const avgDone=Math.round(sts.reduce((a,s)=>a+(s.checked||[]).filter(Boolean).length,0)/sts.length);
+  const totBingo=sts.reduce((a,s)=>a+(s.bingoLines||[]).length,0);
+  const done16=sts.filter(s=>(s.checked||[]).filter(Boolean).length===16).length;
+  el.style.display="grid";
+  el.innerHTML=`<div class="cs-card"><div class="cs-val">${avgPts}</div><div class="cs-lbl">Avg Points</div></div><div class="cs-card"><div class="cs-val">${avgDone}/16</div><div class="cs-lbl">Avg Done</div></div><div class="cs-card"><div class="cs-val">${totBingo}</div><div class="cs-lbl">Total Bingo</div></div><div class="cs-card"><div class="cs-val">${done16}</div><div class="cs-lbl">100% Done</div></div>`;
+}
+function setFilter(f,el){filterMode=f;document.querySelectorAll(".fbtn").forEach(b=>b.classList.remove("active"));el.classList.add("active");renderTable();}
+function renderTable(){
+  const q=(document.getElementById("g-search").value||"").toLowerCase();
+  let sts=getAllStudents();
+  if(selClass!=="all")sts=sts.filter(s=>s.pCls===selClass);
+  if(q)sts=sts.filter(s=>s.pName.toLowerCase().includes(q)||s.pCls.toLowerCase().includes(q));
+  if(filterMode==="active")sts=sts.filter(s=>(s.checked||[]).some(Boolean));
+  if(filterMode==="none")sts=sts.filter(s=>!(s.checked||[]).some(Boolean));
+  if(filterMode==="bingo")sts=sts.filter(s=>(s.bingoLines||[]).length>0);
+  if(filterMode==="done")sts=sts.filter(s=>(s.checked||[]).filter(Boolean).length===16);
+  sts.sort((a,b)=>(b.pts||0)-(a.pts||0));
+  const wrap=document.getElementById("g-table");
+  if(!sts.length){wrap.innerHTML=`<div class="empty-state">${getAllStudents().length===0?"No students registered yet.":"No students match this filter."}</div>`;return;}
+  const rows=sts.map((s,rank)=>{
+    const done=(s.checked||[]).filter(Boolean).length,pct=Math.round((done/16)*100);
+    const li=getLvIdx(done),lv=LEVELS[li],bc=(s.bingoLines||[]).length;
+    const rankCls=rank===0?"rank-1":rank===1?"rank-2":rank===2?"rank-3":"rank-n";
+    const rankTxt=rank===0?"🥇":rank===1?"🥈":rank===2?"🥉":`${rank+1}`;
+    return`<tr onclick="openDrawer('${s.pName.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}','${s.pCls}')">
+      <td><div style="display:flex;align-items:center;gap:8px"><span class="rank-badge ${rankCls}">${rankTxt}</span><div><div class="sname">${s.pName}</div><div class="scls">Class ${s.pCls}</div></div></div></td>
+      <td><span class="spts">${s.pts||0}</span></td>
+      <td><span style="font-size:12px;color:var(--ink2)">${done}/16</span><div class="mini-bar"><div class="mini-bar-fill" style="width:${pct}%"></div></div></td>
+      <td><span class="pill pill-gray" style="font-size:10px">${lv.icon} Lv${li+1}</span></td>
+      <td><span style="font-size:12px">${bc>0?"🎯".repeat(Math.min(bc,3)):"-"}</span></td>
+      <td><span style="font-size:10px;color:var(--muted)">${s.saved?fds(s.saved):"—"}</span></td>
+    </tr>`;
+  }).join("");
+  wrap.innerHTML=`<table class="stu-table"><thead><tr><th>Name</th><th>Points</th><th>Done</th><th>Level</th><th>Bingo</th><th>Updated</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function exportCSV(){
+  const sts=getAllStudents();
+  if(!sts.length){showToast("No student data to export!");return;}
+  const header="Name,Class,Points,Challenges Done,Bingo,Books Read,Level,Last Update";
+  const rows=sts.map(s=>{const done=(s.checked||[]).filter(Boolean).length;const li=getLvIdx(done);return`"${s.pName}","${s.pCls}",${s.pts||0},${done},${(s.bingoLines||[]).length},${(s.books||[]).filter(Boolean).length},"${LEVELS[li].name}","${s.saved?fds(s.saved):"—"}"`;}).join("\n");
+  const blob=new Blob([header+"\n"+rows],{type:"text/csv;charset=utf-8;"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="reading_bingo_quest.csv";a.click();
+  showToast("✅ Data exported!");
+}
+
+// DRAWER
+function openDrawer(name,cls){
+  let d;try{d=JSON.parse(localStorage.getItem(pkey(name,cls))||"null");}catch(e){}
+  if(!d){showToast("Data not found");return;}
+  const done=(d.checked||[]).filter(Boolean).length,li=getLvIdx(done),lv=LEVELS[li],bc=(d.bingoLines||[]).length,books=(d.books||[]).filter(Boolean).length;
+  document.getElementById("dr-avatar").textContent=name.charAt(0).toUpperCase();
+  document.getElementById("dr-name").textContent=name;
+  document.getElementById("dr-cls").textContent="Class "+cls+" · "+lv.icon+" "+lv.name;
+  document.getElementById("dr-stats").innerHTML=`<div class="ds-card"><div class="ds-val">${d.pts||0}</div><div class="ds-lbl">Points</div></div><div class="ds-card"><div class="ds-val">${done}/16</div><div class="ds-lbl">Done</div></div><div class="ds-card"><div class="ds-val">${bc}</div><div class="ds-lbl">Bingo</div></div><div class="ds-card"><div class="ds-val">${books}</div><div class="ds-lbl">Books</div></div>`;
+  document.getElementById("dr-level").innerHTML=`<div style="font-size:26px">${lv.icon}</div><div><div style="font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px">Level ${li+1}/7</div><div style="font-size:14px;font-weight:600;color:var(--accent)">${lv.name}</div></div>`;
+  const bc2=new Set();(d.bingoLines||[]).forEach(k=>{const li2=parseInt(k.replace("l",""));if(!isNaN(li2)&&LINES[li2])LINES[li2].forEach(i=>bc2.add(i));});
+  document.getElementById("dr-bingo").innerHTML=(d.checked||[]).map((c,i)=>`<div class="bm-cell${bc2.has(i)?" bingo-c":c?" done":""}">${CELLS[i].e}</div>`).join("");
+  const ub=new Set(d.badges||[]);
+  document.getElementById("dr-badges").innerHTML=BADGES.map(b=>`<span class="badge-mini${ub.has(b.id)?" unlocked":""}">${b.ic} ${b.label}</span>`).join("");
+  const bookItems=(d.books||[]).map((b,i)=>b?{i,book:b,photo:(d.photos||[])[i],intisari:(d.intisari||[])[i],mood:(d.moods||[])[i],rating:(d.ratings||[])[i]}:null).filter(Boolean);
+  document.getElementById("dr-books").innerHTML=bookItems.length?bookItems.map(x=>{
+    const thumb=x.photo?`<img class="book-thumb" src="${x.photo}" alt="">`:`<div class="book-ph">${CELLS[x.i].e}</div>`;
+    const inti=x.intisari?`<div class="book-inti">"${x.intisari}"</div>`:"";
+    return`<div class="book-entry">${thumb}<div style="flex:1;min-width:0"><div class="book-ttl">${x.book}</div><div class="book-tsk">${CELLS[x.i].t}</div><div class="book-pts">+${CELLS[x.i].s} pts</div>${inti}</div></div>`;
+  }).join(""):`<div class="no-books">No books logged yet.</div>`;
+  document.getElementById("drawer-bg").classList.add("open");
+}
+function closeDrawerOut(e){if(e.target===document.getElementById("drawer-bg"))closeDrawerBtn();}
+function closeDrawerBtn(){document.getElementById("drawer-bg").classList.remove("open");}
+
+// INFO BOX
+function buildInfoBox(){
+  const box=document.getElementById("season-info-box");if(!box)return;
+  const ss=SS();
+  if(ss==="none")box.innerHTML=`<div class="info-box ib-red">⚠️ <strong>No active season.</strong> Ask your teacher or admin to activate a season first.</div>`;
+  else if(ss==="upcoming")box.innerHTML=`<div class="info-box ib-amber">📅 Season starts <strong>${fd(season.startDate)}</strong>. Register now!</div>`;
+  else if(ss==="active")box.innerHTML=`<div class="info-box ib-green">✅ Quest is live! <strong>${daysLeft()} days remaining</strong> until ${fd(season.endDate)}.</div>`;
+  else box.innerHTML=`<div class="info-box ib-red">🔒 Quest ended <strong>${fd(season.endDate)}</strong>. View your final score!</div>`;
+}
+
+// START GAME
+function startGame(){
+  const nameEl=document.getElementById("ob-name"),clsEl=document.getElementById("ob-class"),custEl=document.getElementById("ob-class-custom");
+  let ok=true;
+  const name=nameEl.value.trim(),cls=clsEl.value==="__other__"?custEl.value.trim():clsEl.value;
+  if(!name){nameEl.classList.add("err");document.getElementById("err-name").classList.add("show");ok=false;}else{nameEl.classList.remove("err");document.getElementById("err-name").classList.remove("show");}
+  if(!cls){clsEl.style.borderColor="var(--red)";document.getElementById("err-class").classList.add("show");ok=false;}else{clsEl.style.borderColor="";document.getElementById("err-class").classList.remove("show");}
+  if(!ok)return;
+  if(SS()==="none"){showToast("⚠️ Ask your teacher to activate a season first!");return;}
+  player={name,cls};
+  try{const s=JSON.parse(localStorage.getItem(pkey(name,cls))||"null");if(s)state={checked:s.checked||new Array(16).fill(false),books:s.books||new Array(16).fill(""),photos:s.photos||new Array(16).fill(""),intisari:s.intisari||new Array(16).fill(""),moods:s.moods||new Array(16).fill(-1),ratings:s.ratings||new Array(16).fill(0),pts:s.pts||0,bingoLines:new Set(s.bingoLines||[]),badges:new Set(s.badges||[]),streak:s.streak||0,lastDate:s.lastDate||"",dailyDone:s.dailyDone||false,dailyDate:s.dailyDate||""};else state={checked:new Array(16).fill(false),books:new Array(16).fill(""),photos:new Array(16).fill(""),intisari:new Array(16).fill(""),moods:new Array(16).fill(-1),ratings:new Array(16).fill(0),pts:0,bingoLines:new Set(),badges:new Set(),streak:0,lastDate:"",dailyDone:false,dailyDate:""};}catch(e){}
+  const today=new Date().toISOString().split("T")[0];
+  const seed=today.split("-").reduce((a,v)=>a+parseInt(v),0);
+  todayChallenge=DAILY_CHALLENGES[seed%DAILY_CHALLENGES.length];
+  if(state.dailyDate!==today)state.dailyDone=false;
+  saveAll();if(isLocked()){showLockedScreen();return;}renderGame();showScreen("screen-game");
+}
+
+// LOCKED
+function showLockedScreen(){
+  const done=state.checked.filter(Boolean).length,li=getLvIdx(done),lv=LEVELS[li];
+  document.getElementById("final-name").textContent=player.name+" — Class "+player.cls;
+  document.getElementById("final-pts").textContent=state.pts;
+  document.getElementById("final-done").textContent=done+"/16";
+  document.getElementById("final-bingo").textContent=state.bingoLines.size;
+  document.getElementById("final-books").textContent=state.books.filter(Boolean).length;
+  document.getElementById("locked-sub").textContent=`Quest ended ${fd(season.endDate)}. Here is your final achievement!`;
+  document.getElementById("final-lv").innerHTML=`<div class="final-lv-icon">${lv.icon}</div><div class="final-lv-name">Level ${li+1}: ${lv.name}</div>`;
+  showScreen("screen-locked");
+}
+
+// SEASON BAR
+function buildSeasonBar(){
+  const wrap=document.getElementById("season-bar-wrap"),ss=SS();
+  if(ss==="none"||ss==="upcoming"){wrap.innerHTML="";return;}
+  if(ss==="ended"){wrap.innerHTML=`<div class="season-bar sb-urgent"><div class="sb-row"><div class="sb-title">🔒 Quest Ended</div><div class="sb-countdown">Locked</div></div><div class="sb-prog"><div class="sb-prog-fill" style="width:100%"></div></div><div class="sb-dates"><span>${fd(season.startDate)}</span><span>${fd(season.endDate)}</span></div></div>`;return;}
+  const dl=daysLeft(),el=daysEl(),pct=Math.round((el/SEASON_DAYS)*100);
+  let cls="sb-active";if(dl<=7)cls="sb-urgent";else if(dl<=30)cls="sb-warning";
+  wrap.innerHTML=`<div class="season-bar ${cls}"><div class="sb-row"><div class="sb-title">${dl<=7?"⚠️ Almost Over!":"📅 Quest Running"}</div><div class="sb-countdown">${dl} days left</div></div><div class="sb-prog"><div class="sb-prog-fill" style="width:${pct}%"></div></div><div class="sb-dates"><span>${fd(season.startDate)}</span><span>${fd(season.endDate)}</span></div></div>`;
+}
+
+// XP BAR
+function buildXPBar(){
+  const done=state.checked.filter(Boolean).length;
+  const li=getLvIdx(done),lv=LEVELS[li],next=LEVELS[li+1];
+  let pct=100,meta="",nextName="MAX";
+  if(next){pct=Math.round(((done-lv.min)/(next.min-lv.min))*100);nextName=next.name;meta=`${done}/${next.min} challenges`;}
+  else meta=`${done}/16 — Maximum Level! 🏆`;
+  document.getElementById("xp-bar-wrap").innerHTML=`<div class="xp-top"><div class="xp-level-info"><div class="xp-icon">${lv.icon}</div><div><div class="xp-level-name">${lv.name}</div><div class="xp-level-num">Level ${li+1} / 7</div></div></div><div class="xp-pts"><div class="xp-pts-val">${state.pts}</div><div class="xp-pts-lbl">Total Points</div></div></div><div class="xp-bar-bg"><div class="xp-bar-fill" style="width:${pct}%"></div></div><div class="xp-meta"><span>${meta}</span><span>${next?"→ "+nextName:""}</span></div>`;
+}
+
+// GRID
+function getBingoCells(){const s=new Set();LINES.forEach(l=>{if(l.every(i=>state.checked[i]))l.forEach(i=>s.add(i));});return s;}
+function buildGrid(){
+  const g=document.getElementById("grid");g.innerHTML="";
+  const bc=getBingoCells(),locked=isLocked();
+  const COL=["ct-0","ct-1","ct-2","ct-3"];let ci=0;
+  CELLS.forEach((c,i)=>{
+    const done=state.checked[i],bingo=bc.has(i),ct=done?COL[ci%4]:"";if(done)ci++;
+    const div=document.createElement("div");
+    div.className="cell"+(bingo?" done bingo-hi "+ct:done?" done "+ct:"")+(locked&&!done?" locked-cell":"");
+    div.innerHTML=`<div class="cell-emoji">${c.e}</div><div class="cell-title">${c.t}</div><div class="cell-bottom"><span class="score-badge">+${c.s}</span><span class="check">✓</span></div>`;
+    if(done&&state.photos[i])div.insertAdjacentHTML("beforeend",`<div class="photo-dot"></div>`);
+    if(locked&&!done)div.insertAdjacentHTML("beforeend",`<div class="lock-icon">🔒</div>`);
+    if(done)div.onclick=()=>openDetail(i,locked);else if(!locked)div.onclick=()=>openModal(i);
+    g.appendChild(div);
+  });
+}
+
+// STATS
+function buildStats(){
+  const done=state.checked.filter(Boolean).length,pct=Math.round((done/16)*100);
+  document.getElementById("s-pts").textContent=state.pts;
+  document.getElementById("s-done").textContent=done+"/16";
+  document.getElementById("s-bingo").textContent=state.bingoLines.size;
+  document.getElementById("s-streak").textContent=state.streak;
+  document.getElementById("prog-fill").style.width=pct+"%";
+  document.getElementById("s-pct").textContent=pct+"%";
+  [25,50,75,100].forEach((v,i)=>document.getElementById("ms"+i).className="milestone"+(pct>=v?" reached":""));
+}
+function buildTopBar(){document.getElementById("top-name").textContent=player.name;document.getElementById("top-class").textContent="Class "+player.cls;document.getElementById("top-avatar").textContent=player.name.charAt(0).toUpperCase();}
+
+// STREAK
+function updateStreak(){
+  const today=new Date().toISOString().split("T")[0];
+  if(state.lastDate===today)return;
+  const yest=new Date(Date.now()-864e5).toISOString().split("T")[0];
+  state.streak=state.lastDate===yest?state.streak+1:1;
+  state.lastDate=today;
+}
+function buildStreak(){
+  const sec=document.getElementById("streak-sec");if(state.streak<1){sec.innerHTML="";return;}
+  const days=Math.min(state.streak,7);
+  const dots=Array.from({length:7},(_,i)=>`<div class="streak-dot${i<days?" active":""}"></div>`).join("");
+  sec.innerHTML=`<div class="streak-card"><div class="streak-fire">🔥</div><div style="flex:1"><div class="streak-title">Reading Streak!</div><div class="streak-sub">You've logged books for ${state.streak} days in a row</div><div class="streak-dots">${dots}</div></div><div><div class="streak-num">${state.streak}</div><div class="streak-lbl">Days</div></div></div>`;
+}
+
+// DAILY
+function buildDaily(){
+  const sec=document.getElementById("daily-sec");
+  if(!todayChallenge){sec.innerHTML="";return;}
+  const today=new Date().toISOString().split("T")[0];
+  const done=state.dailyDone&&state.dailyDate===today;
+  if(done){sec.innerHTML=`<div class="daily-card done"><div class="daily-icon">✅</div><div><div class="daily-title">Daily Challenge Complete!</div><div class="daily-desc">Come back tomorrow for a new challenge.</div></div></div>`;return;}
+  sec.innerHTML=`<div class="daily-card" onclick="completeDailyChallenge()"><div class="daily-icon">${todayChallenge.icon}</div><div><div class="daily-title">${todayChallenge.title}</div><div class="daily-desc">${todayChallenge.desc}</div><div class="daily-tag">+${todayChallenge.bonus} bonus points</div></div></div>`;
+}
+function completeDailyChallenge(){
+  const today=new Date().toISOString().split("T")[0];
+  if(state.dailyDone&&state.dailyDate===today)return;
+  state.dailyDone=true;state.dailyDate=today;state.pts+=todayChallenge.bonus;
+  saveAll();renderGame();showToast(`${todayChallenge.icon} +${todayChallenge.bonus} points! Daily challenge done!`);confetti();
+}
+
+// QUOTE / TIP
+function buildQuote(){const q=QUOTES[Math.floor(state.pts/15)%QUOTES.length];document.getElementById("quote-sec").innerHTML=`<div class="quote-card"><div class="quote-text">"${q[0]}"</div><div class="quote-src">— ${q[1]}</div></div>`;}
+function showTip(){const t=TIPS[Math.floor(Math.random()*TIPS.length)];document.getElementById("quote-sec").innerHTML=`<div class="info-box ib-green" style="margin-bottom:.875rem"><strong>${t[0]}</strong><br>${t[1]}</div>`;}
+
+// BADGES
+function checkBadges(){
+  const done=state.checked.filter(Boolean).length,bc=state.bingoLines.size,pc=state.photos.filter(Boolean).length,has5=state.ratings.some(r=>r===5),has7=state.streak>=7;
+  BADGES.forEach(b=>{const ok=(b.req&&done>=b.req)||(b.bingo&&bc>=b.bingo)||(b.photos&&pc>=b.photos)||(b.stars5&&has5)||(b.streak7&&has7);if(ok&&!state.badges.has(b.id)){state.badges.add(b.id);setTimeout(()=>showToast(b.ic+" New badge: "+b.label+"!"),700);}});
+}
+function buildBadges(){
+  const w=document.getElementById("badges");w.innerHTML="";
+  BADGES.forEach(b=>{const d=document.createElement("div");d.className="badge"+(state.badges.has(b.id)?" unlocked":"");d.innerHTML=`<span class="badge-ic">${b.ic}</span>${b.label}`;w.appendChild(d);});
+}
+
+// LOG
+function buildLog(){
+  const items=state.books.map((b,i)=>b?{i,book:b,photo:state.photos[i],intisari:state.intisari[i],pts:CELLS[i].s,mood:state.moods[i],rating:state.ratings[i]}:null).filter(Boolean);
+  const sec=document.getElementById("log-sec");if(!items.length){sec.innerHTML="";return;}
+  const locked=isLocked();
+  sec.innerHTML=`<div class="log-card"><div class="sec-title">📋 Books in Quest</div><div class="log-list" id="log-list"></div></div>`;
+  document.getElementById("log-list").innerHTML=items.map(x=>{
+    const thumb=x.photo?`<img class="log-thumb" src="${x.photo}" alt="">`:`<div class="log-thumb-ph">${CELLS[x.i].e}</div>`;
+    const snip=x.intisari?`<div class="log-snip">"${x.intisari}"</div>`:"";
+    const mood=x.mood>=0?`${MOODS[x.mood].e} `:"";
+    const stars=x.rating>0?`${"⭐".repeat(x.rating)}`:"";
+    return`<div class="log-item" onclick="openDetail(${x.i},${locked})">${thumb}<div class="log-info"><div class="log-t">${x.book}</div><div class="log-task">${CELLS[x.i].t}</div>${snip}${mood||stars?`<div style="font-size:11px;margin-top:2px">${mood}${stars}</div>`:""}</div><div class="log-pts">+${x.pts}</div></div>`;
+  }).join("");
+}
+
+// LEVEL UP
+function checkLevelUp(pd,nd){
+  const pl=getLvIdx(pd),nl=getLvIdx(nd);
+  if(nl>pl){const lv=LEVELS[nl];
+    document.getElementById("lu-icon").textContent=lv.icon;
+    document.getElementById("lu-sub").textContent=`You leveled up from "${LEVELS[pl].name}"!`;
+    document.getElementById("lu-new").textContent=lv.icon+" "+lv.name;
+    document.getElementById("lu-desc").textContent=lv.unlock;
+    setTimeout(()=>{document.getElementById("lu-bg").classList.add("open");confetti();},400);
+  }
+}
+function closeLevelUp(){document.getElementById("lu-bg").classList.remove("open");}
+
+// MODAL
+function buildMoodRow(sel=-1){const r=document.getElementById("mood-row");r.innerHTML="";MOODS.forEach((m,i)=>{const b=document.createElement("button");b.className="mood-btn"+(sel===i?" selected":"");b.innerHTML=`${m.e}<span class="mood-label">${m.l}</span>`;b.onclick=()=>{tempMood=i;buildMoodRow(i);};r.appendChild(b);});}
+function buildStars(val=0){const r=document.getElementById("stars-row");r.innerHTML="";for(let i=1;i<=5;i++){const s=document.createElement("span");s.className="star-btn"+(i<=val?" lit":"");s.textContent=i<=val?"⭐":"☆";s.onclick=()=>{tempRating=i;buildStars(i);};r.appendChild(s);}}
+function openModal(i){
+  activeIdx=i;tempPhoto=state.photos[i]||"";tempMood=state.moods[i];tempRating=state.ratings[i]||0;
+  document.getElementById("m-title").textContent=CELLS[i].t;document.getElementById("m-pts").textContent="+"+CELLS[i].s+" points";
+  document.getElementById("m-book").value=state.books[i]||"";document.getElementById("m-book").classList.remove("err");
+  document.getElementById("m-intisari").value=state.intisari[i]||"";
+  buildMoodRow(tempMood);buildStars(tempRating);
+  const prev=document.getElementById("m-preview"),del=document.getElementById("m-del"),pz=document.getElementById("pzone");
+  if(tempPhoto){prev.src=tempPhoto;prev.classList.add("show");del.classList.add("show");pz.style.display="none";}
+  else{prev.src="";prev.classList.remove("show");del.classList.remove("show");pz.style.display="block";}
+  document.getElementById("modal").classList.add("open");setTimeout(()=>document.getElementById("m-book").focus(),100);
+}
+function closeModal(){document.getElementById("modal").classList.remove("open");activeIdx=-1;tempPhoto="";}
+function handlePhoto(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{tempPhoto=ev.target.result;document.getElementById("m-preview").src=tempPhoto;document.getElementById("m-preview").classList.add("show");document.getElementById("m-del").classList.add("show");document.getElementById("pzone").style.display="none";};r.readAsDataURL(f);}
+function removePhoto(){tempPhoto="";document.getElementById("m-preview").src="";document.getElementById("m-preview").classList.remove("show");document.getElementById("m-del").classList.remove("show");document.getElementById("pzone").style.display="block";document.getElementById("m-file").value="";}
+function confirmCell(){
+  if(activeIdx<0||isLocked())return;
+  const book=document.getElementById("m-book").value.trim();
+  if(!book){document.getElementById("m-book").classList.add("err");document.getElementById("m-book").focus();return;}
+  document.getElementById("m-book").classList.remove("err");
+  const pd=state.checked.filter(Boolean).length,was=state.checked[activeIdx];
+  if(!was)state.pts+=CELLS[activeIdx].s;
+  state.checked[activeIdx]=true;state.books[activeIdx]=book;state.photos[activeIdx]=tempPhoto;
+  state.intisari[activeIdx]=document.getElementById("m-intisari").value.trim();state.moods[activeIdx]=tempMood;state.ratings[activeIdx]=tempRating;
+  updateStreak();closeModal();
+  const nd=state.checked.filter(Boolean).length;
+  if(!was){checkBingo();checkBadges();checkLevelUp(pd,nd);}
+  renderGame();saveAll();if(!was)showToast("📚 +"+CELLS[activeIdx].s+" points!");
+}
+function openDetail(i,viewOnly=false){
+  detailIdx=i;document.getElementById("d-task").textContent=CELLS[i].t;document.getElementById("d-book").textContent=state.books[i]||"—";
+  const ph=document.getElementById("d-photo");if(state.photos[i]){ph.src=state.photos[i];ph.classList.add("show");}else{ph.src="";ph.classList.remove("show");}
+  const mr=document.getElementById("d-mood-row");if(state.moods[i]>=0){document.getElementById("d-mood").textContent=MOODS[state.moods[i]].e+" "+MOODS[state.moods[i]].l;mr.style.display="block";}else mr.style.display="none";
+  const sr=document.getElementById("d-stars-row");if(state.ratings[i]>0){document.getElementById("d-stars").innerHTML=Array.from({length:5},(_,j)=>j<state.ratings[i]?"⭐":"☆").join("");sr.style.display="block";}else sr.style.display="none";
+  const iw=document.getElementById("d-int-wrap");if(state.intisari[i]){document.getElementById("d-intisari").textContent=state.intisari[i];iw.style.display="block";}else iw.style.display="none";
+  document.getElementById("d-edit-btn").style.display=viewOnly?"none":"";document.getElementById("d-del-btn").style.display=viewOnly?"none":"";
+  document.getElementById("detail-bg").classList.add("open");
+}
+function closeDetail(){document.getElementById("detail-bg").classList.remove("open");detailIdx=-1;}
+function editFromDetail(){const i=detailIdx;closeDetail();openModal(i);}
+function deleteFromDetail(){
+  if(!confirm("Remove this entry and uncomplete this challenge?"))return;
+  const i=detailIdx;state.pts=Math.max(0,state.pts-CELLS[i].s);
+  state.checked[i]=false;state.books[i]="";state.photos[i]="";state.intisari[i]="";state.moods[i]=-1;state.ratings[i]=0;
+  rebuildBingo();closeDetail();renderGame();saveAll();
+}
+function rebuildBingo(){state.bingoLines=new Set();LINES.forEach((l,li)=>{if(l.every(i=>state.checked[i]))state.bingoLines.add("l"+li);});}
+function checkBingo(){
+  LINES.forEach((l,li)=>{const key="l"+li;if(l.every(i=>state.checked[i])&&!state.bingoLines.has(key)){state.bingoLines.add(key);state.pts+=50;setTimeout(()=>{showToast("🎯 BINGO! +50 bonus points!");confetti();},300);}});
+}
+function resetProgress(){
+  if(!confirm("Reset all your progress? The season will still be running."))return;
+  state={checked:new Array(16).fill(false),books:new Array(16).fill(""),photos:new Array(16).fill(""),intisari:new Array(16).fill(""),moods:new Array(16).fill(-1),ratings:new Array(16).fill(0),pts:0,bingoLines:new Set(),badges:new Set(),streak:0,lastDate:"",dailyDone:false,dailyDate:""};
+  saveAll();renderGame();
+}
+function renderGame(){buildTopBar();buildSeasonBar();buildXPBar();buildStats();buildGrid();buildBadges();buildLog();buildStreak();buildDaily();buildQuote();}
+
+// TOAST
+function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2800);}
+
+// CONFETTI
+function confetti(){
+  const c=document.getElementById("cc"),ctx=c.getContext("2d");
+  c.width=window.innerWidth;c.height=window.innerHeight;
+  const COLORS=["#4A8024","#1D6B8A","#7A2D6B","#7A4F00","#2D5016","#D4956A","#B8D4A0"];
+  const p=Array.from({length:120},()=>({x:Math.random()*c.width,y:-15,vx:(Math.random()-.5)*6,vy:Math.random()*5+2,sz:Math.random()*10+4,col:COLORS[Math.floor(Math.random()*COLORS.length)],r:Math.random()*360,vr:(Math.random()-.5)*8,sh:Math.random()>.5,alpha:1}));
+  let f=0;
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    p.forEach(q=>{ctx.save();ctx.globalAlpha=q.alpha;ctx.translate(q.x,q.y);ctx.rotate(q.r*Math.PI/180);ctx.fillStyle=q.col;if(q.sh){ctx.beginPath();ctx.arc(0,0,q.sz/2,0,Math.PI*2);ctx.fill();}else ctx.fillRect(-q.sz/2,-q.sz/4,q.sz,q.sz/2);ctx.restore();q.x+=q.vx;q.y+=q.vy;q.r+=q.vr;q.vy+=.07;if(q.y>c.height*.7)q.alpha=Math.max(0,q.alpha-.025);});
+    if(++f<160)requestAnimationFrame(draw);else ctx.clearRect(0,0,c.width,c.height);
+  }
+  draw();
+}
+
+// INIT
+loadAll();
+document.getElementById("ob-class").addEventListener("change",function(){document.getElementById("ob-class-custom").style.display=this.value==="__other__"?"block":"none";});
+buildInfoBox();
+showScreen("screen-onboard");
+if(player.name){
+  document.getElementById("ob-name").value=player.name;
+  const sel=document.getElementById("ob-class");let found=false;
+  for(let o of sel.options)if(o.value===player.cls){sel.value=player.cls;found=true;break;}
+  if(!found&&player.cls){sel.value="__other__";document.getElementById("ob-class-custom").value=player.cls;document.getElementById("ob-class-custom").style.display="block";}
+}
+
+// Initialize default guru if none exist
+if(!getGuruAccounts().length){saveGuruAccounts([{name:"Default Teacher",code:"RBQ@Guru2025!"}]);}
+</script>
+</body>
+</html>
