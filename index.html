@@ -7,38 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{
-  --bg:#FAFAF8;
-  --surface:#FFFFFF;
-  --surface2:#F5F4F0;
-  --surface3:#EEECEA;
-  --border:#E2E0DB;
-  --border2:#CBC9C3;
-  --ink:#1C1B18;
-  --ink2:#4A4843;
-  --muted:#8C8A85;
-  --accent:#2D5016;
-  --accent2:#4A8024;
-  --accent-bg:#EDF3E6;
-  --accent-border:#B8D4A0;
-  --amber:#7A4F00;
-  --amber-bg:#FFF4DC;
-  --amber-border:#E5C870;
-  --red:#8B1A1A;
-  --red-bg:#FEF0F0;
-  --red-border:#E5A5A5;
-  --blue:#0F3D6B;
-  --blue-bg:#EBF3FC;
-  --blue-border:#9DC3E8;
-  --purple:#3D1F7A;
-  --purple-bg:#F0EBFC;
-  --purple-border:#C4ACEE;
-  --r:10px;
-  --r-lg:14px;
-  --r-sm:7px;
-  --shadow:0 1px 4px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.05);
-  --shadow-lg:0 2px 8px rgba(0,0,0,.1),0 8px 32px rgba(0,0,0,.08);
-}
+:root{\n  --bg:#FAFAF8;\n  --surface:#FFFFFF;\n  --surface2:#F5F4F0;\n  --surface3:#EEECEA;\n  --border:#E2E0DB;\n  --border2:#CBC9C3;\n  --ink:#1C1B18;\n  --ink2:#4A4843;\n  --muted:#8C8A85;\n  --accent:#2D5016;\n  --accent2:#4A8024;\n  --accent-bg:#EDF3E6;\n  --accent-border:#B8D4A0;\n  --amber:#7A4F00;\n  --amber-bg:#FFF4DC;\n  --amber-border:#E5C870;\n  --red:#8B1A1A;\n  --red-bg:#FEF0F0;\n  --red-border:#E5A5A5;\n  --blue:#0F3D6B;\n  --blue-bg:#EBF3FC;\n  --blue-border:#9DC3E8;\n  --purple:#3D1F7A;\n  --purple-bg:#F0EBFC;\n  --purple-border:#C4ACEE;\n  --r:10px;\n  --r-lg:14px;\n  --r-sm:7px;\n  --shadow:0 1px 4px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.05);\n  --shadow-lg:0 2px 8px rgba(0,0,0,.1),0 8px 32px rgba(0,0,0,.08);\n}
 html{scroll-behavior:smooth}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;font-size:14px;line-height:1.6}
 
@@ -127,7 +96,6 @@ textarea.finput{resize:vertical;min-height:60px}
 @media(max-width:640px){.admin-grid{grid-template-columns:1fr}}
 .section-title{font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:12px;display:flex;align-items:center;gap:7px;padding-bottom:10px;border-bottom:1px solid var(--border)}
 
-/* guru accounts list */
 .guru-list{display:flex;flex-direction:column;gap:6px}
 .guru-item{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);gap:10px}
 .guru-item-left{display:flex;align-items:center;gap:10px}
@@ -136,15 +104,12 @@ textarea.finput{resize:vertical;min-height:60px}
 .guru-code{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)}
 .guru-actions{display:flex;gap:6px;flex-shrink:0}
 
-/* season control */
-.season-ctl{}
 .season-prog{height:5px;background:var(--surface3);border-radius:4px;overflow:hidden;margin-bottom:10px}
 .season-prog-fill{height:100%;background:var(--accent2);border-radius:4px;transition:width .5s}
 
 /* ══ GURU ══ */
 #screen-guru{max-width:900px;margin:0 auto;padding:1rem 1rem 5rem}
 
-/* class stats */
 .class-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
 .class-chip{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:12px;font-weight:600;cursor:pointer;color:var(--ink2);transition:all .15s;white-space:nowrap}
 .class-chip:hover{border-color:var(--border2);color:var(--ink)}
@@ -155,7 +120,6 @@ textarea.finput{resize:vertical;min-height:60px}
 .cs-val{font-family:'DM Mono',monospace;font-size:18px;font-weight:500;color:var(--ink)}
 .cs-lbl{font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
 
-/* search & filters */
 .search-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
 .search-inp{flex:1;padding:9px 12px;font-size:13px;font-family:'DM Sans',sans-serif;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--surface);color:var(--ink);outline:none;transition:border-color .15s}
 .search-inp:focus{border-color:var(--accent2)}
@@ -164,7 +128,6 @@ textarea.finput{resize:vertical;min-height:60px}
 .fbtn:hover{border-color:var(--border2);color:var(--ink)}
 .fbtn.active{background:var(--ink);border-color:var(--ink);color:#fff}
 
-/* student table */
 .stu-table{width:100%;border-collapse:collapse}
 .stu-table th{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;padding:7px 10px;border-bottom:1px solid var(--border);text-align:left;white-space:nowrap}
 .stu-table td{padding:10px 10px;border-bottom:1px solid var(--surface3);font-size:12px;vertical-align:middle}
@@ -219,7 +182,6 @@ textarea.finput{resize:vertical;min-height:60px}
 
 /* ══ GAME ══ */
 #screen-game{max-width:680px;margin:0 auto;padding:1rem 1rem 6rem}
-
 .top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:.875rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:.75rem 1rem;box-shadow:var(--shadow)}
 .top-player{display:flex;align-items:center;gap:10px}
 .top-avatar{width:36px;height:36px;border-radius:10px;background:var(--ink);display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;font-weight:700;flex-shrink:0}
@@ -284,7 +246,7 @@ textarea.finput{resize:vertical;min-height:60px}
 /* streak */
 .streak-card{background:var(--surface);border:1px solid var(--amber-border);border-radius:var(--r-lg);padding:.875rem 1rem;margin-bottom:.875rem;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow)}
 .streak-fire{font-size:28px;flex-shrink:0}
-.streak-title{font-size:13px;font-weight:600;color:var(--amber)}
+.streak-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--amber)}
 .streak-sub{font-size:11px;color:var(--muted);margin-top:1px}
 .streak-dots{display:flex;gap:4px;margin-top:6px}
 .streak-dot{width:8px;height:8px;border-radius:50%;background:var(--surface3)}
@@ -372,935 +334,1497 @@ textarea.finput{resize:vertical;min-height:60px}
 .modal,.detail-modal{background:var(--surface);border-radius:var(--r-lg);border:1px solid var(--border);padding:1.25rem;width:min(400px,96vw);margin:auto;box-shadow:var(--shadow-lg)}
 .modal-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:10px}
 .modal-top h3{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--ink);line-height:1.3;flex:1}
-.modal-close{font-size:16px;cursor:pointer;color:var(--muted);background:var(--surface2);border:1px solid var(--border);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
-.modal-close:hover{border-color:var(--red-border);color:var(--red)}
-.modal-pts{display:inline-flex;align-items:center;gap:5px;background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border);border-radius:20px;font-family:'DM Mono',monospace;font-size:12px;font-weight:500;padding:4px 12px;margin-bottom:12px}
-.mood-row{display:flex;gap:6px;margin-bottom:12px}
-.mood-btn{flex:1;padding:7px 4px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface2);font-size:17px;cursor:pointer;text-align:center;transition:all .18s}
-.mood-btn:hover{transform:scale(1.08)}
-.mood-btn.selected{border-color:var(--accent2);background:var(--accent-bg);transform:scale(1.1)}
-.mood-label{display:block;font-size:8px;color:var(--muted);font-weight:600;margin-top:2px}.mood-btn.selected .mood-label{color:var(--accent)}
-.stars-row{display:flex;gap:6px;margin-bottom:12px}
-.star-btn{font-size:22px;cursor:pointer;transition:transform .15s;line-height:1;opacity:.3}
-.star-btn:hover,.star-btn.lit{opacity:1;transform:scale(1.2)}
-.photo-zone{border:1.5px dashed var(--border2);border-radius:var(--r-sm);padding:14px;text-align:center;cursor:pointer;margin-bottom:12px;transition:all .15s;position:relative;overflow:hidden;background:var(--surface2)}
-.photo-zone:hover{border-color:var(--accent2);background:var(--accent-bg)}
-.photo-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.photo-hint{font-size:12px;color:var(--muted)}.photo-hint span{font-size:20px;display:block;margin-bottom:3px}
-.ph-prev{width:100%;max-height:130px;object-fit:cover;border-radius:var(--r-sm);display:none;margin-bottom:7px}.ph-prev.show{display:block}
-.ph-del{font-size:11px;font-weight:600;color:var(--red);cursor:pointer;display:none;background:none;border:none;margin-bottom:10px;font-family:'DM Sans',sans-serif}.ph-del.show{display:block}
-.modal-btns{display:flex;gap:8px;margin-top:6px}
-.btn-ok{flex:2;padding:11px;border-radius:var(--r-sm);border:none;background:var(--ink);color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
-.btn-ok:hover{background:#2c2b27}
-.btn-no{flex:1;padding:11px;border-radius:var(--r-sm);border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
-.btn-no:hover{color:var(--ink)}
-.detail-photo{width:100%;max-height:160px;object-fit:cover;border-radius:var(--r-sm);margin-bottom:12px;display:none}.detail-photo.show{display:block}
-.detail-row{margin-bottom:10px}
-.dlabel{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
-.dval{font-size:14px;color:var(--ink);line-height:1.5;font-weight:500}
-.detail-intisari{font-size:12px;color:var(--ink2);line-height:1.7;font-style:italic;background:var(--surface2);padding:9px 11px;border-radius:var(--r-sm);border-left:2px solid var(--accent-border)}
-.detail-acts{display:flex;gap:7px;margin-top:12px}
-.btn-edit2{flex:1;padding:9px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface2);color:var(--ink2);font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
-.btn-edit2:hover{border-color:var(--border2);color:var(--ink)}
-.btn-del2{padding:9px 13px;border-radius:var(--r-sm);border:1px solid var(--red-border);background:var(--red-bg);color:var(--red);font-size:12px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
-.btn-cls2{flex:1;padding:9px;border-radius:var(--r-sm);border:1px solid var(--border);background:transparent;color:var(--muted);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.modal-close{font-size:16px;cursor:pointer;color:var(--muted);width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--surface2);border:1px solid var(--border)}
+.modal-close:hover{color:var(--red);border-color:var(--red-border)}
+.form-help{font-size:11px;color:var(--muted);margin-top:-8px;margin-bottom:12px;line-height:1.4}
+.photo-pick-area{border:1.5px dashed var(--border);border-radius:var(--r-sm);padding:1.5rem;text-align:center;background:var(--surface2);cursor:pointer;margin-bottom:12px;position:relative;overflow:hidden;transition:all .15s}
+.photo-pick-area:hover{border-color:var(--accent2);background:var(--surface)}
+.photo-pick-preview{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+.photo-pick-icon{font-size:24px;margin-bottom:4px;display:block}
+.photo-pick-lbl{font-size:12px;color:var(--ink2);font-weight:500}
+.photo-pick-sub{font-size:10px;color:var(--muted);margin-top:2px}
 
-/* LEVEL UP */
-.lu-modal{background:var(--surface);border-radius:var(--r-lg);border:1px solid var(--accent-border);padding:2rem 1.5rem;width:min(360px,92vw);margin:auto;text-align:center;box-shadow:var(--shadow-lg);animation:popIn .35s cubic-bezier(.34,1.56,.64,1)}
-@keyframes popIn{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
-.lu-icon{font-size:48px;margin-bottom:.75rem;display:block}
-.lu-eyebrow{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.lu-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;color:var(--ink);margin-bottom:5px}
-.lu-sub{font-size:12px;color:var(--muted);margin-bottom:.875rem;line-height:1.6}
-.lu-new{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--accent);margin-bottom:.25rem}
-.lu-desc{font-size:12px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6}
-.btn-lu{width:100%;padding:12px;border-radius:var(--r-sm);border:none;background:var(--ink);color:#fff;font-size:14px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background .15s}
-.btn-lu:hover{background:#2c2b27}
+/* DETAIL MODAL SPECIALS */
+.det-hero{display:flex;gap:14px;margin-bottom:.875rem;align-items:flex-start}
+.det-img{width:70px;height:70px;border-radius:var(--r-sm);object-fit:cover;border:1px solid var(--border);box-shadow:var(--shadow);flex-shrink:0}
+.det-img-ph{width:70px;height:70px;border-radius:var(--r-sm);background:var(--surface3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;box-shadow:var(--shadow)}
+.det-main{flex:1;min-width:0}
+.det-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);line-height:1.35;margin-bottom:2px}
+.det-task{font-size:11px;color:var(--muted);line-height:1.4}
+.det-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.875rem}
+.det-group{margin-bottom:.875rem}
+.det-lbl{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.det-val{font-size:13px;color:var(--ink2);background:var(--surface2);padding:8px 12px;border-radius:6px;border:1px solid var(--border);line-height:1.5}
+.det-val-inti{font-style:italic;border-left:2.5px solid var(--accent-border);background:var(--accent-bg);color:var(--accent);font-weight:400}
 
-/* TOAST */
-.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--ink);color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:500;white-space:nowrap;box-shadow:var(--shadow-lg)}
-.toast.show{transform:translateX(-50%) translateY(0)}
-canvas#cc{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:499}
-
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+/* CONFETTI CANVAS */
+#confetti-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:999}
 </style>
 </head>
 <body>
 
-<!-- ══ ONBOARD ══ -->
-<div id="screen-onboard" class="screen">
+<canvas id="confetti-canvas"></canvas>
+
+<div id="screen-onboard" class="screen active">
   <div class="ob-wrap">
     <div class="ob-hero">
       <div class="ob-logo">
-        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="4" y="4" width="10" height="14" rx="2" fill="white" opacity=".9"/>
-          <rect x="6" y="6" width="10" height="14" rx="2" fill="white" opacity=".6"/>
-          <rect x="8" y="8" width="12" height="14" rx="2" fill="white"/>
-          <path d="M10 12h8M10 15h6" stroke="#1C1B18" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
       </div>
       <div>
-        <div class="ob-eyebrow">Junior High School</div>
-        <div class="ob-title">Reading Bingo <span>Quest</span></div>
-        <div class="ob-sub">Complete reading challenges, level up, become a Book Champion.</div>
+        <div class="ob-eyebrow">Literacy Gamification</div>
+        <h1 class="ob-title">Reading <span>Bingo</span> Quest</h1>
+        <div class="ob-sub">Pilih peran dan masuk untuk memulai petualangan.</div>
       </div>
     </div>
-
+    
     <div class="ob-stats">
-      <div class="ob-stat"><div class="ob-stat-val">16</div><div class="ob-stat-lbl">Challenges</div></div>
-      <div class="ob-stat"><div class="ob-stat-val">7</div><div class="ob-stat-lbl">Levels</div></div>
-      <div class="ob-stat"><div class="ob-stat-val">92</div><div class="ob-stat-lbl">Days</div></div>
+      <div class="ob-stat"><div class="ob-stat-val" id="global-stat-tasks">16</div><div class="ob-stat-lbl">Tantangan</div></div>
+      <div class="ob-stat"><div class="ob-stat-val" id="global-stat-users">0</div><div class="ob-stat-lbl">Siswa Aktif</div></div>
+      <div class="ob-stat"><div class="ob-stat-val" id="global-stat-books">0</div><div class="ob-stat-lbl">Buku Dibaca</div></div>
     </div>
 
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('student')">🎒 I'm a Student</button>
-      <button class="tab-btn" onclick="switchTab('teacher')">👩‍🏫 I'm a Teacher</button>
-      <button class="tab-btn" onclick="switchTab('admin')">🔑 Admin</button>
+      <button class="tab-btn active" onclick="switchLoginTab('siswa')">🎓 Siswa</button>
+      <button class="tab-btn" onclick="switchLoginTab('guru')">🧑‍🏫 Guru</button>
+      <button class="tab-btn" onclick="switchLoginTab('admin')">🛡️ Admin</button>
     </div>
 
-    <div id="tab-student" class="tab-pane active">
+    <div id="tab-siswa" class="tab-pane active">
       <div class="card">
-        <div class="flabel">Full name</div>
-        <input class="finput" id="ob-name" placeholder="Enter your name...">
-        <div class="ferr" id="err-name">Name is required!</div>
-        <div class="flabel">Class</div>
-        <select class="finput" id="ob-class">
-          <option value="">— Select class —</option>
-          <option>7A</option><option>7B</option><option>7C</option><option>7D</option><option>7E</option><option>7F</option><option>7G</option><option>7H</option>
-          <option>8A</option><option>8B</option><option>8C</option><option>8D</option>
-          <option>9A</option><option>9B</option><option>9C</option><option>9D</option>
-          <option value="__other__">Other class...</option>
+        <label class="flabel">Nama Lengkap Siswa</label>
+        <input type="text" id="ob-student-name" class="finput" placeholder="Masukkan nama lengkapmu...">
+        <div class="ferr" id="err-student-name">Nama wajib diisi!</div>
+
+        <label class="flabel">Kelas / Rombel</label>
+        <select id="ob-class" class="finput">
+          <option value="Kelas 1">Kelas 1</option>
+          <option value="Kelas 2">Kelas 2</option>
+          <option value="Kelas 3">Kelas 3</option>
+          <option value="Kelas 4">Kelas 4</option>
+          <option value="Kelas 5">Kelas 5</option>
+          <option value="Kelas 6">Kelas 6</option>
+          <option value="__other__">Lainnya / Kustom...</option>
         </select>
-        <input class="finput" id="ob-class-custom" placeholder="Enter your class..." style="display:none;margin-top:-8px">
-        <div class="ferr" id="err-class">Class is required!</div>
-        <div id="season-info-box"></div>
-        <button class="btn btn-primary btn-full" onclick="startGame()">Start Quest →</button>
+        <input type="text" id="ob-class-custom" class="finput" placeholder="Tulis nama kelas kustom..." style="display:none; margin-top:-6px;">
+        
+        <label class="flabel">Kode Guru Pengampu</label>
+        <input type="text" id="ob-guru-code" class="finput" style="font-family:'DM Mono',monospace; text-transform:uppercase" placeholder="Contoh: BNDG01">
+        <div class="ferr" id="err-guru-code">Kode Guru tidak ditemukan atau salah!</div>
+
+        <button class="btn btn-green btn-full" onclick="loginAsStudent()">Mulai Petualangan Quest &rarr;</button>
       </div>
     </div>
 
-    <div id="tab-teacher" class="tab-pane">
+    <div id="tab-secure" class="tab-pane">
       <div class="card">
-        <div class="flabel">Teacher access code</div>
-        <input class="finput" id="guru-pass" type="password" placeholder="Enter access code...">
-        <div class="ferr" id="err-pass">Incorrect code!</div>
-        <button class="btn btn-primary btn-full" onclick="loginGuru()">Enter Teacher Panel →</button>
-        <div class="divider">or</div>
-        <p style="font-size:11px;color:var(--muted);text-align:center">Access codes are managed by your school admin.</p>
+        <div class="info-box ib-amber" id="secure-info-box" style="display:none">
+          Akses dibatasi. Silakan masukkan kata sandi Guru/Admin Anda untuk mengelola sistem.
+        </div>
+        <label class="flabel" id="secure-label">Password Akses</label>
+        <input type="password" id="ob-secure-pass" class="finput" placeholder="••••••••">
+        <div class="ferr" id="err-secure-pass">Kata sandi tidak valid!</div>
+        <button class="btn btn-primary btn-full" id="btn-secure-login" onclick="loginAsSecure()">Masuk Sistem &rarr;</button>
       </div>
     </div>
 
-    <div id="tab-admin" class="tab-pane">
-      <div class="card">
-        <div class="flabel">Admin password</div>
-        <input class="finput" id="admin-pass" type="password" placeholder="Enter admin password...">
-        <div class="ferr" id="err-admin">Incorrect password!</div>
-        <button class="btn btn-primary btn-full" onclick="loginAdmin()">Enter Admin Panel →</button>
-      </div>
-    </div>
   </div>
 </div>
 
-<!-- ══ ADMIN ══ -->
 <div id="screen-admin" class="screen">
   <div class="admin-topbar">
     <div class="topbar-logo">
       <div class="topbar-logo-mark">
-        <svg viewBox="0 0 15 15" fill="none"><rect x="2" y="2" width="5" height="7" rx="1" fill="white" opacity=".9"/><rect x="3" y="3" width="5" height="7" rx="1" fill="white" opacity=".5"/><rect x="4" y="4" width="7" height="7" rx="1" fill="white"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
-      <div class="topbar-title">Reading Bingo Quest</div>
-      <div class="topbar-tag">Admin Panel</div>
+      <div>
+        <h2 class="topbar-title">Sistem Administrator</h2>
+        <div style="font-size:11px; color:var(--muted)">Pusat Kendali Utama Platform</div>
+      </div>
     </div>
-    <button class="btn btn-outline btn-sm" onclick="showScreen('screen-onboard')">← Sign out</button>
+    <div class="topbar-tag">Superadmin</div>
   </div>
 
   <div class="admin-grid">
-    <!-- Guru Accounts -->
-    <div class="card" style="margin-bottom:0">
-      <div class="section-title">👩‍🏫 Teacher Accounts</div>
-      <div id="admin-guru-list" class="guru-list"></div>
-      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
-        <div class="flabel">New teacher name</div>
-        <input class="finput" id="new-guru-name" placeholder="e.g. Ms. Smith" style="margin-bottom:8px">
-        <div class="flabel">Access code</div>
-        <input class="finput" id="new-guru-code" placeholder="e.g. TeacherCode123" style="margin-bottom:8px">
-        <button class="btn btn-green btn-full btn-sm" onclick="addGuru()">+ Add Teacher Account</button>
+    <div class="card">
+      <h3 class="section-title">🛠️ Akun Guru Pengampu</h3>
+      <div style="margin-bottom:12px;">
+        <label class="flabel">Nama Guru Baru</label>
+        <input type="text" id="adm-new-guru-name" class="finput" placeholder="Nama Lengkap dengan Gelar...">
+        <label class="flabel">Kode Unik Kustom (Opsional)</label>
+        <input type="text" id="adm-new-guru-code" class="finput" style="font-family:'DM Mono',monospace; text-transform:uppercase" placeholder="Biarkan kosong untuk generate otomatis">
+        <button class="btn btn-primary btn-sm btn-full" onclick="addGuruAccount()">+ Buat Akun Guru Baru</button>
       </div>
+      <div class="divider">Daftar Guru Aktif</div>
+      <div class="guru-list" id="adm-guru-container"></div>
     </div>
 
-    <!-- Season Control -->
-    <div class="card" style="margin-bottom:0">
-      <div class="section-title">📅 Season Settings</div>
-      <div id="admin-pill"></div>
-      <div id="admin-season-info"></div>
-      <div class="flabel">Season start date</div>
-      <input class="finput" id="admin-start" type="date">
-      <div class="info-box ib-blue" style="margin-bottom:12px">Season runs <strong>92 days (~3 months)</strong>. After it ends, the bingo board locks automatically and final scores are saved per student.</div>
-      <div style="display:flex;gap:8px">
-        <button class="btn btn-green btn-sm" style="flex:1" onclick="setSeason()">Activate Season</button>
-        <button class="btn btn-danger btn-sm" onclick="resetSeason()">Reset All</button>
+    <div class="card">
+      <h3 class="section-title">📅 Kontrol Periode & Kuota Sesi</h3>
+      <div class="info-box ib-blue">
+        Pengaturan ini mengatur tenggat waktu penyelesaian papan bingo siswa secara global.
+      </div>
+      <label class="flabel">Tanggal Mulai Periode</label>
+      <input type="date" id="adm-season-start" class="finput" onchange="updateSeasonMeta()">
+      <label class="flabel">Tanggal Penutupan / Deadline</label>
+      <input type="date" id="adm-season-end" class="finput" onchange="updateSeasonMeta()">
+      
+      <div style="margin:14px 0 8px">
+        <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:4px">
+          <span>Durasi Berjalan</span>
+          <span id="adm-season-days">0 Hari</span>
+        </div>
+        <div class="season-prog"><div class="season-prog-fill" id="adm-season-bar" style="width:0%"></div></div>
       </div>
 
-      <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border)">
-        <div class="section-title" style="margin-bottom:10px">⚙️ Admin Password</div>
-        <div class="flabel">New admin password</div>
-        <input class="finput" id="admin-new-pass" type="password" placeholder="Enter new password..." style="margin-bottom:8px">
-        <button class="btn btn-outline btn-sm btn-full" onclick="changeAdminPass()">Update Password</button>
-      </div>
+      <div class="divider">Keamanan Global</div>
+      <label class="flabel">Ganti Password Admin</label>
+      <input type="password" id="adm-pass-1" class="finput" placeholder="Password Baru Admin...">
+      <input type="password" id="adm-pass-2" class="finput" placeholder="Ulangi Password Baru Admin...">
+      <button class="btn btn-outline btn-sm btn-full" onclick="changeAdminPassword()">Perbarui Password Admin</button>
 
-      <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border)">
-        <div class="section-title" style="margin-bottom:10px">📊 Quick Stats</div>
-        <div id="admin-stats"></div>
+      <div style="margin-top:12px">
+        <label class="flabel">Ganti Password Guru Global</label>
+        <input type="password" id="adm-gpass" class="finput" placeholder="Password Baru Guru...">
+        <button class="btn btn-outline btn-sm btn-full" onclick="changeGuruGlobalPassword()">Perbarui Password Guru</button>
       </div>
-    </div>
-  </div>
-
-  <div style="margin-top:.875rem">
-    <div class="card" style="margin-bottom:0">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
-        <div class="section-title" style="margin-bottom:0">📋 All Students Overview</div>
-        <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
-      </div>
-      <div id="admin-table"></div>
     </div>
   </div>
+  
+  <button class="btn btn-danger btn-full" onclick="logout()">Keluar & Tutup Sesi Admin</button>
 </div>
 
-<!-- ══ GURU ══ -->
 <div id="screen-guru" class="screen">
-  <div style="max-width:900px;margin:0 auto;padding:1rem 1rem 5rem">
-    <div class="admin-topbar">
-      <div class="topbar-logo">
-        <div class="topbar-logo-mark">
-          <svg viewBox="0 0 15 15" fill="none"><rect x="2" y="2" width="5" height="7" rx="1" fill="white" opacity=".9"/><rect x="3" y="3" width="5" height="7" rx="1" fill="white" opacity=".5"/><rect x="4" y="4" width="7" height="7" rx="1" fill="white"/></svg>
-        </div>
-        <div class="topbar-title">Teacher Panel</div>
-        <div class="topbar-tag" id="guru-name-tag">—</div>
+  <div class="admin-topbar">
+    <div class="topbar-logo">
+      <div class="topbar-logo-mark" style="background:var(--accent)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
-      <button class="btn btn-outline btn-sm" onclick="showScreen('screen-onboard')">← Sign out</button>
+      <div>
+        <h2 class="topbar-title" id="guru-panel-title">Panel Guru Pengampu</h2>
+        <div style="font-size:11px; color:var(--muted)">Kode Guru Anda: <span id="guru-panel-code" style="font-family:'DM Mono',monospace; font-weight:600; color:var(--accent2)">-</span></div>
+      </div>
     </div>
-
-    <div class="card">
-      <div class="section-title">📅 Current Season</div>
-      <div id="g-pill" style="margin-bottom:8px"></div>
-      <div id="g-dates"></div>
-    </div>
-
-    <div class="card">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
-        <div class="section-title" style="margin-bottom:0">📊 Student Monitor</div>
-        <div style="display:flex;gap:8px;align-items:center">
-          <div style="font-size:11px;font-weight:600;color:var(--muted)" id="g-total">0 students</div>
-          <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
-        </div>
-      </div>
-      <div class="class-chips" id="g-chips"></div>
-      <div class="cs-grid" id="g-cstats" style="display:none"></div>
-      <div class="search-row">
-        <input class="search-inp" id="g-search" placeholder="Search students..." oninput="renderTable()">
-      </div>
-      <div class="filter-row">
-        <button class="fbtn active" onclick="setFilter('all',this)">All</button>
-        <button class="fbtn" onclick="setFilter('active',this)">Has Progress</button>
-        <button class="fbtn" onclick="setFilter('none',this)">Not Started</button>
-        <button class="fbtn" onclick="setFilter('bingo',this)">Has Bingo</button>
-        <button class="fbtn" onclick="setFilter('done',this)">100% Done</button>
-      </div>
-      <div id="g-table"></div>
-    </div>
-    <div class="info-box ib-blue" style="font-size:11px">Tip: Click on any student row to see their full progress, bingo board, books, and badges.</div>
+    <div class="topbar-tag" style="background:var(--accent-bg); color:var(--accent); border-color:var(--accent-border)">Edukator</div>
   </div>
+
+  <div class="class-chips" id="guru-class-chips"></div>
+
+  <div class="cs-grid">
+    <div class="cs-card"><div class="cs-val" id="gstat-total-stu">0</div><div class="cs-lbl">Siswa Binaan</div></div>
+    <div class="cs-card"><div class="cs-val" id="gstat-total-books">0</div><div class="cs-lbl">Buku Dibaca</div></div>
+    <div class="cs-card"><div class="cs-val" id="gstat-total-bingos">0</div><div class="cs-lbl">Total Bingo</div></div>
+    <div class="cs-card"><div class="cs-val" id="gstat-avg-xp">0</div><div class="cs-lbl">Rata-Rata XP</div></div>
+  </div>
+
+  <div class="card">
+    <div class="search-row">
+      <input type="text" id="guru-search" class="search-inp" placeholder="🔍 Cari nama siswa binaan Anda..." oninput="renderGuruStudentTable()">
+      <button class="export-btn" onclick="exportGuruData()">📥 Export CSV</button>
+    </div>
+    <div class="filter-row">
+      <button class="fbtn active" id="fbtn-all" onclick="setGuruFilter('all')">Semua Siswa</button>
+      <button class="fbtn" id="fbtn-active" onclick="setGuruFilter('active')">Sudah Mulai</button>
+      <button class="fbtn" id="fbtn-bingo" onclick="setGuruFilter('bingo')">Mencapai Bingo</button>
+      <button class="fbtn" id="fbtn-locked" onclick="setGuruFilter('locked')">Selesai/Locked</button>
+    </div>
+
+    <div style="overflow-x:auto">
+      <table class="stu-table">
+        <thead>
+          <tr>
+            <th style="width:40px; text-align:center">Peringkat</th>
+            <th>Data Siswa</th>
+            <th style="text-align:center">Progress Petak</th>
+            <th style="text-align:center">Bingo</th>
+            <th style="text-align:right">Akumulasi XP</th>
+          </tr>
+        </thead>
+        <tbody id="guru-tbody"></tbody>
+      </table>
+    </div>
+    <div id="guru-empty-state" class="empty-state" style="display:none">Tidak ada siswa binaan yang sesuai dengan filter pencarian.</div>
+  </div>
+
+  <button class="btn btn-danger btn-full" onclick="logout()">Keluar & Selesai Meninjau</button>
 </div>
 
-<!-- ══ GAME ══ -->
 <div id="screen-game" class="screen">
-  <div style="max-width:680px;margin:0 auto;padding:1rem 1rem 6rem">
-    <div class="top-bar">
-      <div class="top-player">
-        <div class="top-avatar" id="top-avatar">?</div>
-        <div><div class="top-name" id="top-name">—</div><div class="top-class" id="top-class">—</div></div>
+  <div class="top-bar">
+    <div class="top-player">
+      <div class="top-avatar" id="stu-avatar">S</div>
+      <div>
+        <h3 class="top-name" id="stu-name">Nama Siswa</h3>
+        <div class="top-class" id="stu-class-label">Kelas - Pembina: -</div>
       </div>
-      <button class="btn btn-outline btn-sm" onclick="goBack()">← Exit</button>
     </div>
-    <div id="season-bar-wrap"></div>
-    <div class="xp-wrap" id="xp-bar-wrap"></div>
-    <div class="stats-row">
-      <div class="stat-card"><div class="stat-label">Points</div><div class="stat-value" id="s-pts">0</div></div>
-      <div class="stat-card"><div class="stat-label">Done</div><div class="stat-value" id="s-done">0</div></div>
-      <div class="stat-card"><div class="stat-label">Bingo</div><div class="stat-value" id="s-bingo">0</div></div>
-      <div class="stat-card"><div class="stat-label">Streak</div><div class="stat-value" id="s-streak">0</div></div>
+    <button class="btn btn-outline btn-sm" onclick="logoutStudent()" style="padding:6px 12px; font-size:11px">Ganti Akun</button>
+  </div>
+
+  <div class="season-bar sb-active" id="game-season-box">
+    <div class="sb-row">
+      <span class="sb-title" id="game-season-title">⏳ Sisa Waktu Periode Quest</span>
+      <span class="sb-countdown" id="game-season-countdown">0d 0h 0m</span>
     </div>
-    <div class="prog-card">
-      <div class="prog-top"><div class="prog-title">Quest Progress</div><div class="prog-pct" id="s-pct">0%</div></div>
-      <div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
-      <div class="prog-ms"><div class="milestone" id="ms0">🎁 25%</div><div class="milestone" id="ms1">🔥 50%</div><div class="milestone" id="ms2">⚡ 75%</div><div class="milestone" id="ms3">🏆 100%</div></div>
+    <div class="sb-prog"><div class="sb-prog-fill" id="game-season-bar" style="width:0%"></div></div>
+    <div class="sb-dates">
+      <span id="game-season-start">-</span>
+      <span id="game-season-end">-</span>
     </div>
-    <div id="daily-sec"></div>
-    <div id="streak-sec"></div>
-    <div id="quote-sec"></div>
-    <div class="grid-header">
-      <div class="grid-title">Bingo Board</div>
-      <button class="tip-btn" onclick="showTip()">Reading tip</button>
+  </div>
+
+  <div class="xp-wrap">
+    <div class="xp-top">
+      <div class="xp-level-info">
+        <span class="xp-icon" id="xp-level-icon">🌱</span>
+        <div>
+          <h4 class="xp-level-name" id="xp-level-name">Pustakawan Pemula</h4>
+          <span class="xp-level-num" id="xp-level-num">Level 1</span>
+        </div>
+      </div>
+      <div class="xp-pts">
+        <div class="xp-pts-val" id="xp-total-val">0</div>
+        <div class="xp-pts-lbl">Total XP</div>
+      </div>
     </div>
-    <div class="grid" id="grid"></div>
-    <div class="badges-card"><div class="sec-title">🏅 Badges</div><div class="badges-list" id="badges"></div></div>
-    <div id="log-sec"></div>
+    <div class="xp-bar-bg"><div class="xp-bar-fill" id="xp-bar-fill" style="width:0%"></div></div>
+    <div class="xp-meta">
+      <span id="xp-current-range">0 / 100 XP</span>
+      <span id="xp-needed-lbl">Butuh 100 XP lagi untuk naik level</span>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-label">Buku Beres</div><div class="stat-value" id="st-books">0</div></div>
+    <div class="stat-card"><div class="stat-label">Bingo Line</div><div class="stat-value" id="st-bingos" style="color:var(--amber)">0</div></div>
+    <div class="stat-card"><div class="stat-label">Rata Halaman</div><div class="stat-value" id="st-avg-pg">0</div></div>
+    <div class="stat-card"><div class="stat-label">Badges</div><div class="stat-value" id="st-badges" style="color:var(--accent2)">0</div></div>
+  </div>
+
+  <div class="prog-card">
+    <div class="prog-top">
+      <span class="prog-title">🗺️ Progress Papan Bingo Selesai</span>
+      <span class="prog-pct" id="prog-pct-txt">0%</span>
+    </div>
+    <div class="prog-bg"><div class="prog-fill" id="prog-bar-fill" style="width:0%"></div></div>
+    <div class="prog-ms">
+      <span class="milestone" id="ms-1">🏁 Quarter</span>
+      <span class="milestone" id="ms-2">⭐ Halfway</span>
+      <span class="milestone" id="ms-3">🔥 Mastery</span>
+      <span class="milestone" id="ms-4">🏆 Full Board</span>
+    </div>
+  </div>
+
+  <div class="streak-card" id="streak-box" style="display:none">
+    <div class="streak-fire">🔥</div>
+    <div style="flex:1">
+      <div class="streak-title">Reading Streak: <span id="stk-count">0</span> Hari Beruntun!</div>
+      <div class="streak-sub" id="stk-desc">Baca buku hari ini untuk mempertahankan streak kamu.</div>
+      <div class="streak-dots" id="stk-dots"></div>
+    </div>
+    <div><div class="streak-num" id="stk-num">0</div><div class="streak-lbl">Days</div></div>
+  </div>
+
+  <div class="daily-card" id="daily-quest-card" onclick="openDailyQuestModal()">
+    <div class="daily-icon">🎯</div>
+    <div style="flex:1">
+      <div class="daily-title" id="daily-q-title">Daily Mini Challenge</div>
+      <div class="daily-desc" id="daily-q-desc">Tantangan harian membaca acak. Ambil misi hari ini!</div>
+      <span class="daily-tag" id="daily-q-reward">+50 XP Bonus</span>
+    </div>
+  </div>
+
+  <div class="quote-card">
+    <p class="quote-text" id="quote-txt">"Buku adalah paspor untuk menuju masa depan, karena hari esok dimiliki oleh orang-orang yang mempersiapkannya hari ini."</p>
+    <span class="quote-src" id="quote-author">— Malcolm X</span>
+  </div>
+
+  <div class="grid-header">
+    <h3 class="grid-title">🎲 Matriks Papan Quest Bingo (4x4)</h3>
+    <button class="tip-btn" onclick="openGuideModal()">💡 Panduan Aturan</button>
+  </div>
+  <div class="grid" id="bingo-grid"></div>
+
+  <div class="badges-card">
+    <h4 class="sec-title">🏅 Lencana Pencapaian Khazanah (Badges)</h4>
+    <div class="badges-list" id="badges-container"></div>
+  </div>
+
+  <div class="log-card">
+    <h4 class="sec-title">📖 Jurnal Log Aktivitas Membaca Kamu</h4>
+    <div class="log-list" id="log-container"></div>
     <div class="sep"></div>
-    <button class="btn-reset" onclick="resetProgress()">Reset my progress</button>
+    <button class="btn-reset" onclick="confirmResetAllData()">🔄 Reset Ulang Seluruh Progress Akun</button>
   </div>
 </div>
 
-<!-- ══ LOCKED ══ -->
 <div id="screen-locked" class="screen">
-  <div class="locked-wrap">
+  <div class="locked-wrap card">
     <span class="locked-icon">🔒</span>
-    <div class="locked-title">Quest Complete!</div>
-    <div class="locked-sub" id="locked-sub"></div>
-    <div class="card">
-      <div class="sec-title" style="margin-bottom:.75rem">Final Score — <span id="final-name" style="color:var(--accent2)"></span></div>
-      <div class="final-stats">
-        <div class="fstat"><div class="fstat-val" id="final-pts">0</div><div class="fstat-lbl">Total Points</div></div>
-        <div class="fstat"><div class="fstat-val" id="final-done">0/16</div><div class="fstat-lbl">Challenges</div></div>
-        <div class="fstat"><div class="fstat-val" id="final-bingo">0</div><div class="fstat-lbl">Bingo</div></div>
-        <div class="fstat"><div class="fstat-val" id="final-books">0</div><div class="fstat-lbl">Books</div></div>
-      </div>
-      <div class="final-lv" id="final-lv"></div>
+    <h1 class="locked-title">Periode Quest Berakhir</h1>
+    <p class="locked-sub">Papan Bingo Quest ini telah dikunci karena melewati batas waktu tenggat yang ditentukan oleh Admin/Guru. Berikut adalah pencapaian akhir petualanganmu:</p>
+    
+    <div class="final-stats">
+      <div class="fstat"><div class="fstat-val" id="lk-books">0</div><div class="fstat-lbl">Buku Dibaca</div></div>
+      <div class="fstat"><div class="fstat-val" id="lk-bingos">0</div><div class="fstat-lbl">Line Bingo</div></div>
     </div>
-    <button class="btn btn-primary btn-full" onclick="goBack()">← Back</button>
+    <div class="final-lv">
+      <div class="final-lv-icon" id="lk-lv-icon">🌱</div>
+      <div style="font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px">Peringkat Akhir</div>
+      <div class="final-lv-name" id="lk-lv-name">Pustakawan Pemula</div>
+      <div style="font-family:'DM Mono',monospace; font-size:16px; font-weight:600; margin-top:2px; color:var(--ink)" id="lk-xp">0 XP</div>
+    </div>
+
+    <button class="btn btn-primary btn-full" onclick="logoutStudent()">Kembali ke Halaman Utama</button>
   </div>
 </div>
 
-<!-- INPUT MODAL -->
-<div class="modal-bg" id="modal">
+<div class="bottom-nav" id="game-nav" style="display:none">
+  <div class="nav-item active" id="nav-quest" onclick="switchGameSubSection('quest')">
+    <span class="nav-icon">🎲</span><span>Quest</span>
+  </div>
+  <div class="nav-item" id="nav-leaderboard" onclick="switchGameLeaderboard()">
+    <span class="nav-icon">🏆</span><span>Leaderboard</span>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-claim">
   <div class="modal">
-    <div class="modal-top"><h3 id="m-title"></h3><button class="modal-close" onclick="closeModal()">✕</button></div>
-    <div class="modal-pts" id="m-pts"></div>
-    <div class="flabel">Book title *</div><input class="finput" id="m-book" placeholder="Enter book title...">
-    <div class="flabel">How did you feel reading it?</div><div class="mood-row" id="mood-row"></div>
-    <div class="flabel">Book rating</div><div class="stars-row" id="stars-row"></div>
-    <div class="flabel">Photo <span style="font-weight:400;font-size:10px;color:var(--muted)">(optional)</span></div>
-    <img class="ph-prev" id="m-preview" src="" alt=""><button class="ph-del" id="m-del" onclick="removePhoto()">✕ Remove photo</button>
-    <div class="photo-zone" id="pzone"><input type="file" accept="image/*" id="m-file" onchange="handlePhoto(event)"><div class="photo-hint"><span>📷</span>Tap to upload photo</div></div>
-    <div class="flabel">Key takeaway <span style="font-weight:400;font-size:10px;color:var(--muted)">(optional)</span></div>
-    <textarea class="finput" id="m-intisari" placeholder="What did you learn from this book?" rows="2"></textarea>
-    <div class="modal-btns"><button class="btn-no" onclick="closeModal()">Cancel</button><button class="btn-ok" onclick="confirmCell()">Mark complete ✓</button></div>
+    <div class="modal-top">
+      <h3 id="claim-title">Klaim Petak Tantangan</h3>
+      <span class="modal-close" onclick="closeModal('modal-claim')">&times;</span>
+    </div>
+    <div class="info-box ib-green" id="claim-desc">Tantangan membaca petak ini.</div>
+    
+    <label class="flabel">Judul Buku yang Dibaca</label>
+    <input type="text" id="fm-title" class="finput" placeholder="Contoh: Laskar Pelangi...">
+    
+    <label class="flabel">Penulis / Pengarang</label>
+    <input type="text" id="fm-author" class="finput" placeholder="Contoh: Andrea Hirata...">
+    
+    <label class="flabel">Jumlah Halaman Buku</label>
+    <input type="number" id="fm-pages" class="finput" placeholder="Contoh: 120">
+    
+    <label class="flabel">Foto Bukti / Sampul Buku</label>
+    <div class="photo-pick-area" onclick="document.getElementById('fm-file').click()">
+      <span class="photo-pick-icon">📸</span>
+      <span class="photo-pick-lbl" id="fm-file-lbl">Ambil Foto / Unggah Gambar Bukti</span>
+      <span class="photo-pick-sub">Format JPG/PNG (Maksimal 2MB)</span>
+      <img src="" id="fm-img-preview" class="photo-pick-preview">
+    </div>
+    <input type="file" id="fm-file" accept="image/*" style="display:none" onchange="handleFileSelect(this)">
+
+    <label class="flabel">Jurnal Intisari / Refleksi Pendek</label>
+    <textarea id="fm-review" class="finput" placeholder="Tuliskan 1-2 kalimat ringkasan cerita atau hal paling berkesan dari buku ini..."></textarea>
+    
+    <button class="btn btn-green btn-full" id="btn-submit-claim" onclick="submitPetakClaim()">Simpan Bukti Pembacaan & &rarr;</button>
   </div>
 </div>
 
-<!-- DETAIL MODAL -->
-<div class="detail-bg" id="detail-bg">
+<div class="detail-bg" id="modal-detail">
   <div class="detail-modal">
-    <div class="modal-top"><h3 id="d-task"></h3><button class="modal-close" onclick="closeDetail()">✕</button></div>
-    <img class="detail-photo" id="d-photo" src="" alt="">
-    <div class="detail-row"><div class="dlabel">Book Title</div><div class="dval" id="d-book"></div></div>
-    <div class="detail-row" id="d-mood-row" style="display:none"><div class="dlabel">Feeling</div><div class="dval" id="d-mood"></div></div>
-    <div class="detail-row" id="d-stars-row" style="display:none"><div class="dlabel">Rating</div><div class="dval" id="d-stars"></div></div>
-    <div class="detail-row" id="d-int-wrap" style="display:none"><div class="dlabel">Key Takeaway</div><div class="detail-intisari" id="d-intisari"></div></div>
-    <div class="detail-acts">
-      <button class="btn-edit2" id="d-edit-btn" onclick="editFromDetail()">✏️ Edit</button>
-      <button class="btn-del2" id="d-del-btn" onclick="deleteFromDetail()">🗑 Delete</button>
-      <button class="btn-cls2" onclick="closeDetail()">Close</button>
+    <div class="modal-top">
+      <h3>Detail Jurnal Pembacaan</h3>
+      <span class="modal-close" onclick="closeModal('modal-detail')">&times;</span>
+    </div>
+    <div class="det-hero">
+      <div id="det-img-box"></div>
+      <div class="det-main">
+        <h4 class="det-title" id="det-title">Judul Buku</h4>
+        <div class="det-task" id="det-task">Untuk tantangan petak bingo acak</div>
+      </div>
+    </div>
+    <div class="det-meta">
+      <span class="pill pill-gray" id="det-author">✏️ Pengarang</span>
+      <span class="pill pill-blue" id="det-pages">📖 0 Halaman</span>
+      <span class="pill pill-green" id="det-xp">+0 XP Earned</span>
+    </div>
+    <div class="det-group">
+      <div class="det-lbl">Jurnal Berpikir / Intisari Buku</div>
+      <div class="det-val det-val-inti" id="det-review">Tidak ada review tertulis.</div>
+    </div>
+    <div class="det-group">
+      <div class="det-lbl">Waktu Klaim</div>
+      <div class="det-val" id="det-date" style="font-family:'DM Mono',monospace; font-size:11px">-</div>
+    </div>
+    <button class="btn btn-outline btn-full btn-sm" id="btn-unclaim-action" onclick="deleteCurrentActivePetak()">Hapus Bukti & Batalkan Klaim Petak</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-leaderboard-popup">
+  <div class="modal" style="width:min(500px,96vw)">
+    <div class="modal-top">
+      <h3>🏆 Papan Peringkat (Leaderboard) Kelas</h3>
+      <span class="modal-close" onclick="closeModal('modal-leaderboard-popup')">&times;</span>
+    </div>
+    <div class="info-box ib-purple" style="font-size:11px">Papan ini menampilkan peringkat kompetisi literasi berdasarkan perolehan XP siswa di kelas pengampu yang sama.</div>
+    <div style="max-height:350px; overflow-y:auto">
+      <table class="stu-table">
+        <thead>
+          <tr>
+            <th style="width:40px; text-align:center">Rank</th>
+            <th>Nama Siswa</th>
+            <th style="text-align:right">Akumulasi XP</th>
+          </tr>
+        </thead>
+        <tbody id="lb-pop-tbody"></tbody>
+      </table>
     </div>
   </div>
 </div>
 
-<!-- LEVEL UP -->
-<div class="lu-bg" id="lu-bg">
-  <div class="lu-modal">
-    <div class="lu-icon" id="lu-icon">🌟</div>
-    <div class="lu-eyebrow">Level Up!</div>
-    <div class="lu-title">Congratulations! 🎉</div>
-    <div class="lu-sub" id="lu-sub"></div>
-    <div class="lu-new" id="lu-new"></div>
-    <div class="lu-desc" id="lu-desc"></div>
-    <button class="btn-lu" onclick="closeLevelUp()">Continue Quest →</button>
-  </div>
-</div>
-
-<!-- STUDENT DRAWER -->
-<div class="drawer-bg" id="drawer-bg" onclick="closeDrawerOut(event)">
-  <div class="drawer" id="drawer">
-    <div class="dr-top">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div class="dr-avatar" id="dr-avatar">?</div>
-        <div><div class="dr-name" id="dr-name"></div><div class="dr-cls" id="dr-cls"></div></div>
-      </div>
-      <button class="dr-close" onclick="closeDrawerBtn()">✕</button>
+<div class="modal-bg" id="modal-guide">
+  <div class="modal" style="width:min(460px,96vw)">
+    <div class="modal-top">
+      <h3>📖 Panduan Reading Bingo Quest</h3>
+      <span class="modal-close" onclick="closeModal('modal-guide')">&times;</span>
     </div>
-    <div class="dr-stats" id="dr-stats"></div>
-    <div id="dr-level" style="background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:var(--r-sm);padding:10px 12px;margin-bottom:.75rem;display:flex;align-items:center;gap:10px"></div>
-    <div class="dr-section">Bingo Board</div>
-    <div class="bingo-mini" id="dr-bingo"></div>
-    <div class="dr-section">Badges</div>
-    <div id="dr-badges" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px"></div>
-    <div class="dr-section">Books Read</div>
-    <div id="dr-books"></div>
+    <div style="font-size:12px; line-height:1.6; display:flex; flex-direction:column; gap:10px; max-height:400px; overflow-y:auto; padding-right:4px">
+      <p>Selamat datang di <strong>Reading Bingo Quest</strong>! Program ini dirancang untuk mendongkrak kegemaran membaca melalui mekanisme gamifikasi terstruktur.</p>
+      <div><strong>Aturan Main Utama:</strong></div>
+      <ul style="padding-left:20px; display:flex; flex-direction:column; gap:4px">
+        <li>Setiap petak mewakili kriteria buku unik yang harus kamu cari dan baca.</li>
+        <li>Satu buku yang kamu baca hanya boleh digunakan untuk mengklaim <strong>1 petak</strong> saja.</li>
+        <li>Klaim dilakukan dengan mengisi data buku, refleksi ringkas, serta foto bukti fisik buku/sampul.</li>
+      </ul>
+      <div><strong>Skor & Leveling (XP):</strong></div>
+      <ul style="padding-left:20px; display:flex; flex-direction:column; gap:4px">
+        <li>Setiap petak selesai memberi nilai dasar <strong>+100 XP</strong>.</li>
+        <li>Tantangan baris ujung (Petak Pojok) bernilai tinggi: <strong>+150 XP</strong>.</li>
+        <li>Berhasil menyusun 4 petak lurus (Horizontal, Vertikal, Diagonal) memicu <strong>BINGO! (+250 XP Bonus)</strong>.</li>
+      </ul>
+      <div><strong>Peringkat Lencana (Badges):</strong></div>
+      <p>Dapatkan medali otomatis saat kamu sukses menyelesaikan milestone tertentu seperti membaca buku tebal, konsisten membaca harian, atau menyapu bersih papan!</p>
+    </div>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
-<canvas id="cc"></canvas>
+<div class="lu-bg" id="modal-daily-quest">
+  <div class="modal">
+    <div class="modal-top">
+      <h3>🎯 Daily Challenge Quest</h3>
+      <span class="modal-close" onclick="closeModal('modal-daily-quest')">&times;</span>
+    </div>
+    <div style="text-align:center; padding:.5rem 0 1rem">
+      <div style="font-size:44px; margin-bottom:8px" id="dl-m-emoji">📖</div>
+      <h4 style="font-family:'Playfair Display',serif; font-size:18px; font-weight:700" id="dl-m-title">Membaca Buku Fiksi Klasik</h4>
+      <p style="font-size:12px; color:var(--muted); margin-top:4px; padding:0 10px" id="dl-m-desc">Selesaikan aktivitas membaca buku dengan kriteria di atas minimal selama 15 menit hari ini.</p>
+    </div>
+    <div class="info-box ib-amber" style="text-align:center; font-weight:600; font-family:'DM Mono',monospace" id="dl-m-status">STATUS: BELUM SELESAI</div>
+    <button class="btn btn-green btn-full" id="btn-complete-daily" onclick="claimDailyMiniQuestReward()">Saya Sudah Selesai Membaca! &radic;</button>
+  </div>
+</div>
 
-<script>
-const CELLS=[
-  {t:"Read a book by your favorite author",s:5,e:"✍️"},{t:'Read a "Best Seller" book',s:10,e:"🏆"},
-  {t:"Read a biography",s:10,e:"👤"},{t:"Read a book with an attractive cover",s:5,e:"🎨"},
-  {t:"Read a book based on a true story",s:10,e:"📰"},{t:"Read a book with an interesting synopsis",s:10,e:"🔍"},
-  {t:"Read a book with a one-word title",s:5,e:"1️⃣"},{t:"Read a book at a café or restaurant",s:5,e:"☕"},
-  {t:"Read a book rated >4 stars on Goodreads",s:10,e:"⭐"},{t:"Read a book adapted into a film",s:5,e:"🎬"},
-  {t:"Read a literary work or poetry",s:5,e:"🌸"},{t:"Read on a holiday or day off",s:5,e:"🌴"},
-  {t:"Discover a new word you didn't know",s:5,e:"💡"},{t:"Read a history book",s:10,e:"🏛️"},
-  {t:"Book title starts with the same letter as your name",s:5,e:"🔤"},{t:"Read a motivation or self-improvement book",s:10,e:"💪"},
-];
-const LINES=[[0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15],[0,4,8,12],[1,5,9,13],[2,6,10,14],[3,7,11,15],[0,5,10,15],[3,6,9,12]];
-const LEVELS=[
-  {min:0,icon:"🥚",name:"Egg Reader",unlock:"Complete 1 challenge to hatch!"},
-  {min:1,icon:"🐣",name:"Hatched Reader",unlock:"3 more challenges to level up"},
-  {min:4,icon:"🐥",name:"Junior Reader",unlock:"4 more challenges to level up"},
-  {min:8,icon:"🦉",name:"Book Owl",unlock:"4 more challenges to level up"},
-  {min:12,icon:"🦅",name:"Literacy Eagle",unlock:"Almost there! 3 more to go"},
-  {min:15,icon:"🌟",name:"Star Reader",unlock:"One last step to the top!"},
-  {min:16,icon:"🏆",name:"Book Champion",unlock:"All challenges complete! You're amazing! 🎉"},
-];
-const MOODS=[{e:"😴",l:"Sleepy"},{e:"😊",l:"Fun"},{e:"🤩",l:"Amazing"},{e:"🥹",l:"Moving"},{e:"🤔",l:"Thoughtful"}];
-const BADGES=[
-  {id:"b1",ic:"🌱",label:"New Reader",req:1},
-  {id:"b4",ic:"📚",label:"Avid Reader",req:4},
-  {id:"bingo1",ic:"🎯",label:"First Bingo",bingo:1},
-  {id:"b8",ic:"🔥",label:"Halfway There",req:8},
-  {id:"photo3",ic:"📷",label:"Book Photographer",photos:3},
-  {id:"bingo2",ic:"⚡",label:"Double Bingo",bingo:2},
-  {id:"rate5",ic:"💎",label:"Star Critic",stars5:1},
-  {id:"streak7",ic:"🌊",label:"Streak Master",streak7:1},
-  {id:"b16",ic:"🏅",label:"Book Champion",req:16},
-];
-const QUOTES=[
-  ["Reading is to the mind what exercise is to the body.","Joseph Addison"],
-  ["A reader lives a thousand lives before they die.","George R.R. Martin"],
-  ["Not all readers are leaders, but all leaders are readers.","Harry S. Truman"],
-  ["The more that you read, the more things you will know.","Dr. Seuss"],
-  ["Today a reader, tomorrow a leader.","Margaret Fuller"],
-  ["A book is a dream that you hold in your hands.","Neil Gaiman"],
-];
-const TIPS=[
-  ["Read 10 minutes a day","Consistency beats duration. 10 min/day = 60 hours a year!"],
-  ["Note new words","When you find an unfamiliar word, write it down. Your vocabulary will grow fast!"],
-  ["Find your spot","A café, park, or cozy corner — environment matters for reading motivation."],
-  ["Read before bed","More effective than scrolling. Your brain absorbs better when relaxed."],
-  ["Discuss with friends","Talking about books with friends makes the experience twice as fun!"],
-  ["Set a weekly goal","Try: finish 1 book per week. Small progress = big results!"],
-];
-const DAILY_CHALLENGES=[
-  {icon:"🌅",title:"Morning Read",desc:"Read at least 10 minutes before 9am",bonus:15},
-  {icon:"🌙",title:"Bedtime Reading",desc:"Read at least 20 minutes before sleep",bonus:15},
-  {icon:"📝",title:"Write a Takeaway",desc:"Add a key takeaway to one of your books",bonus:10},
-  {icon:"📸",title:"Photo your Book",desc:"Upload a photo of your book today",bonus:10},
-  {icon:"🌟",title:"Rate a Book",desc:"Give a rating to a book you've read",bonus:10},
-  {icon:"🗺️",title:"Check Progress",desc:"Review how far you've come on the bingo board!",bonus:5},
+<script type="module">
+// IMPORT LAYANAN FIREBASE CORE DAN DATABASE DARI CDN RESMI
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getDatabase, ref, set, get, onValue, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+// =========================================================================
+// MASUKKAN KONFIGURASI FIREBASE ANDA DI SINI
+// =========================================================================
+const firebaseConfig = {
+  apiKey: "MASUKKAN_API_KEY_ANDA",
+  authDomain: "MASUKKAN_AUTH_DOMAIN_ANDA",
+  databaseURL: "MASUKKAN_DATABASE_URL_REALTIME_DATABASE_ANDA",
+  projectId: "MASUKKAN_PROJECT_ID_ANDA",
+  storageBucket: "MASUKKAN_STORAGE_BUCKET_ANDA",
+  messagingSenderId: "MASUKKAN_MESSAGING_SENDER_ID_ANDA",
+  appId: "MASUKKAN_APP_ID_ANDA"
+};
+
+// Inisialisasi Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// DATA STURKTUR DEFAULT PAPAN BINGO
+const BINGO_TASKS_DEFAULT = [
+  {id:0,emoji:"🦅",title:"Buku Bertema Sejarah / Pahlawan Indonesia",points:150,isCorner:true},
+  {id:1,emoji:"🔮",title:"Buku Cerita Fantasi atau Sci-Fi",points:100,isCorner:false},
+  {id:2,emoji:"🌿",title:"Buku Non-Fiksi Pengetahuan Alam / Sains",points:100,isCorner:false},
+  {id:3,emoji:"👑",title:"Dongeng Rakyat / Legenda Nusantara",points:150,isCorner:true},
+  {id:4,emoji:"🤝",title:"Buku Bertema Nilai Persahabatan / Sosial",points:100,isCorner:false},
+  {id:5,emoji:"🎨",title:"Buku Komik atau Buku Cerita Bergambar",points:100,isCorner:false},
+  {id:6,emoji:"🧭",title:"Buku Petualangan atau Misteri Teka-Teki",points:100,isCorner:false},
+  {id:7,emoji:"🧠",title:"Buku Pengembangan Diri / Motivasi Anak",points:100,isCorner:false},
+  {id:8,emoji:"📖",title:"Buku yang Memiliki Lebih dari 150 Halaman",points:100,isCorner:false},
+  {id:9,emoji:"🐳",title:"Buku dengan Karakter Utama Hewan (Fabel)",points:100,isCorner:false},
+  {id:10,emoji:"🕌",title:"Buku Cerita Keagamaan atau Akhlak Mulia",points:100,isCorner:false},
+  {id:11,emoji:"💡",title:"Buku Biografi Orang Sukses / Penemu Dunia",points:100,isCorner:false},
+  {id:12,emoji:"🕌",title:"Buku Pilihan Bebas yang Direkomendasikan Teman",points:150,isCorner:true},
+  {id:13,emoji:"📜",title:"Buku Kumpulan Puisi, Pantun, atau Seni",points:100,isCorner:false},
+  {id:14,emoji:"🌍",title:"Buku Geografi / Kebudayaan Suku Luar Daerah",points:100,isCorner:false},
+  {id:15,emoji:"🏆",title:"Buku Bertema Olahraga atau Kisah Inspiratif",points:150,isCorner:true}
 ];
 
-const SEASON_DAYS=92;
-const DEFAULT_ADMIN_PASS="Admin@RBQ2025!";
+const DAILY_POOL = [
+  {title:"Membaca Buku Fiksi Klasik",emoji:"📖",desc:"Selesaikan aktivitas membaca buku cerita fiksi lama minimal selama 15 menit hari ini."},
+  {title:"Membaca Artikel Berita Ilmu Pengetahuan",emoji:"🔬",desc:"Baca berita ilmu sains terhangat dari majalah anak atau koran digital hari ini."},
+  {title:"Membaca Nyaring (Read Aloud)",emoji:"🗣️",desc:"Pilih 2 halaman dari buku favoritmu lalu bacakan dengan lantang di depan keluarga."},
+  {title:"Menemukan 5 Kosakata Asing Baru",emoji:"✍️",desc:"Buka acak buku pelajaran atau kamus, temukan 5 kata asing lalu tulis artinya."}
+];
 
-// ── Storage helpers ──
-function getAdminPass(){return localStorage.getItem("rbq_admin_pass")||DEFAULT_ADMIN_PASS;}
-function getGuruAccounts(){try{return JSON.parse(localStorage.getItem("rbq_gurus")||"[]");}catch(e){return[];}}
-function saveGuruAccounts(arr){localStorage.setItem("rbq_gurus",JSON.stringify(arr));}
+const BADGES_DEFS = [
+  {id:"first_book",name:"Pelopor Lembaran",emoji:"🎯",desc:"Berhasil merampungkan klaim buku pertamamu"},
+  {id:"bingo_one",name:"Strategi Kuartet",emoji:"🔥",desc:"Membentuk garis Bingo lurus 4 petak pertama"},
+  {id:"thick_book",name:"Penyelam Dalam",emoji:"🐳",desc:"Membaca buku dengan ketebalan di atas 150 halaman"},
+  {id:"streak_3",name:"Ksatria Rutin",emoji:"⏳",desc:"Mata rantai membaca konsisten 3 hari beruntun"},
+  {id:"full_board",name:"Legenda Khatulistiwa",emoji:"👑",desc:"Menuntaskan seluruh 16 tantangan petak bingo tanpa sisa"}
+];
 
-let player={name:"",cls:""};
-let state={checked:new Array(16).fill(false),books:new Array(16).fill(""),photos:new Array(16).fill(""),intisari:new Array(16).fill(""),moods:new Array(16).fill(-1),ratings:new Array(16).fill(0),pts:0,bingoLines:new Set(),badges:new Set(),streak:0,lastDate:"",dailyDone:false,dailyDate:""};
-let season={startDate:"",endDate:"",active:false};
-let activeIdx=-1,detailIdx=-1,tempPhoto="",tempMood=-1,tempRating=0;
-let filterMode="all",selClass="all";
-let todayChallenge=null;
-let currentGuruName="";
+const QUOTES_POOL = [
+  {text:"\"Buku adalah paspor untuk menuju masa depan, karena hari esok dimiliki oleh orang-orang yang mempersiapkannya hari ini.\"",author:"Malcolm X"},
+  {text:"\"Aku rela di penjara bersama buku, karena dengan buku aku bebas.\"",author:"Mohammad Hatta"},
+  {text:"\"Ada lebih banyak harta karun di dalam buku daripada di semua jarahan bajak laut di Pulau Harta.\"",author:"Walt Disney"}
+];
 
-function pkey(n,c){return"rbq_st_"+encodeURIComponent(n)+"_"+encodeURIComponent(c);}
-function getAllStudents(){const out=[];try{for(let k in localStorage){if(!k.startsWith("rbq_st_"))continue;const d=JSON.parse(localStorage.getItem(k));if(d&&d.pName)out.push(d);}}catch(e){}return out.sort((a,b)=>a.pName.localeCompare(b.pName));}
-function saveAll(){
-  try{
-    localStorage.setItem("rbq_player",JSON.stringify(player));
-    localStorage.setItem("rbq_season",JSON.stringify(season));
-    if(player.name){const k=pkey(player.name,player.cls);localStorage.setItem(k,JSON.stringify({pName:player.name,pCls:player.cls,saved:new Date().toISOString(),...state,bingoLines:[...state.bingoLines],badges:[...state.badges]}));}
-  }catch(e){}
-}
-function loadAll(){
-  try{
-    const p=JSON.parse(localStorage.getItem("rbq_player")||"null");if(p&&p.name)player=p;
-    const se=JSON.parse(localStorage.getItem("rbq_season")||"null");if(se)season=se;
-    if(player.name){const s=JSON.parse(localStorage.getItem(pkey(player.name,player.cls))||"null");if(s)state={checked:s.checked||new Array(16).fill(false),books:s.books||new Array(16).fill(""),photos:s.photos||new Array(16).fill(""),intisari:s.intisari||new Array(16).fill(""),moods:s.moods||new Array(16).fill(-1),ratings:s.ratings||new Array(16).fill(0),pts:s.pts||0,bingoLines:new Set(s.bingoLines||[]),badges:new Set(s.badges||[]),streak:s.streak||0,lastDate:s.lastDate||"",dailyDone:s.dailyDone||false,dailyDate:s.dailyDate||""};}
-  }catch(e){}
-}
+// STATE GLOBAL JALUR VARIABLE (SINKRONISASI ONLINE)
+window.currentRole = 'siswa'; 
+window.appData = {
+  adminPassword: "admin",
+  guruGlobalPassword: "guru",
+  seasonStart: "2026-01-01",
+  seasonEnd: "2026-06-30",
+  guruAccounts: {
+    "BNDG01": {code:"BNDG01",name:"Budi Santoso, S.Pd"}
+  },
+  students: {}
+};
 
-function SS(){if(!season.startDate)return"none";const n=new Date();n.setHours(0,0,0,0);const s=new Date(season.startDate);s.setHours(0,0,0,0);const e=new Date(season.endDate);e.setHours(0,0,0,0);if(n<s)return"upcoming";if(n>e)return"ended";return"active";}
-function daysLeft(){const n=new Date();n.setHours(0,0,0,0);const e=new Date(season.endDate);e.setHours(0,0,0,0);return Math.max(0,Math.round((e-n)/864e5));}
-function daysEl(){const n=new Date();n.setHours(0,0,0,0);const s=new Date(season.startDate);s.setHours(0,0,0,0);return Math.max(0,Math.round((n-s)/864e5));}
-function fd(d){if(!d)return"—";return new Date(d).toLocaleDateString("en-US",{day:"numeric",month:"long",year:"numeric"});}
-function fds(d){if(!d)return"—";return new Date(d).toLocaleDateString("en-US",{day:"numeric",month:"short"});}
-function isLocked(){return SS()==="ended";}
-function getLvIdx(done){let i=0;for(let l=0;l<LEVELS.length;l++)if(done>=LEVELS[l].min)i=l;return i;}
+window.currentStudentKey = null; 
+window.selectedCellId = null;
+window.temporaryBase64Photo = "";
+window.guruSelectedClass = "Semua Kelas";
+window.guruCurrentFilter = "all";
 
-function showScreen(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");}
-function switchTab(t){const tabs=["student","teacher","admin"];document.querySelectorAll(".tab-btn").forEach((b,i)=>b.classList.toggle("active",tabs[i]===t));tabs.forEach(id=>document.getElementById("tab-"+id).classList.toggle("active",id===t));}
-function goBack(){showScreen("screen-onboard");buildInfoBox();}
-
-// ══ ADMIN ══
-function loginAdmin(){
-  const pass=document.getElementById("admin-pass").value;
-  if(pass!==getAdminPass()){document.getElementById("err-admin").classList.add("show");return;}
-  document.getElementById("err-admin").classList.remove("show");
-  if(season.startDate)document.getElementById("admin-start").value=season.startDate;
-  buildAdminPanel();showScreen("screen-admin");
-}
-function buildAdminPanel(){
-  // Guru list
-  const gurus=getGuruAccounts();
-  const listEl=document.getElementById("admin-guru-list");
-  if(!gurus.length){listEl.innerHTML=`<p style="font-size:12px;color:var(--muted);text-align:center;padding:.75rem">No teacher accounts yet.</p>`;
-  }else{
-    listEl.innerHTML=gurus.map((g,i)=>`<div class="guru-item">
-      <div class="guru-item-left">
-        <div class="guru-avatar">${g.name.charAt(0).toUpperCase()}</div>
-        <div><div class="guru-name">${g.name}</div><div class="guru-code">Code: ${g.code}</div></div>
-      </div>
-      <div class="guru-actions">
-        <button class="btn btn-danger btn-sm" style="padding:5px 10px;font-size:11px" onclick="deleteGuru(${i})">Remove</button>
-      </div>
-    </div>`).join("");
-  }
-  // Season
-  const ss=SS();
-  const pm={none:"pill-gray",upcoming:"pill-amber",active:"pill-green",ended:"pill-red"};
-  const pl={none:"No season set",upcoming:`Starting ${fd(season.startDate)}`,active:`Active — ${daysLeft()} days left`,ended:"Season ended"};
-  document.getElementById("admin-pill").innerHTML=`<div class="pill ${pm[ss]}">${pl[ss]}</div>`;
-  const si=document.getElementById("admin-season-info");
-  si.innerHTML=season.startDate?`<p style="font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.8"><strong style="color:var(--ink)">Start:</strong> ${fd(season.startDate)}<br><strong style="color:var(--ink)">End:</strong> ${fd(season.endDate)}</p>`:"";
-  // Stats
-  const sts=getAllStudents();
-  document.getElementById("admin-stats").innerHTML=`
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <div class="cs-card"><div class="cs-val">${sts.length}</div><div class="cs-lbl">Total Students</div></div>
-      <div class="cs-card"><div class="cs-val">${sts.filter(s=>(s.checked||[]).some(Boolean)).length}</div><div class="cs-lbl">Active</div></div>
-      <div class="cs-card"><div class="cs-val">${sts.reduce((a,s)=>a+(s.bingoLines||[]).length,0)}</div><div class="cs-lbl">Total Bingos</div></div>
-      <div class="cs-card"><div class="cs-val">${sts.filter(s=>(s.checked||[]).filter(Boolean).length===16).length}</div><div class="cs-lbl">Completed</div></div>
-    </div>`;
-  // Admin table (simplified)
-  renderAdminTable();
-}
-function renderAdminTable(){
-  const sts=getAllStudents().sort((a,b)=>(b.pts||0)-(a.pts||0));
-  const el=document.getElementById("admin-table");
-  if(!sts.length){el.innerHTML=`<div class="empty-state">No students registered yet.</div>`;return;}
-  el.innerHTML=`<table class="stu-table"><thead><tr><th>#</th><th>Name</th><th>Class</th><th>Points</th><th>Done</th><th>Bingo</th><th>Last Update</th></tr></thead><tbody>${sts.map((s,i)=>{
-    const done=(s.checked||[]).filter(Boolean).length,pct=Math.round((done/16)*100);
-    const rankCls=i===0?"rank-1":i===1?"rank-2":i===2?"rank-3":"rank-n";
-    return`<tr onclick="openDrawer('${s.pName.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}','${s.pCls}')">
-      <td><span class="rank-badge ${rankCls}">${i===0?"🥇":i===1?"🥈":i===2?"🥉":i+1}</span></td>
-      <td><div class="sname">${s.pName}</div></td>
-      <td><span class="scls">${s.pCls}</span></td>
-      <td><span class="spts">${s.pts||0}</span></td>
-      <td>${done}/16<div class="mini-bar" style="display:inline-block;vertical-align:middle;margin-left:6px"><div class="mini-bar-fill" style="width:${pct}%"></div></div></td>
-      <td>${(s.bingoLines||[]).length}</td>
-      <td style="font-size:10px;color:var(--muted)">${s.saved?fds(s.saved):"—"}</td>
-    </tr>`;}).join("")}</tbody></table>`;
-}
-function addGuru(){
-  const name=document.getElementById("new-guru-name").value.trim();
-  const code=document.getElementById("new-guru-code").value.trim();
-  if(!name||!code){showToast("Name and code are required!");return;}
-  const gurus=getGuruAccounts();
-  gurus.push({name,code});saveGuruAccounts(gurus);
-  document.getElementById("new-guru-name").value="";document.getElementById("new-guru-code").value="";
-  buildAdminPanel();showToast("✅ Teacher account added!");
-}
-function deleteGuru(i){
-  if(!confirm("Remove this teacher account?"))return;
-  const gurus=getGuruAccounts();gurus.splice(i,1);saveGuruAccounts(gurus);buildAdminPanel();showToast("Teacher account removed.");
-}
-function changeAdminPass(){
-  const p=document.getElementById("admin-new-pass").value.trim();
-  if(p.length<6){showToast("Password must be at least 6 characters.");return;}
-  localStorage.setItem("rbq_admin_pass",p);document.getElementById("admin-new-pass").value="";showToast("✅ Admin password updated!");
-}
-function setSeason(){
-  const d=document.getElementById("admin-start").value;
-  if(!d){showToast("Please select a start date!");return;}
-  const s=new Date(d),e=new Date(s);e.setDate(e.getDate()+SEASON_DAYS);
-  season={startDate:d,endDate:e.toISOString().split("T")[0],active:true};
-  saveAll();buildAdminPanel();showToast("✅ Season activated!");
-}
-function resetSeason(){
-  if(!confirm("RESET ALL DATA?\n\nAll student records will be deleted permanently. This cannot be undone."))return;
-  const keys=[];for(let k in localStorage)if(k.startsWith("rbq_st_"))keys.push(k);keys.forEach(k=>localStorage.removeItem(k));
-  season={startDate:"",endDate:"",active:false};player={name:"",cls:""};
-  state={checked:new Array(16).fill(false),books:new Array(16).fill(""),photos:new Array(16).fill(""),intisari:new Array(16).fill(""),moods:new Array(16).fill(-1),ratings:new Array(16).fill(0),pts:0,bingoLines:new Set(),badges:new Set(),streak:0,lastDate:"",dailyDone:false,dailyDate:""};
-  try{localStorage.removeItem("rbq_player");}catch(e){}
-  saveAll();buildAdminPanel();showToast("🔄 Season & all data reset!");
-}
-
-// ══ GURU ══
-function loginGuru(){
-  const code=document.getElementById("guru-pass").value.trim();
-  const gurus=getGuruAccounts();
-  const match=gurus.find(g=>g.code===code);
-  if(!match){document.getElementById("err-pass").classList.add("show");return;}
-  document.getElementById("err-pass").classList.remove("show");
-  currentGuruName=match.name;
-  document.getElementById("guru-name-tag").textContent=match.name;
-  buildGuruPanel();showScreen("screen-guru");
-}
-function buildGuruPanel(){
-  const ss=SS();
-  const pm={none:"pill-gray",upcoming:"pill-amber",active:"pill-green",ended:"pill-red"};
-  const pl={none:"No season active",upcoming:`Starts ${fd(season.startDate)}`,active:`Active — ${daysLeft()} days left`,ended:"Season ended"};
-  document.getElementById("g-pill").innerHTML=`<div class="pill ${pm[ss]}">${pl[ss]}</div>`;
-  const dd=document.getElementById("g-dates");
-  dd.innerHTML=season.startDate?`<p style="font-size:12px;color:var(--muted);line-height:2"><strong style="color:var(--ink)">Start:</strong> ${fd(season.startDate)} &nbsp;·&nbsp; <strong style="color:var(--ink)">End:</strong> ${fd(season.endDate)}</p>`:"";
-  buildMonitor();
-}
-function buildMonitor(){
-  const sts=getAllStudents();
-  document.getElementById("g-total").textContent=sts.length+" students";
-  const classes=[...new Set(sts.map(s=>s.pCls))].sort();
-  document.getElementById("g-chips").innerHTML=
-    `<button class="class-chip${selClass==="all"?" sel":""}" onclick="selCls('all',this)">All Classes (${sts.length})</button>`+
-    classes.map(c=>{const n=sts.filter(s=>s.pCls===c).length;return`<button class="class-chip${selClass===c?" sel":""}" onclick="selCls('${c}',this)">${c} (${n})</button>`;}).join("");
-  renderClassStats();renderTable();
-}
-function selCls(c,el){selClass=c;document.querySelectorAll(".class-chip").forEach(x=>x.classList.remove("sel"));el.classList.add("sel");renderClassStats();renderTable();}
-function renderClassStats(){
-  const el=document.getElementById("g-cstats");
-  if(selClass==="all"){el.style.display="none";return;}
-  const sts=getAllStudents().filter(s=>s.pCls===selClass);
-  if(!sts.length){el.style.display="none";return;}
-  const avgPts=Math.round(sts.reduce((a,s)=>a+(s.pts||0),0)/sts.length);
-  const avgDone=Math.round(sts.reduce((a,s)=>a+(s.checked||[]).filter(Boolean).length,0)/sts.length);
-  const totBingo=sts.reduce((a,s)=>a+(s.bingoLines||[]).length,0);
-  const done16=sts.filter(s=>(s.checked||[]).filter(Boolean).length===16).length;
-  el.style.display="grid";
-  el.innerHTML=`<div class="cs-card"><div class="cs-val">${avgPts}</div><div class="cs-lbl">Avg Points</div></div><div class="cs-card"><div class="cs-val">${avgDone}/16</div><div class="cs-lbl">Avg Done</div></div><div class="cs-card"><div class="cs-val">${totBingo}</div><div class="cs-lbl">Total Bingo</div></div><div class="cs-card"><div class="cs-val">${done16}</div><div class="cs-lbl">100% Done</div></div>`;
-}
-function setFilter(f,el){filterMode=f;document.querySelectorAll(".fbtn").forEach(b=>b.classList.remove("active"));el.classList.add("active");renderTable();}
-function renderTable(){
-  const q=(document.getElementById("g-search").value||"").toLowerCase();
-  let sts=getAllStudents();
-  if(selClass!=="all")sts=sts.filter(s=>s.pCls===selClass);
-  if(q)sts=sts.filter(s=>s.pName.toLowerCase().includes(q)||s.pCls.toLowerCase().includes(q));
-  if(filterMode==="active")sts=sts.filter(s=>(s.checked||[]).some(Boolean));
-  if(filterMode==="none")sts=sts.filter(s=>!(s.checked||[]).some(Boolean));
-  if(filterMode==="bingo")sts=sts.filter(s=>(s.bingoLines||[]).length>0);
-  if(filterMode==="done")sts=sts.filter(s=>(s.checked||[]).filter(Boolean).length===16);
-  sts.sort((a,b)=>(b.pts||0)-(a.pts||0));
-  const wrap=document.getElementById("g-table");
-  if(!sts.length){wrap.innerHTML=`<div class="empty-state">${getAllStudents().length===0?"No students registered yet.":"No students match this filter."}</div>`;return;}
-  const rows=sts.map((s,rank)=>{
-    const done=(s.checked||[]).filter(Boolean).length,pct=Math.round((done/16)*100);
-    const li=getLvIdx(done),lv=LEVELS[li],bc=(s.bingoLines||[]).length;
-    const rankCls=rank===0?"rank-1":rank===1?"rank-2":rank===2?"rank-3":"rank-n";
-    const rankTxt=rank===0?"🥇":rank===1?"🥈":rank===2?"🥉":`${rank+1}`;
-    return`<tr onclick="openDrawer('${s.pName.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}','${s.pCls}')">
-      <td><div style="display:flex;align-items:center;gap:8px"><span class="rank-badge ${rankCls}">${rankTxt}</span><div><div class="sname">${s.pName}</div><div class="scls">Class ${s.pCls}</div></div></div></td>
-      <td><span class="spts">${s.pts||0}</span></td>
-      <td><span style="font-size:12px;color:var(--ink2)">${done}/16</span><div class="mini-bar"><div class="mini-bar-fill" style="width:${pct}%"></div></div></td>
-      <td><span class="pill pill-gray" style="font-size:10px">${lv.icon} Lv${li+1}</span></td>
-      <td><span style="font-size:12px">${bc>0?"🎯".repeat(Math.min(bc,3)):"-"}</span></td>
-      <td><span style="font-size:10px;color:var(--muted)">${s.saved?fds(s.saved):"—"}</span></td>
-    </tr>`;
-  }).join("");
-  wrap.innerHTML=`<table class="stu-table"><thead><tr><th>Name</th><th>Points</th><th>Done</th><th>Level</th><th>Bingo</th><th>Updated</th></tr></thead><tbody>${rows}</tbody></table>`;
-}
-function exportCSV(){
-  const sts=getAllStudents();
-  if(!sts.length){showToast("No student data to export!");return;}
-  const header="Name,Class,Points,Challenges Done,Bingo,Books Read,Level,Last Update";
-  const rows=sts.map(s=>{const done=(s.checked||[]).filter(Boolean).length;const li=getLvIdx(done);return`"${s.pName}","${s.pCls}",${s.pts||0},${done},${(s.bingoLines||[]).length},${(s.books||[]).filter(Boolean).length},"${LEVELS[li].name}","${s.saved?fds(s.saved):"—"}"`;}).join("\n");
-  const blob=new Blob([header+"\n"+rows],{type:"text/csv;charset=utf-8;"});
-  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="reading_bingo_quest.csv";a.click();
-  showToast("✅ Data exported!");
-}
-
-// DRAWER
-function openDrawer(name,cls){
-  let d;try{d=JSON.parse(localStorage.getItem(pkey(name,cls))||"null");}catch(e){}
-  if(!d){showToast("Data not found");return;}
-  const done=(d.checked||[]).filter(Boolean).length,li=getLvIdx(done),lv=LEVELS[li],bc=(d.bingoLines||[]).length,books=(d.books||[]).filter(Boolean).length;
-  document.getElementById("dr-avatar").textContent=name.charAt(0).toUpperCase();
-  document.getElementById("dr-name").textContent=name;
-  document.getElementById("dr-cls").textContent="Class "+cls+" · "+lv.icon+" "+lv.name;
-  document.getElementById("dr-stats").innerHTML=`<div class="ds-card"><div class="ds-val">${d.pts||0}</div><div class="ds-lbl">Points</div></div><div class="ds-card"><div class="ds-val">${done}/16</div><div class="ds-lbl">Done</div></div><div class="ds-card"><div class="ds-val">${bc}</div><div class="ds-lbl">Bingo</div></div><div class="ds-card"><div class="ds-val">${books}</div><div class="ds-lbl">Books</div></div>`;
-  document.getElementById("dr-level").innerHTML=`<div style="font-size:26px">${lv.icon}</div><div><div style="font-size:10px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px">Level ${li+1}/7</div><div style="font-size:14px;font-weight:600;color:var(--accent)">${lv.name}</div></div>`;
-  const bc2=new Set();(d.bingoLines||[]).forEach(k=>{const li2=parseInt(k.replace("l",""));if(!isNaN(li2)&&LINES[li2])LINES[li2].forEach(i=>bc2.add(i));});
-  document.getElementById("dr-bingo").innerHTML=(d.checked||[]).map((c,i)=>`<div class="bm-cell${bc2.has(i)?" bingo-c":c?" done":""}">${CELLS[i].e}</div>`).join("");
-  const ub=new Set(d.badges||[]);
-  document.getElementById("dr-badges").innerHTML=BADGES.map(b=>`<span class="badge-mini${ub.has(b.id)?" unlocked":""}">${b.ic} ${b.label}</span>`).join("");
-  const bookItems=(d.books||[]).map((b,i)=>b?{i,book:b,photo:(d.photos||[])[i],intisari:(d.intisari||[])[i],mood:(d.moods||[])[i],rating:(d.ratings||[])[i]}:null).filter(Boolean);
-  document.getElementById("dr-books").innerHTML=bookItems.length?bookItems.map(x=>{
-    const thumb=x.photo?`<img class="book-thumb" src="${x.photo}" alt="">`:`<div class="book-ph">${CELLS[x.i].e}</div>`;
-    const inti=x.intisari?`<div class="book-inti">"${x.intisari}"</div>`:"";
-    return`<div class="book-entry">${thumb}<div style="flex:1;min-width:0"><div class="book-ttl">${x.book}</div><div class="book-tsk">${CELLS[x.i].t}</div><div class="book-pts">+${CELLS[x.i].s} pts</div>${inti}</div></div>`;
-  }).join(""):`<div class="no-books">No books logged yet.</div>`;
-  document.getElementById("drawer-bg").classList.add("open");
-}
-function closeDrawerOut(e){if(e.target===document.getElementById("drawer-bg"))closeDrawerBtn();}
-function closeDrawerBtn(){document.getElementById("drawer-bg").classList.remove("open");}
-
-// INFO BOX
-function buildInfoBox(){
-  const box=document.getElementById("season-info-box");if(!box)return;
-  const ss=SS();
-  if(ss==="none")box.innerHTML=`<div class="info-box ib-red">⚠️ <strong>No active season.</strong> Ask your teacher or admin to activate a season first.</div>`;
-  else if(ss==="upcoming")box.innerHTML=`<div class="info-box ib-amber">📅 Season starts <strong>${fd(season.startDate)}</strong>. Register now!</div>`;
-  else if(ss==="active")box.innerHTML=`<div class="info-box ib-green">✅ Quest is live! <strong>${daysLeft()} days remaining</strong> until ${fd(season.endDate)}.</div>`;
-  else box.innerHTML=`<div class="info-box ib-red">🔒 Quest ended <strong>${fd(season.endDate)}</strong>. View your final score!</div>`;
-}
-
-// START GAME
-function startGame(){
-  const nameEl=document.getElementById("ob-name"),clsEl=document.getElementById("ob-class"),custEl=document.getElementById("ob-class-custom");
-  let ok=true;
-  const name=nameEl.value.trim(),cls=clsEl.value==="__other__"?custEl.value.trim():clsEl.value;
-  if(!name){nameEl.classList.add("err");document.getElementById("err-name").classList.add("show");ok=false;}else{nameEl.classList.remove("err");document.getElementById("err-name").classList.remove("show");}
-  if(!cls){clsEl.style.borderColor="var(--red)";document.getElementById("err-class").classList.add("show");ok=false;}else{clsEl.style.borderColor="";document.getElementById("err-class").classList.remove("show");}
-  if(!ok)return;
-  if(SS()==="none"){showToast("⚠️ Ask your teacher to activate a season first!");return;}
-  player={name,cls};
-  try{const s=JSON.parse(localStorage.getItem(pkey(name,cls))||"null");if(s)state={checked:s.checked||new Array(16).fill(false),books:s.books||new Array(16).fill(""),photos:s.photos||new Array(16).fill(""),intisari:s.intisari||new Array(16).fill(""),moods:s.moods||new Array(16).fill(-1),ratings:s.ratings||new Array(16).fill(0),pts:s.pts||0,bingoLines:new Set(s.bingoLines||[]),badges:new Set(s.badges||[]),streak:s.streak||0,lastDate:s.lastDate||"",dailyDone:s.dailyDone||false,dailyDate:s.dailyDate||""};else state={checked:new Array(16).fill(false),books:new Array(16).fill(""),photos:new Array(16).fill(""),intisari:new Array(16).fill(""),moods:new Array(16).fill(-1),ratings:new Array(16).fill(0),pts:0,bingoLines:new Set(),badges:new Set(),streak:0,lastDate:"",dailyDone:false,dailyDate:""};}catch(e){}
-  const today=new Date().toISOString().split("T")[0];
-  const seed=today.split("-").reduce((a,v)=>a+parseInt(v),0);
-  todayChallenge=DAILY_CHALLENGES[seed%DAILY_CHALLENGES.length];
-  if(state.dailyDate!==today)state.dailyDone=false;
-  saveAll();if(isLocked()){showLockedScreen();return;}renderGame();showScreen("screen-game");
-}
-
-// LOCKED
-function showLockedScreen(){
-  const done=state.checked.filter(Boolean).length,li=getLvIdx(done),lv=LEVELS[li];
-  document.getElementById("final-name").textContent=player.name+" — Class "+player.cls;
-  document.getElementById("final-pts").textContent=state.pts;
-  document.getElementById("final-done").textContent=done+"/16";
-  document.getElementById("final-bingo").textContent=state.bingoLines.size;
-  document.getElementById("final-books").textContent=state.books.filter(Boolean).length;
-  document.getElementById("locked-sub").textContent=`Quest ended ${fd(season.endDate)}. Here is your final achievement!`;
-  document.getElementById("final-lv").innerHTML=`<div class="final-lv-icon">${lv.icon}</div><div class="final-lv-name">Level ${li+1}: ${lv.name}</div>`;
-  showScreen("screen-locked");
-}
-
-// SEASON BAR
-function buildSeasonBar(){
-  const wrap=document.getElementById("season-bar-wrap"),ss=SS();
-  if(ss==="none"||ss==="upcoming"){wrap.innerHTML="";return;}
-  if(ss==="ended"){wrap.innerHTML=`<div class="season-bar sb-urgent"><div class="sb-row"><div class="sb-title">🔒 Quest Ended</div><div class="sb-countdown">Locked</div></div><div class="sb-prog"><div class="sb-prog-fill" style="width:100%"></div></div><div class="sb-dates"><span>${fd(season.startDate)}</span><span>${fd(season.endDate)}</span></div></div>`;return;}
-  const dl=daysLeft(),el=daysEl(),pct=Math.round((el/SEASON_DAYS)*100);
-  let cls="sb-active";if(dl<=7)cls="sb-urgent";else if(dl<=30)cls="sb-warning";
-  wrap.innerHTML=`<div class="season-bar ${cls}"><div class="sb-row"><div class="sb-title">${dl<=7?"⚠️ Almost Over!":"📅 Quest Running"}</div><div class="sb-countdown">${dl} days left</div></div><div class="sb-prog"><div class="sb-prog-fill" style="width:${pct}%"></div></div><div class="sb-dates"><span>${fd(season.startDate)}</span><span>${fd(season.endDate)}</span></div></div>`;
-}
-
-// XP BAR
-function buildXPBar(){
-  const done=state.checked.filter(Boolean).length;
-  const li=getLvIdx(done),lv=LEVELS[li],next=LEVELS[li+1];
-  let pct=100,meta="",nextName="MAX";
-  if(next){pct=Math.round(((done-lv.min)/(next.min-lv.min))*100);nextName=next.name;meta=`${done}/${next.min} challenges`;}
-  else meta=`${done}/16 — Maximum Level! 🏆`;
-  document.getElementById("xp-bar-wrap").innerHTML=`<div class="xp-top"><div class="xp-level-info"><div class="xp-icon">${lv.icon}</div><div><div class="xp-level-name">${lv.name}</div><div class="xp-level-num">Level ${li+1} / 7</div></div></div><div class="xp-pts"><div class="xp-pts-val">${state.pts}</div><div class="xp-pts-lbl">Total Points</div></div></div><div class="xp-bar-bg"><div class="xp-bar-fill" style="width:${pct}%"></div></div><div class="xp-meta"><span>${meta}</span><span>${next?"→ "+nextName:""}</span></div>`;
-}
-
-// GRID
-function getBingoCells(){const s=new Set();LINES.forEach(l=>{if(l.every(i=>state.checked[i]))l.forEach(i=>s.add(i));});return s;}
-function buildGrid(){
-  const g=document.getElementById("grid");g.innerHTML="";
-  const bc=getBingoCells(),locked=isLocked();
-  const COL=["ct-0","ct-1","ct-2","ct-3"];let ci=0;
-  CELLS.forEach((c,i)=>{
-    const done=state.checked[i],bingo=bc.has(i),ct=done?COL[ci%4]:"";if(done)ci++;
-    const div=document.createElement("div");
-    div.className="cell"+(bingo?" done bingo-hi "+ct:done?" done "+ct:"")+(locked&&!done?" locked-cell":"");
-    div.innerHTML=`<div class="cell-emoji">${c.e}</div><div class="cell-title">${c.t}</div><div class="cell-bottom"><span class="score-badge">+${c.s}</span><span class="check">✓</span></div>`;
-    if(done&&state.photos[i])div.insertAdjacentHTML("beforeend",`<div class="photo-dot"></div>`);
-    if(locked&&!done)div.insertAdjacentHTML("beforeend",`<div class="lock-icon">🔒</div>`);
-    if(done)div.onclick=()=>openDetail(i,locked);else if(!locked)div.onclick=()=>openModal(i);
-    g.appendChild(div);
+// INITIAL LISTENER UTAMA INSTAN SINKRONISASI
+function initFirebaseSync() {
+  const mainRef = ref(db, "reading_bingo_quest_v1");
+  onValue(mainRef, (snapshot) => {
+    const cloudData = snapshot.val();
+    if (cloudData) {
+      window.appData = cloudData;
+      if (!window.appData.guruAccounts) window.appData.guruAccounts = {};
+      if (!window.appData.students) window.appData.students = {};
+    } else {
+      // Setup struktur pertama kali di cloud jika masih kosong
+      saveToCloud();
+    }
+    updateGlobalMetricsOnboard();
+    
+    // Auto refresh tampilan jika admin/guru sedang membuka screen tertentu
+    if (document.getElementById("screen-admin").classList.contains("active")) {
+      renderAdminGuruList();
+    }
+    if (document.getElementById("screen-guru").classList.contains("active")) {
+      renderGuruClassChips();
+      renderGuruStudentTable();
+    }
+    if (document.getElementById("screen-game").classList.contains("active") && window.currentStudentKey) {
+      calculateAndRenderStudentGameData();
+    }
   });
 }
 
-// STATS
-function buildStats(){
-  const done=state.checked.filter(Boolean).length,pct=Math.round((done/16)*100);
-  document.getElementById("s-pts").textContent=state.pts;
-  document.getElementById("s-done").textContent=done+"/16";
-  document.getElementById("s-bingo").textContent=state.bingoLines.size;
-  document.getElementById("s-streak").textContent=state.streak;
-  document.getElementById("prog-fill").style.width=pct+"%";
-  document.getElementById("s-pct").textContent=pct+"%";
-  [25,50,75,100].forEach((v,i)=>document.getElementById("ms"+i).className="milestone"+(pct>=v?" reached":""));
-}
-function buildTopBar(){document.getElementById("top-name").textContent=player.name;document.getElementById("top-class").textContent="Class "+player.cls;document.getElementById("top-avatar").textContent=player.name.charAt(0).toUpperCase();}
-
-// STREAK
-function updateStreak(){
-  const today=new Date().toISOString().split("T")[0];
-  if(state.lastDate===today)return;
-  const yest=new Date(Date.now()-864e5).toISOString().split("T")[0];
-  state.streak=state.lastDate===yest?state.streak+1:1;
-  state.lastDate=today;
-}
-function buildStreak(){
-  const sec=document.getElementById("streak-sec");if(state.streak<1){sec.innerHTML="";return;}
-  const days=Math.min(state.streak,7);
-  const dots=Array.from({length:7},(_,i)=>`<div class="streak-dot${i<days?" active":""}"></div>`).join("");
-  sec.innerHTML=`<div class="streak-card"><div class="streak-fire">🔥</div><div style="flex:1"><div class="streak-title">Reading Streak!</div><div class="streak-sub">You've logged books for ${state.streak} days in a row</div><div class="streak-dots">${dots}</div></div><div><div class="streak-num">${state.streak}</div><div class="streak-lbl">Days</div></div></div>`;
+function saveToCloud() {
+  set(ref(db, "reading_bingo_quest_v1"), window.appData);
 }
 
-// DAILY
-function buildDaily(){
-  const sec=document.getElementById("daily-sec");
-  if(!todayChallenge){sec.innerHTML="";return;}
-  const today=new Date().toISOString().split("T")[0];
-  const done=state.dailyDone&&state.dailyDate===today;
-  if(done){sec.innerHTML=`<div class="daily-card done"><div class="daily-icon">✅</div><div><div class="daily-title">Daily Challenge Complete!</div><div class="daily-desc">Come back tomorrow for a new challenge.</div></div></div>`;return;}
-  sec.innerHTML=`<div class="daily-card" onclick="completeDailyChallenge()"><div class="daily-icon">${todayChallenge.icon}</div><div><div class="daily-title">${todayChallenge.title}</div><div class="daily-desc">${todayChallenge.desc}</div><div class="daily-tag">+${todayChallenge.bonus} bonus points</div></div></div>`;
-}
-function completeDailyChallenge(){
-  const today=new Date().toISOString().split("T")[0];
-  if(state.dailyDone&&state.dailyDate===today)return;
-  state.dailyDone=true;state.dailyDate=today;state.pts+=todayChallenge.bonus;
-  saveAll();renderGame();showToast(`${todayChallenge.icon} +${todayChallenge.bonus} points! Daily challenge done!`);confetti();
+// METRICS BERANDA UTAMA
+function updateGlobalMetricsOnboard() {
+  document.getElementById("global-stat-tasks").innerText = BINGO_TASKS_DEFAULT.length;
+  let totalSiswa = Object.keys(window.appData.students || {}).length;
+  document.getElementById("global-stat-users").innerText = totalSiswa;
+  
+  let totalBuku = 0;
+  Object.values(window.appData.students || {}).forEach(st => {
+    totalBuku += Object.keys(st.claimedPetaks || {}).length;
+  });
+  document.getElementById("global-stat-books").innerText = totalBuku;
 }
 
-// QUOTE / TIP
-function buildQuote(){const q=QUOTES[Math.floor(state.pts/15)%QUOTES.length];document.getElementById("quote-sec").innerHTML=`<div class="quote-card"><div class="quote-text">"${q[0]}"</div><div class="quote-src">— ${q[1]}</div></div>`;}
-function showTip(){const t=TIPS[Math.floor(Math.random()*TIPS.length)];document.getElementById("quote-sec").innerHTML=`<div class="info-box ib-green" style="margin-bottom:.875rem"><strong>${t[0]}</strong><br>${t[1]}</div>`;}
+// NAVIGASI SCREEN LOGGIN TAB
+window.switchLoginTab = function(role) {
+  window.currentRole = role;
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
+  
+  const targetBtn = event.currentTarget;
+  targetBtn.classList.add("active");
 
-// BADGES
-function checkBadges(){
-  const done=state.checked.filter(Boolean).length,bc=state.bingoLines.size,pc=state.photos.filter(Boolean).length,has5=state.ratings.some(r=>r===5),has7=state.streak>=7;
-  BADGES.forEach(b=>{const ok=(b.req&&done>=b.req)||(b.bingo&&bc>=b.bingo)||(b.photos&&pc>=b.photos)||(b.stars5&&has5)||(b.streak7&&has7);if(ok&&!state.badges.has(b.id)){state.badges.add(b.id);setTimeout(()=>showToast(b.ic+" New badge: "+b.label+"!"),700);}});
-}
-function buildBadges(){
-  const w=document.getElementById("badges");w.innerHTML="";
-  BADGES.forEach(b=>{const d=document.createElement("div");d.className="badge"+(state.badges.has(b.id)?" unlocked":"");d.innerHTML=`<span class="badge-ic">${b.ic}</span>${b.label}`;w.appendChild(d);});
-}
-
-// LOG
-function buildLog(){
-  const items=state.books.map((b,i)=>b?{i,book:b,photo:state.photos[i],intisari:state.intisari[i],pts:CELLS[i].s,mood:state.moods[i],rating:state.ratings[i]}:null).filter(Boolean);
-  const sec=document.getElementById("log-sec");if(!items.length){sec.innerHTML="";return;}
-  const locked=isLocked();
-  sec.innerHTML=`<div class="log-card"><div class="sec-title">📋 Books in Quest</div><div class="log-list" id="log-list"></div></div>`;
-  document.getElementById("log-list").innerHTML=items.map(x=>{
-    const thumb=x.photo?`<img class="log-thumb" src="${x.photo}" alt="">`:`<div class="log-thumb-ph">${CELLS[x.i].e}</div>`;
-    const snip=x.intisari?`<div class="log-snip">"${x.intisari}"</div>`:"";
-    const mood=x.mood>=0?`${MOODS[x.mood].e} `:"";
-    const stars=x.rating>0?`${"⭐".repeat(x.rating)}`:"";
-    return`<div class="log-item" onclick="openDetail(${x.i},${locked})">${thumb}<div class="log-info"><div class="log-t">${x.book}</div><div class="log-task">${CELLS[x.i].t}</div>${snip}${mood||stars?`<div style="font-size:11px;margin-top:2px">${mood}${stars}</div>`:""}</div><div class="log-pts">+${x.pts}</div></div>`;
-  }).join("");
+  if(role === 'siswa') {
+    document.getElementById("tab-siswa").classList.add("active");
+  } else {
+    document.getElementById("tab-secure").classList.add("active");
+    const info = document.getElementById("secure-info-box");
+    const label = document.getElementById("secure-label");
+    info.style.display = "block";
+    if(role === 'guru') {
+      label.innerText = "Kata Sandi Autentikasi Guru";
+    } else {
+      label.innerText = "Kata Sandi Akses Superadmin";
+    }
+  }
+  clearValidationErrors();
 }
 
-// LEVEL UP
-function checkLevelUp(pd,nd){
-  const pl=getLvIdx(pd),nl=getLvIdx(nd);
-  if(nl>pl){const lv=LEVELS[nl];
-    document.getElementById("lu-icon").textContent=lv.icon;
-    document.getElementById("lu-sub").textContent=`You leveled up from "${LEVELS[pl].name}"!`;
-    document.getElementById("lu-new").textContent=lv.icon+" "+lv.name;
-    document.getElementById("lu-desc").textContent=lv.unlock;
-    setTimeout(()=>{document.getElementById("lu-bg").classList.add("open");confetti();},400);
+function clearValidationErrors() {
+  document.querySelectorAll(".ferr").forEach(e => e.classList.remove("show"));
+  document.querySelectorAll(".finput").forEach(i => i.classList.remove("err"));
+}
+
+// LOGIKA AUTENTIKASI MASUK SECURE (ADMIN / GURU)
+window.loginAsSecure = function() {
+  clearValidationErrors();
+  const inputPass = document.getElementById("ob-secure-pass").value;
+  
+  if (window.currentRole === 'admin') {
+    if (inputPass === window.appData.adminPassword) {
+      switchScreen("screen-admin");
+      renderAdminGuruList();
+      initAdminInputs();
+    } else {
+      showInputError("ob-secure-pass", "err-secure-pass", "Sandi Salah!");
+    }
+  } else if (window.currentRole === 'guru') {
+    if (inputPass === window.appData.guruGlobalPassword) {
+      // Minta kode guru lewat prompt sederhana
+      let code = prompt("Masukkan Kode Unik Guru Anda (Contoh: BNDG01):");
+      if(!code) return;
+      code = code.trim().toUpperCase();
+      if(window.appData.guruAccounts && window.appData.guruAccounts[code]) {
+        window.currentGuruCode = code;
+        document.getElementById("guru-panel-title").innerText = "Panel Guru: " + window.appData.guruAccounts[code].name;
+        document.getElementById("guru-panel-code").innerText = code;
+        switchScreen("screen-guru");
+        window.guruSelectedClass = "Semua Kelas";
+        renderGuruClassChips();
+        renderGuruStudentTable();
+      } else {
+        alert("Kode Guru tidak ditemukan di database!");
+      }
+    } else {
+      showInputError("ob-secure-pass", "err-secure-pass", "Sandi Akses Guru Salah!");
+    }
   }
 }
-function closeLevelUp(){document.getElementById("lu-bg").classList.remove("open");}
 
-// MODAL
-function buildMoodRow(sel=-1){const r=document.getElementById("mood-row");r.innerHTML="";MOODS.forEach((m,i)=>{const b=document.createElement("button");b.className="mood-btn"+(sel===i?" selected":"");b.innerHTML=`${m.e}<span class="mood-label">${m.l}</span>`;b.onclick=()=>{tempMood=i;buildMoodRow(i);};r.appendChild(b);});}
-function buildStars(val=0){const r=document.getElementById("stars-row");r.innerHTML="";for(let i=1;i<=5;i++){const s=document.createElement("span");s.className="star-btn"+(i<=val?" lit":"");s.textContent=i<=val?"⭐":"☆";s.onclick=()=>{tempRating=i;buildStars(i);};r.appendChild(s);}}
-function openModal(i){
-  activeIdx=i;tempPhoto=state.photos[i]||"";tempMood=state.moods[i];tempRating=state.ratings[i]||0;
-  document.getElementById("m-title").textContent=CELLS[i].t;document.getElementById("m-pts").textContent="+"+CELLS[i].s+" points";
-  document.getElementById("m-book").value=state.books[i]||"";document.getElementById("m-book").classList.remove("err");
-  document.getElementById("m-intisari").value=state.intisari[i]||"";
-  buildMoodRow(tempMood);buildStars(tempRating);
-  const prev=document.getElementById("m-preview"),del=document.getElementById("m-del"),pz=document.getElementById("pzone");
-  if(tempPhoto){prev.src=tempPhoto;prev.classList.add("show");del.classList.add("show");pz.style.display="none";}
-  else{prev.src="";prev.classList.remove("show");del.classList.remove("show");pz.style.display="block";}
-  document.getElementById("modal").classList.add("open");setTimeout(()=>document.getElementById("m-book").focus(),100);
+function showInputError(inputId, errId, msg) {
+  const i = document.getElementById(inputId);
+  const e = document.getElementById(errId);
+  if(i) i.classList.add("err");
+  if(e) { e.innerText = msg; e.classList.add("show"); }
 }
-function closeModal(){document.getElementById("modal").classList.remove("open");activeIdx=-1;tempPhoto="";}
-function handlePhoto(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{tempPhoto=ev.target.result;document.getElementById("m-preview").src=tempPhoto;document.getElementById("m-preview").classList.add("show");document.getElementById("m-del").classList.add("show");document.getElementById("pzone").style.display="none";};r.readAsDataURL(f);}
-function removePhoto(){tempPhoto="";document.getElementById("m-preview").src="";document.getElementById("m-preview").classList.remove("show");document.getElementById("m-del").classList.remove("show");document.getElementById("pzone").style.display="block";document.getElementById("m-file").value="";}
-function confirmCell(){
-  if(activeIdx<0||isLocked())return;
-  const book=document.getElementById("m-book").value.trim();
-  if(!book){document.getElementById("m-book").classList.add("err");document.getElementById("m-book").focus();return;}
-  document.getElementById("m-book").classList.remove("err");
-  const pd=state.checked.filter(Boolean).length,was=state.checked[activeIdx];
-  if(!was)state.pts+=CELLS[activeIdx].s;
-  state.checked[activeIdx]=true;state.books[activeIdx]=book;state.photos[activeIdx]=tempPhoto;
-  state.intisari[activeIdx]=document.getElementById("m-intisari").value.trim();state.moods[activeIdx]=tempMood;state.ratings[activeIdx]=tempRating;
-  updateStreak();closeModal();
-  const nd=state.checked.filter(Boolean).length;
-  if(!was){checkBingo();checkBadges();checkLevelUp(pd,nd);}
-  renderGame();saveAll();if(!was)showToast("📚 +"+CELLS[activeIdx].s+" points!");
-}
-function openDetail(i,viewOnly=false){
-  detailIdx=i;document.getElementById("d-task").textContent=CELLS[i].t;document.getElementById("d-book").textContent=state.books[i]||"—";
-  const ph=document.getElementById("d-photo");if(state.photos[i]){ph.src=state.photos[i];ph.classList.add("show");}else{ph.src="";ph.classList.remove("show");}
-  const mr=document.getElementById("d-mood-row");if(state.moods[i]>=0){document.getElementById("d-mood").textContent=MOODS[state.moods[i]].e+" "+MOODS[state.moods[i]].l;mr.style.display="block";}else mr.style.display="none";
-  const sr=document.getElementById("d-stars-row");if(state.ratings[i]>0){document.getElementById("d-stars").innerHTML=Array.from({length:5},(_,j)=>j<state.ratings[i]?"⭐":"☆").join("");sr.style.display="block";}else sr.style.display="none";
-  const iw=document.getElementById("d-int-wrap");if(state.intisari[i]){document.getElementById("d-intisari").textContent=state.intisari[i];iw.style.display="block";}else iw.style.display="none";
-  document.getElementById("d-edit-btn").style.display=viewOnly?"none":"";document.getElementById("d-del-btn").style.display=viewOnly?"none":"";
-  document.getElementById("detail-bg").classList.add("open");
-}
-function closeDetail(){document.getElementById("detail-bg").classList.remove("open");detailIdx=-1;}
-function editFromDetail(){const i=detailIdx;closeDetail();openModal(i);}
-function deleteFromDetail(){
-  if(!confirm("Remove this entry and uncomplete this challenge?"))return;
-  const i=detailIdx;state.pts=Math.max(0,state.pts-CELLS[i].s);
-  state.checked[i]=false;state.books[i]="";state.photos[i]="";state.intisari[i]="";state.moods[i]=-1;state.ratings[i]=0;
-  rebuildBingo();closeDetail();renderGame();saveAll();
-}
-function rebuildBingo(){state.bingoLines=new Set();LINES.forEach((l,li)=>{if(l.every(i=>state.checked[i]))state.bingoLines.add("l"+li);});}
-function checkBingo(){
-  LINES.forEach((l,li)=>{const key="l"+li;if(l.every(i=>state.checked[i])&&!state.bingoLines.has(key)){state.bingoLines.add(key);state.pts+=50;setTimeout(()=>{showToast("🎯 BINGO! +50 bonus points!");confetti();},300);}});
-}
-function resetProgress(){
-  if(!confirm("Reset all your progress? The season will still be running."))return;
-  state={checked:new Array(16).fill(false),books:new Array(16).fill(""),photos:new Array(16).fill(""),intisari:new Array(16).fill(""),moods:new Array(16).fill(-1),ratings:new Array(16).fill(0),pts:0,bingoLines:new Set(),badges:new Set(),streak:0,lastDate:"",dailyDone:false,dailyDate:""};
-  saveAll();renderGame();
-}
-function renderGame(){buildTopBar();buildSeasonBar();buildXPBar();buildStats();buildGrid();buildBadges();buildLog();buildStreak();buildDaily();buildQuote();}
 
-// TOAST
-function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2800);}
+// LOGIKA AUTENTIKASI SISWA (DAFTAR / MASUK OTOMATIS)
+window.loginAsStudent = function() {
+  clearValidationErrors();
+  let name = document.getElementById("ob-student-name").value.trim();
+  let gCode = document.getElementById("ob-guru-code").value.trim().toUpperCase();
+  let cl = document.getElementById("ob-class").value;
+  if(cl === '__other__') {
+    cl = document.getElementById("ob-class-custom").value.trim() || "Kustom";
+  }
 
-// CONFETTI
-function confetti(){
-  const c=document.getElementById("cc"),ctx=c.getContext("2d");
-  c.width=window.innerWidth;c.height=window.innerHeight;
-  const COLORS=["#4A8024","#1D6B8A","#7A2D6B","#7A4F00","#2D5016","#D4956A","#B8D4A0"];
-  const p=Array.from({length:120},()=>({x:Math.random()*c.width,y:-15,vx:(Math.random()-.5)*6,vy:Math.random()*5+2,sz:Math.random()*10+4,col:COLORS[Math.floor(Math.random()*COLORS.length)],r:Math.random()*360,vr:(Math.random()-.5)*8,sh:Math.random()>.5,alpha:1}));
-  let f=0;
-  function draw(){
+  if(!name) { showInputError("ob-student-name", "err-student-name", "Nama lengkap wajib diisi!"); return; }
+  if(!gCode || !window.appData.guruAccounts[gCode]) { showInputError("ob-guru-code", "err-guru-code", "Kode Guru tidak terdaftar!"); return; }
+
+  // Buat ID unik berdasarkan gabungan Nama + Kode Guru
+  let studentKey = btoa(unescape(encodeURIComponent(name.toLowerCase() + "_" + gCode))).replace(/=/g, "");
+  window.currentStudentKey = studentKey;
+
+  if (!window.appData.students[studentKey]) {
+    // Daftarkan siswa baru ke cloud database
+    window.appData.students[studentKey] = {
+      key: studentKey,
+      name: name,
+      class: cl,
+      guruCode: gCode,
+      claimedPetaks: {},
+      dailyCompletedDate: "",
+      dailyActiveIndex: Math.floor(Math.random() * DAILY_POOL.length),
+      streakCount: 0,
+      streakLastClaimDate: "",
+      isLockedManually: false
+    };
+    saveToCloud();
+  }
+
+  switchScreen("screen-game");
+  document.getElementById("game-nav").style.display = "flex";
+  calculateAndRenderStudentGameData();
+}
+
+function switchScreen(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+window.logout = function() {
+  document.getElementById("ob-secure-pass").value = "";
+  document.getElementById("game-nav").style.display = "none";
+  switchScreen("screen-onboard");
+}
+
+window.logoutStudent = function() {
+  window.currentStudentKey = null;
+  document.getElementById("game-nav").style.display = "none";
+  switchScreen("screen-onboard");
+}
+
+// =========================================================================
+// FITUR KENDALI ADMIN (ONLINE REPLACEMENT)
+// =========================================================================
+function initAdminInputs() {
+  document.getElementById("adm-season-start").value = window.appData.seasonStart || "2026-01-01";
+  document.getElementById("adm-season-end").value = window.appData.seasonEnd || "2026-06-30";
+  updateSeasonMeta();
+}
+
+window.updateSeasonMeta = function() {
+  let start = document.getElementById("adm-season-start").value;
+  let end = document.getElementById("adm-season-end").value;
+  window.appData.seasonStart = start;
+  window.appData.seasonEnd = end;
+  
+  let dStart = new Date(start);
+  let dEnd = new Date(end);
+  let diff = dEnd - dStart;
+  let totalDays = Math.max(0, Math.ceil(diff / (1000*60*60*24)));
+  document.getElementById("adm-season-days").innerText = totalDays + " Hari";
+
+  let now = new Date();
+  let prog = 0;
+  if (now > dStart) {
+    let passed = now - dStart;
+    prog = Math.min(100, Math.ceil((passed / diff) * 100));
+  }
+  document.getElementById("adm-season-bar").style.width = prog + "%";
+  saveToCloud();
+}
+
+window.changeAdminPassword = function() {
+  let p1 = document.getElementById("adm-pass-1").value;
+  let p2 = document.getElementById("adm-pass-2").value;
+  if(!p1 || p1 !== p2) { alert("Konfirmasi password baru tidak cocok!"); return; }
+  window.appData.adminPassword = p1;
+  saveToCloud();
+  alert("Sandi Admin berhasil diubah secara global di semua perangkat!");
+  document.getElementById("adm-pass-1").value = "";
+  document.getElementById("adm-pass-2").value = "";
+}
+
+window.changeGuruGlobalPassword = function() {
+  let gp = document.getElementById("adm-gpass").value;
+  if(!gp) { alert("Sandi baru guru tidak boleh kosong!"); return; }
+  window.appData.guruGlobalPassword = gp;
+  saveToCloud();
+  alert("Sandi Guru berhasil disinkronkan ke cloud!");
+  document.getElementById("adm-gpass").value = "";
+}
+
+window.addGuruAccount = function() {
+  let name = document.getElementById("adm-new-guru-name").value.trim();
+  let code = document.getElementById("adm-new-guru-code").value.trim().toUpperCase();
+  if(!name) { alert("Nama guru kosong!"); return; }
+  if(!code) code = "GURU" + Math.floor(100 + Math.random()*900);
+  
+  if(!window.appData.guruAccounts) window.appData.guruAccounts = {};
+  window.appData.guruAccounts[code] = { code: code, name: name };
+  saveToCloud();
+  
+  document.getElementById("adm-new-guru-name").value = "";
+  document.getElementById("adm-new-guru-code").value = "";
+  renderAdminGuruList();
+}
+
+function renderAdminGuruList() {
+  const container = document.getElementById("adm-guru-container");
+  container.innerHTML = "";
+  let list = Object.values(window.appData.guruAccounts || {});
+  if(list.length === 0) container.innerHTML = "<div style='font-size:12px; color:var(--muted)'>Belum ada akun guru.</div>";
+  list.forEach(g => {
+    let initial = g.name.charAt(0);
+    container.innerHTML += `
+      <div class="guru-item">
+        <div class="guru-item-left">
+          <div class="guru-avatar">${initial}</div>
+          <div>
+            <div class="guru-name">${g.name}</div>
+            <div class="guru-code">KODE: ${g.code}</div>
+          </div>
+        </div>
+        <button class="btn btn-danger btn-sm" onclick="deleteGuruAccount('${g.code}')">Hapus</button>
+      </div>
+    `;
+  });
+}
+
+window.deleteGuruAccount = function(code) {
+  if(confirm(`Hapus akun guru ${code}? Siswa yang menempel tetap aman di DB.`)) {
+    delete window.appData.guruAccounts[code];
+    saveToCloud();
+    renderAdminGuruList();
+  }
+}
+
+// =========================================================================
+// LOGIKA UTAMA PERMAINAN (SISWA) & SINKRONISASI ONLINE
+// =========================================================================
+function calculateAndRenderStudentGameData() {
+  const me = window.appData.students[window.currentStudentKey];
+  if (!me) return;
+
+  // Render biodata atas
+  document.getElementById("stu-name").innerText = me.name;
+  let pName = window.appData.guruAccounts[me.guruCode] ? window.appData.guruAccounts[me.guruCode].name : me.guruCode;
+  document.getElementById("stu-class-label").innerText = `${me.class} • Pembina: ${pName}`;
+  document.getElementById("stu-avatar").innerText = me.name.charAt(0).toUpperCase();
+
+  // Hitung Waktu Mundur Sesi (Deadline)
+  let dEnd = new Date(window.appData.seasonEnd + "T23:59:59");
+  let dStart = new Date(window.appData.seasonStart + "T00:00:00");
+  let totalTime = dEnd - dStart;
+  let now = new Date();
+  let timeRemain = dEnd - now;
+
+  if (timeRemain <= 0) {
+    // Masa Tenggat Berakhir Global
+    switchScreen("screen-locked");
+    document.getElementById("game-nav").style.display = "none";
+    renderLockedFinalStats(me);
+    return;
+  }
+
+  // Render Countdown Sisa Hari
+  let days = Math.floor(timeRemain / (1000*60*60*24));
+  let hrs = Math.floor((timeRemain % (1000*60*60*24)) / (1000*60*60));
+  document.getElementById("game-season-countdown").innerText = `${days}d ${hrs}h`;
+  let sPct = Math.max(0, Math.min(100, Math.ceil(((now - dStart)/totalTime)*100)));
+  document.getElementById("game-season-bar").style.width = sPct + "%";
+  document.getElementById("game-season-start").innerText = window.appData.seasonStart;
+  document.getElementById("game-season-end").innerText = window.appData.seasonEnd;
+
+  // LOGIKA UTAMA HITUNG SKOR & BINGO LINE
+  let claimedMap = me.claimedPetaks || {};
+  let baseXP = 0;
+  let totalPages = 0;
+  let bookCount = Object.keys(claimedMap).length;
+
+  BINGO_TASKS_DEFAULT.forEach(t => {
+    if (claimedMap[t.id]) {
+      baseXP += t.points;
+      totalPages += parseInt(claimedMap[t.id].pages || 0);
+    }
+  });
+
+  // Cek Pola Kombinasi Bingo (4x4)
+  let bingos = 0;
+  let lines = [
+    [0,1,2,3],[4,5,6,7],[8,9,10,11],[12,13,14,15], // Horisontal
+    [0,4,8,12],[11,5,9,13],[2,6,10,14],[3,7,11,15], // Vertikal
+    [0,5,10,15],[3,6,9,12] // Diagonal
+  ];
+  let highlightCells = new Set();
+
+  lines.forEach(line => {
+    let isBingo = line.every(idx => claimedMap[idx]);
+    if (isBingo) {
+      bingos++;
+      line.forEach(idx => highlightCells.add(idx));
+    }
+  });
+
+  let bingoBonusXP = bingos * 250;
+  
+  // Ambil data daily quest bonus
+  let dailyBonus = me.dailyCompletedDate === getTodayString() ? 50 : 0;
+  let grandTotalXP = baseXP + bingoBonusXP + dailyBonus;
+
+  // LEVELING CALCULATOR STRUCTURE
+  let level = 1;
+  let currentLevelMin = 0;
+  let nextLevelMin = 100;
+  let lvName = "Pustakawan Pemula";
+  let lvEmoji = "🌱";
+
+  if (grandTotalXP >= 100 && grandTotalXP < 300) { level = 2; currentLevelMin = 100; nextLevelMin = 300; lvName = "Penjelajah Bab"; lvEmoji = "📖"; }
+  else if (grandTotalXP >= 300 && grandTotalXP < 700) { level = 3; currentLevelMin = 300; nextLevelMin = 700; lvName = "Ksatria Skriptorium"; lvEmoji = "⚔️"; }
+  else if (grandTotalXP >= 700 && grandTotalXP < 1200) { level = 4; currentLevelMin = 700; nextLevelMin = 1200; lvName = "Penyihir Aksara"; lvEmoji = "🔮"; }
+  else if (grandTotalXP >= 1200) { level = 5; currentLevelMin = 1200; nextLevelMin = 99999; lvName = "Arsitek Alkimia Buku"; lvEmoji = "👑"; }
+
+  document.getElementById("xp-level-icon").innerText = lvEmoji;
+  document.getElementById("xp-level-name").innerText = lvName;
+  document.getElementById("xp-level-num").innerText = "Level " + level;
+  document.getElementById("xp-total-val").innerText = grandTotalXP;
+
+  if (level === 5) {
+    document.getElementById("xp-bar-fill").style.width = "100%";
+    document.getElementById("xp-current-range").innerText = grandTotalXP + " XP";
+    document.getElementById("xp-needed-lbl").innerText = "Tingkat pencapaian tertinggi tercapai!";
+  } else {
+    let rem = grandTotalXP - currentLevelMin;
+    let range = nextLevelMin - currentLevelMin;
+    let xpPct = Math.max(0, Math.min(100, (rem / range) * 100));
+    document.getElementById("xp-bar-fill").style.width = xpPct + "%";
+    document.getElementById("xp-current-range").innerText = `${grandTotalXP} / ${nextLevelMin} XP`;
+    document.getElementById("xp-needed-lbl").innerText = `Butuh ${(nextLevelMin - grandTotalXP)} XP lagi untuk naik level`;
+  }
+
+  // Render Panel Statistik tengah
+  document.getElementById("st-books").innerText = bookCount;
+  document.getElementById("st-bingos").innerText = bingos;
+  document.getElementById("st-avg-pg").innerText = bookCount ? Math.round(totalPages / bookCount) : 0;
+
+  // Hitung progress kelengkapan papan
+  let gridPct = Math.round((bookCount / 16) * 100);
+  document.getElementById("prog-pct-txt").innerText = gridPct + "%";
+  document.getElementById("prog-bar-fill").style.width = gridPct + "%";
+  
+  document.getElementById("ms-1").className = "milestone" + (gridPct>=25?" reached":"");
+  document.getElementById("ms-2").className = "milestone" + (gridPct>=50?" reached":"");
+  document.getElementById("ms-3").className = "milestone" + (gridPct>=75?" reached":"");
+  document.getElementById("ms-4").className = "milestone" + (gridPct>=100?" reached":"");
+
+  // EVALUASI LENCANA OTOMATIS (BADGES)
+  let unlockedBadges = [];
+  if (bookCount >= 1) unlockedBadges.push("first_book");
+  if (bingos >= 1) unlockedBadges.push("bingo_one");
+  if (bookCount >= 16) unlockedBadges.push("full_board");
+  
+  let hasThick = Object.values(claimedMap).some(b => parseInt(b.pages) > 150);
+  if (hasThick) unlockedBadges.push("thick_book");
+  
+  // Validasi Streak membaca
+  updateStreakLogic(me);
+  if (me.streakCount >= 3) unlockedBadges.push("streak_3");
+
+  document.getElementById("st-badges").innerText = unlockedBadges.length;
+
+  // Render Matriks Grid Bingo Papan Utama
+  const gridEl = document.getElementById("bingo-grid");
+  gridEl.innerHTML = "";
+  
+  BINGO_TASKS_DEFAULT.forEach(t => {
+    let done = !!claimedMap[t.id];
+    let hi = highlightCells.has(t.id) ? " bingo-hi" : "";
+    let cClass = done ? ` done ct-${t.id % 4}` : "";
+    
+    let cellHtml = `
+      <div class="cell${cClass}${hi}" onclick="handleCellClick(${t.id})">
+        <div class="cell-emoji">${t.emoji}</div>
+        <div class="cell-title">${t.title}</div>
+        <div class="cell-bottom">
+          <span class="score-badge">${t.points}XP</span>
+          <span class="check">✅</span>
+        </div>
+    `;
+    if (done && claimedMap[t.id].photo) {
+      cellHtml += `<div class="photo-dot"></div>`;
+    }
+    cellHtml += `</div>`;
+    gridEl.innerHTML += cellHtml;
+  });
+
+  // Render lencana list bawah
+  const bContainer = document.getElementById("badges-container");
+  bContainer.innerHTML = "";
+  BADGES_DEFS.forEach(b => {
+    let open = unlockedBadges.includes(b.id);
+    let cls = open ? "unlocked" : "";
+    bContainer.innerHTML += `<div class="badge ${cls}" title="${b.desc}"><span class="badge-ic">${b.emoji}</span> ${b.name}</div>`;
+  });
+
+  // Render log histori aktivitas pembacaan
+  const logContainer = document.getElementById("log-container");
+  logContainer.innerHTML = "";
+  let sortedLogs = Object.values(claimedMap).sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+  
+  if (sortedLogs.length === 0) {
+    logContainer.innerHTML = "<div class='no-books'>Belum ada petak tantangan yang diselesaikan. Mulai pilih petak diatas!</div>";
+  } else {
+    sortedLogs.forEach(log => {
+      let taskObj = BINGO_TASKS_DEFAULT.find(v => v.id === log.taskId);
+      let thumbHtml = log.photo ? `<img src="${log.photo}" class="log-thumb">` : `<div class="log-thumb-ph">${taskObj.emoji}</div>`;
+      logContainer.innerHTML += `
+        <div class="log-item" onclick="openDetailLogModal(${log.taskId})">
+          ${thumbHtml}
+          <div class="log-info">
+            <div class="log-t">${log.title}</div>
+            <div class="log-task">Tantangan: ${taskObj.title}</div>
+            <div class="log-snip">"${log.review}"</div>
+          </div>
+          <div class="log-pts">+${taskObj.points} XP</div>
+        </div>
+      `;
+    });
+  }
+
+  // Sinkronisasi data XP kumulatif ke parent student node agar terbaca oleh guru
+  if(me.totalXPComputed !== grandTotalXP || me.totalBingosComputed !== bingos) {
+    me.totalXPComputed = grandTotalXP;
+    me.totalBingosComputed = bingos;
+    me.totalBooksComputed = bookCount;
+    // Update lokal lalu kirim ke cloud tanpa memicu loop tak berujung
+    window.appData.students[window.currentStudentKey] = me;
+    set(ref(db, `reading_bingo_quest_v1/students/${window.currentStudentKey}`), me);
+  }
+
+  // Sinkronisasi tampilan Daily Challenge
+  renderDailyQuestUI(me);
+}
+
+// LOGIKA TENGGAT SCREEN FINISH
+function renderLockedFinalStats(me) {
+  document.getElementById("lk-books").innerText = Object.keys(me.claimedPetaks || {}).length;
+  document.getElementById("lk-bingos").innerText = me.totalBingosComputed || 0;
+  document.getElementById("lk-xp").innerText = (me.totalXPComputed || 0) + " XP";
+}
+
+// STREAK DATE ENGINE LOGIC
+function updateStreakLogic(me) {
+  let todayStr = getTodayString();
+  let yesterdayStr = getYesterdayString();
+
+  if (me.streakLastClaimDate === todayStr) {
+    // Sudah mengklaim hari ini, streak aman
+  } else if (me.streakLastClaimDate === yesterdayStr) {
+    // Bagus, pembacaan kemarin bersambung ke hari ini jika ada klaim baru
+  } else {
+    // Terputus, reset ke 0 jika melewati 1 hari tanpa aktivitas baru
+    if(me.streakCount > 0) {
+      me.streakCount = 0;
+    }
+  }
+}
+
+// =========================================================================
+// INTERAKSI KLAIM PETAK & MODAL ACTIONS
+// =========================================================================
+window.handleCellClick = function(id) {
+  const me = window.appData.students[window.currentStudentKey];
+  if(me.claimedPetaks && me.claimedPetaks[id]) {
+    openDetailLogModal(id);
+  } else {
+    window.selectedCellId = id;
+    let t = BINGO_TASKS_DEFAULT.find(x => x.id === id);
+    document.getElementById("claim-title").innerText = `Klaim Petak #${id+1} [ ${t.emoji} ]`;
+    document.getElementById("claim-desc").innerText = t.title;
+    
+    // Reset form fields
+    document.getElementById("fm-title").value = "";
+    document.getElementById("fm-author").value = "";
+    document.getElementById("fm-pages").value = "";
+    document.getElementById("fm-review").value = "";
+    document.getElementById("fm-file-lbl").innerText = "Ambil Foto / Unggah Gambar Bukti";
+    document.getElementById("fm-img-preview").style.display = "none";
+    window.temporaryBase64Photo = "";
+
+    openModal("modal-claim");
+  }
+}
+
+window.handleFileSelect = function(input) {
+  const file = input.files[0];
+  if(!file) return;
+  if(file.size > 2 * 1024 * 1024) { alert("Ukuran file terlalu besar! Maksimal 2MB."); return; }
+  
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    window.temporaryBase64Photo = e.target.result;
+    document.getElementById("fm-file-lbl").innerText = file.name;
+    const preview = document.getElementById("fm-img-preview");
+    preview.src = e.target.result;
+    preview.style.display = "block";
+  }
+  reader.readAsDataURL(file);
+}
+
+window.submitPetakClaim = function() {
+  let title = document.getElementById("fm-title").value.trim();
+  let author = document.getElementById("fm-author").value.trim();
+  let pages = document.getElementById("fm-pages").value.trim();
+  let review = document.getElementById("fm-review").value.trim();
+
+  if(!title || !author || !pages || !review) { alert("Mohon lengkapi seluruh kolom formulir dan intisari!"); return; }
+
+  const me = window.appData.students[window.currentStudentKey];
+  let todayStr = getTodayString();
+
+  // Update rantai streak jika pembacaan baru di hari yang berbeda
+  if (me.streakLastClaimDate !== todayStr) {
+    if (me.streakLastClaimDate === getYesterdayString()) {
+      me.streakCount += 1;
+    } else {
+      me.streakCount = 1;
+    }
+    me.streakLastClaimDate = todayStr;
+  }
+
+  // Pasang objek ke tabel siswa binaan
+  me.claimedPetaks[window.selectedCellId] = {
+    taskId: window.selectedCellId,
+    title: title,
+    author: author,
+    pages: pages,
+    review: review,
+    photo: window.temporaryBase64Photo,
+    timestamp: new Date().toISOString()
+  };
+
+  saveToCloud();
+  closeModal("modal-claim");
+  triggerConfettiExplosion();
+  calculateAndRenderStudentGameData();
+}
+
+window.openDetailLogModal = function(id) {
+  window.selectedCellId = id;
+  const me = window.appData.students[window.currentStudentKey];
+  let log = me.claimedPetaks[id];
+  let taskObj = BINGO_TASKS_DEFAULT.find(x => x.id === id);
+
+  document.getElementById("det-title").innerText = log.title;
+  document.getElementById("det-task").innerText = "Tantangan: " + taskObj.title;
+  document.getElementById("det-author").innerText = "✏️ " + log.author;
+  document.getElementById("det-pages").innerText = "📖 " + log.pages + " Halaman";
+  document.getElementById("det-xp").innerText = `+${taskObj.points} XP Earned`;
+  document.getElementById("det-review").innerText = log.review;
+  document.getElementById("det-date").innerText = new Date(log.timestamp).toLocaleString("id-ID");
+
+  const imgBox = document.getElementById("det-img-box");
+  if(log.photo) {
+    imgBox.innerHTML = `<img src="${log.photo}" class="det-img" onclick="window.open(this.src)">`;
+  } else {
+    imgBox.innerHTML = `<div class="det-img-ph">${taskObj.emoji}</div>`;
+  }
+  openModal("modal-detail");
+}
+
+window.deleteCurrentActivePetak = function() {
+  if(confirm("Apakah Anda yakin ingin menghapus jurnal ini? Progress XP & Bingo Anda akan berkurang.")) {
+    const me = window.appData.students[window.currentStudentKey];
+    delete me.claimedPetaks[window.selectedCellId];
+    saveToCloud();
+    closeModal("modal-detail");
+    calculateAndRenderStudentGameData();
+  }
+}
+
+// =========================================================================
+// DAILY QUEST LOGIC ENGINE
+// =========================================================================
+function renderDailyQuestUI(me) {
+  let today = getTodayString();
+  let card = document.getElementById("daily-quest-card");
+  let qObj = DAILY_POOL[me.dailyActiveIndex || 0];
+
+  if (me.dailyCompletedDate === today) {
+    card.classList.add("done");
+    document.getElementById("daily-q-title").innerText = "Daily Mini Challenge Beres 🎉";
+    document.getElementById("daily-q-desc").innerText = "Kamu telah mengklaim hadiah harianmu hari ini. Sampai jumpa besok!";
+    document.getElementById("daily-q-reward").innerText = "CLAIMED";
+    document.getElementById("daily-q-reward").className = "daily-tag pill-gray";
+  } else {
+    card.classList.remove("done");
+    document.getElementById("daily-q-title").innerText = qObj.title;
+    document.getElementById("daily-q-desc").innerText = qObj.desc;
+    document.getElementById("daily-q-reward").innerText = "+50 XP Bonus";
+    document.getElementById("daily-q-reward").className = "daily-tag";
+  }
+
+  // Render Core Streak Box
+  const streakBox = document.getElementById("streak-box");
+  if (me.streakCount > 0) {
+    streakBox.style.display = "flex";
+    document.getElementById("stk-count").innerText = me.streakCount;
+    document.getElementById("stk-num").innerText = me.streakCount;
+    document.getElementById("stk-desc").innerText = "Hebat! Pertahankan momentum membacamu.";
+    
+    let dotsHtml = "";
+    for(let i=1; i<=7; i++) {
+      let act = i <= me.streakCount ? " active" : "";
+      dotsHtml += `<div class="streak-dot${act}"></div>`;
+    }
+    document.getElementById("stk-dots").innerHTML = dotsHtml;
+  } else {
+    streakBox.style.display = "none";
+  }
+}
+
+window.openDailyQuestModal = function() {
+  const me = window.appData.students[window.currentStudentKey];
+  let today = getTodayString();
+  let qObj = DAILY_POOL[me.dailyActiveIndex || 0];
+
+  document.getElementById("dl-m-title").innerText = qObj.title;
+  document.getElementById("dl-m-desc").innerText = qObj.desc;
+  document.getElementById("dl-m-emoji").innerText = qObj.emoji;
+
+  const status = document.getElementById("dl-m-status");
+  const btn = document.getElementById("btn-complete-daily");
+
+  if (me.dailyCompletedDate === today) {
+    status.innerText = "STATUS: SUDAH DIKLAIM";
+    status.className = "info-box ib-green";
+    btn.style.display = "none";
+  } else {
+    status.innerText = "STATUS: BELUM SELESAI";
+    status.className = "info-box ib-amber";
+    btn.style.display = "block";
+  }
+  openModal("modal-daily-quest");
+}
+
+window.claimDailyMiniQuestReward = function() {
+  const me = window.appData.students[window.currentStudentKey];
+  me.dailyCompletedDate = getTodayString();
+  saveToCloud();
+  closeModal("modal-daily-quest");
+  triggerConfettiExplosion();
+  calculateAndRenderStudentGameData();
+}
+
+window.confirmResetAllData = function() {
+  if (confirm("🚨 PERINGATAN UTAMA: Anda akan menghapus seluruh data jurnal, akumulasi XP, dan rekam lencana Anda dari server. Tindakan ini tidak bisa dibatalkan. Setuju?")) {
+    const me = window.appData.students[window.currentStudentKey];
+    me.claimedPetaks = {};
+    me.streakCount = 0;
+    me.streakLastClaimDate = "";
+    me.dailyCompletedDate = "";
+    saveToCloud();
+    calculateAndRenderStudentGameData();
+  }
+}
+
+// =========================================================================
+// PANEL TINJAUAN UTAMA GURU (ONLINE REAL-TIME)
+// =========================================================================
+function renderGuruClassChips() {
+  const container = document.getElementById("guru-class-chips");
+  container.innerHTML = "";
+  
+  // Ambil daftar kelas unik dari semua siswa yang beraliansi dengan kode guru ini
+  let classes = new Set(["Semua Kelas"]);
+  Object.values(window.appData.students || {}).forEach(st => {
+    if(st.guruCode === window.currentGuruCode) {
+      classes.add(st.class);
+    }
+  });
+
+  classes.forEach(c => {
+    let sel = window.guruSelectedClass === c ? " sel" : "";
+    container.innerHTML += `<div class="class-chip${sel}" onclick="setGuruClassFilter('${c}')">${c}</div>`;
+  });
+}
+
+window.setGuruClassFilter = function(c) {
+  window.guruSelectedClass = c;
+  renderGuruClassChips();
+  renderGuruStudentTable();
+}
+
+window.setGuruFilter = function(f) {
+  window.guruCurrentFilter = f;
+  document.querySelectorAll(".filter-row .fbtn").forEach(b => b.classList.remove("active"));
+  document.getElementById(`fbtn-${f}`).classList.add("active");
+  renderGuruStudentTable();
+}
+
+window.renderGuruStudentTable = function() {
+  const tbody = document.getElementById("guru-tbody");
+  tbody.innerHTML = "";
+  
+  let sList = Object.values(window.appData.students || {}).filter(st => st.guruCode === window.currentGuruCode);
+
+  // Filter Berdasarkan Chip Kelas
+  if (window.guruSelectedClass !== "Semua Kelas") {
+    sList = sList.filter(st => st.class === window.guruSelectedClass);
+  }
+
+  // Filter Berdasarkan Search Bar Nama
+  let search = document.getElementById("guru-search").value.toLowerCase().trim();
+  if(search) {
+    sList = sList.filter(st => st.name.toLowerCase().includes(search));
+  }
+
+  // Filter Kategori Tombol Status
+  if (window.guruCurrentFilter === 'active') {
+    sList = sList.filter(st => Object.keys(st.claimedPetaks || {}).length > 0);
+  } else if (window.guruCurrentFilter === 'bingo') {
+    sList = sList.filter(st => (st.totalBingosComputed || 0) > 0);
+  }
+
+  // Urutkan Peringkat Berdasarkan Total XP Tertinggi
+  sList.sort((a,b) => (b.totalXPComputed || 0) - (a.totalXPComputed || 0));
+
+  // Hitung Agregat Statistik Kelas Atas
+  let totalStu = sList.length;
+  let totalBooks = 0;
+  let totalBingos = 0;
+  let sumXP = 0;
+
+  sList.forEach(st => {
+    totalBooks += (st.totalBooksComputed || 0);
+    totalBingos += (st.totalBingosComputed || 0);
+    sumXP += (st.totalXPComputed || 0);
+  });
+
+  document.getElementById("gstat-total-stu").innerText = totalStu;
+  document.getElementById("gstat-total-books").innerText = totalBooks;
+  document.getElementById("gstat-total-bingos").innerText = totalBingos;
+  document.getElementById("gstat-avg-xp").innerText = totalStu ? Math.round(sumXP / totalStu) : 0;
+
+  if (sList.length === 0) {
+    document.getElementById("guru-empty-state").style.display = "block";
+    return;
+  }
+  document.getElementById("guru-empty-state").style.display = "none";
+
+  sList.forEach((st, index) => {
+    let rank = index + 1;
+    let rBadge = rank <= 3 ? `rank-${rank}` : 'rank-n';
+    let pCount = Object.keys(st.claimedPetaks || {}).length;
+    let bPct = Math.round((pCount / 16) * 100);
+
+    tbody.innerHTML += `
+      <tr onclick="openGuruStudentDrawer('${st.key}')">
+        <td style="text-align:center"><span class="rank-badge ${rBadge}">${rank}</span></td>
+        <td>
+          <div class="sname">${st.name}</div>
+          <div class="scls">${st.class}</div>
+        </td>
+        <td style="text-align:center">
+          <span style="font-family:'DM Mono',monospace; font-weight:600">${pCount}/16</span>
+          <div class="mini-bar"><div class="mini-bar-fill" style="width:${bPct}%"></div></div>
+        </td>
+        <td style="text-align:center; color:var(--amber); font-weight:700">🔥 ${st.totalBingosComputed || 0}</td>
+        <td style="text-align:right; font-weight:600" class="spts">${st.totalXPComputed || 0} XP</td>
+      </tr>
+    `;
+  });
+}
+
+// EXPORT FORMAT DATA KE EXCEL LAPORAN (CSV)
+window.exportGuruData = function() {
+  let sList = Object.values(window.appData.students || {}).filter(st => st.guruCode === window.currentGuruCode);
+  if(sList.length === 0) { alert("Tidak ada data untuk diexport."); return; }
+
+  let csv = "Peringkat,Nama Siswa,Kelas,Petak Selesai,Total Bingo,Akumulasi XP\n";
+  sList.sort((a,b) => (b.totalXPComputed || 0) - (a.totalXPComputed || 0));
+  
+  sList.forEach((st, i) => {
+    csv += `${i+1},"${st.name}","${st.class}",${Object.keys(st.claimedPetaks || {}).length},${st.totalBingosComputed || 0},${st.totalXPComputed || 0}\n`;
+  });
+
+  let blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  let link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.setAttribute("download", `Laporan_Reading_Bingo_${window.guruSelectedClass.replace(/ /g,"_")}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+// UTILS NAVIGATION JALUR POPUP & DRAWERS
+window.openModal = function(id) { document.getElementById(id).classList.add("open"); }
+window.closeModal = function(id) { document.getElementById(id).classList.remove("open"); }
+
+window.switchGameSubSection = function(sub) {
+  if (sub === 'quest') {
+    document.getElementById("nav-quest").classList.add("active");
+    document.getElementById("nav-leaderboard").classList.remove("active");
+  }
+}
+
+window.switchGameLeaderboard = function() {
+  const tbody = document.getElementById("lb-pop-tbody");
+  tbody.innerHTML = "";
+  const me = window.appData.students[window.currentStudentKey];
+  
+  // Ambil kawan sekelas yang memiliki pembina guru berkode sama
+  let list = Object.values(window.appData.students || {}).filter(x => x.guruCode === me.guruCode);
+  list.sort((a,b) => (b.totalXPComputed || 0) - (a.totalXPComputed || 0));
+
+  list.forEach((st, idx) => {
+    let rank = idx + 1;
+    let bold = st.key === me.key ? " style='background:var(--accent-bg); font-weight:700'" : "";
+    tbody.innerHTML += `
+      <tr${bold}>
+        <td style="text-align:center">${rank}</td>
+        <td class="sname">${st.name} ${(st.key===me.key?'(Kamu)':'')}</td>
+        <td style="text-align:right" class="spts">${st.totalXPComputed || 0} XP</td>
+      </tr>
+    `;
+  });
+  openModal("modal-leaderboard-popup");
+}
+
+window.openGuideModal = function() { openModal("modal-guide"); }
+
+// HELPER DATE GENERATORS
+function getTodayString() { return new Date().toISOString().split('T')[0]; }
+function getYesterdayString() {
+  let d = new Date();
+  d.setDate(d.getDate() - 1);
+  return d.toISOString().split('T')[0];
+}
+
+// EFFECT CONFETTI CANVAS EXPLOSION ENGINE
+function triggerConfettiExplosion() {
+  const c = document.getElementById("confetti-canvas");
+  const ctx = c.getContext("2d");
+  c.width = window.innerWidth;
+  c.height = window.innerHeight;
+
+  let p = [];
+  const COLORS = ["#2D5016","#4A8024","#7A4F00","#8B1A1A","#0F3D6B","#3D1F7A"];
+  
+  for(let i=0; i<80; i++) {
+    p.push({
+      x: c.width / 2,
+      y: c.height * 0.4,
+      vx: (Math.random() - 0.5) * 12,
+      vy: (Math.random() - 0.6) * 14 - 4,
+      sz: Math.random() * 10 + 4,
+      col: COLORS[Math.floor(Math.random() * COLORS.length)],
+      r: Math.random() * 360,
+      vr: (Math.random() - 0.5) * 8,
+      sh: Math.random() > 0.5,
+      alpha: 1
+    });
+  }
+
+  let f = 0;
+  function draw() {
     ctx.clearRect(0,0,c.width,c.height);
-    p.forEach(q=>{ctx.save();ctx.globalAlpha=q.alpha;ctx.translate(q.x,q.y);ctx.rotate(q.r*Math.PI/180);ctx.fillStyle=q.col;if(q.sh){ctx.beginPath();ctx.arc(0,0,q.sz/2,0,Math.PI*2);ctx.fill();}else ctx.fillRect(-q.sz/2,-q.sz/4,q.sz,q.sz/2);ctx.restore();q.x+=q.vx;q.y+=q.vy;q.r+=q.vr;q.vy+=.07;if(q.y>c.height*.7)q.alpha=Math.max(0,q.alpha-.025);});
-    if(++f<160)requestAnimationFrame(draw);else ctx.clearRect(0,0,c.width,c.height);
+    p.forEach(q => {
+      ctx.save();
+      ctx.globalAlpha = q.alpha;
+      ctx.translate(q.x, q.y);
+      ctx.rotate(q.r * Math.PI / 180);
+      ctx.fillStyle = q.col;
+      if (q.sh) {
+        ctx.beginPath(); ctx.arc(0,0,q.sz/2,0,Math.PI*2); ctx.fill();
+      } else {
+        ctx.fillRect(-q.sz/2, -q.sz/4, q.sz, q.sz/2);
+      }
+      ctx.restore();
+      q.x += q.vx; q.y += q.vy; q.r += q.vr; q.vy += 0.12;
+      if (q.y > c.height * 0.8) q.alpha = Math.max(0, q.alpha - 0.02);
+    });
+    if (++f < 120) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,c.width,c.height);
   }
   draw();
 }
 
-// INIT
-loadAll();
-document.getElementById("ob-class").addEventListener("change",function(){document.getElementById("ob-class-custom").style.display=this.value==="__other__"?"block":"none";});
-buildInfoBox();
-showScreen("screen-onboard");
-if(player.name){
-  document.getElementById("ob-name").value=player.name;
-  const sel=document.getElementById("ob-class");let found=false;
-  for(let o of sel.options)if(o.value===player.cls){sel.value=player.cls;found=true;break;}
-  if(!found&&player.cls){sel.value="__other__";document.getElementById("ob-class-custom").value=player.cls;document.getElementById("ob-class-custom").style.display="block";}
-}
+// BERJALAN OTOMATIS SAAT WEB DIBUKA
+initFirebaseSync();
 
-// Initialize default guru if none exist
-if(!getGuruAccounts().length){saveGuruAccounts([{name:"Default Teacher",code:"RBQ@Guru2025!"}]);}
+document.getElementById("ob-class").addEventListener("change", function() {
+  document.getElementById("ob-class-custom").style.display = this.value === "__other__" ? "block" : "none";
+});
 </script>
 </body>
 </html>
